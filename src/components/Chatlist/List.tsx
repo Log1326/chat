@@ -9,6 +9,8 @@ import {
 } from '@/store/message/message.selectors'
 import { ChatLIstItem } from '@/components/Chatlist/ChatLIstItem'
 import { IGetInitialUsersChat } from '@/store/message/message.types'
+import { IUser } from '@/store/user/user.types'
+import { Loading } from '@/UI/Loading'
 
 export function List() {
 	const user = useSelector(getUser)
@@ -16,7 +18,7 @@ export function List() {
 	const loadingContacts = useSelector(getStateMessageLoading)
 	const { getMessageContacts } = useActions()
 	const [searchUser, setSearchUser] = useState<string>('')
-	const [filterUser, setFilterUser] = useState<IGetInitialUsersChat[]>()
+	const [filterUser, setFilterUser] = useState<IGetInitialUsersChat<IUser>[]>()
 
 	useEffect(() => {
 		user?.id && getMessageContacts(user.id)
@@ -41,16 +43,22 @@ export function List() {
 			</div>
 
 			{loadingContacts ? (
-				<div className='flex justify-center text-white text-3xl animate-fadeInfinite'>
-					Loading ...
-				</div>
+				<Loading size='text-2xl' center />
 			) : (
 				<>
 					{searchUser ? (
 						<>
-							{filterUser?.map(user => (
-								<ChatLIstItem key={String(user.id)} item={user} />
-							))}
+							{!filterUser?.length ? (
+								<div className=' text-2xl text-white flex justify-center opacity-70'>
+									There is no data...
+								</div>
+							) : (
+								<>
+									{filterUser?.map(user => (
+										<ChatLIstItem key={String(user.id)} item={user} />
+									))}
+								</>
+							)}
 						</>
 					) : (
 						<>

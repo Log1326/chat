@@ -31,7 +31,7 @@ export const userSlice = createSlice({
 		setEmail: ({ userInfo }, action: PayloadAction<string>) => {
 			userInfo.email = action.payload
 		},
-		setSelectUser: (state, action: PayloadAction<IUser>) => {
+		setSelectUser: (state, action: PayloadAction<IUser | undefined>) => {
 			state.selectUser = action.payload
 		},
 		setUser: (state, action: PayloadAction<IUser>) => {

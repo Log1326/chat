@@ -8,7 +8,6 @@ import {
 	getUser
 } from '@/store/user/user.selector'
 import { useSelector } from 'react-redux'
-import { CheckAuthInGoogleAccount } from '@/store/user/user.action'
 import { SignIn } from '@/UI/SignIn'
 import { Loading } from '@/UI/Loading'
 import { useEffect } from 'react'

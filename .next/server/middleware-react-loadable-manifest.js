@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST={"../components/Chat/ChatTypeMessage.tsx -> @/components/Chat/VoiceMessage":{"id":"../components/Chat/ChatTypeMessage.tsx -> @/components/Chat/VoiceMessage","files":["static/chunks/src_components_Chat_VoiceMessage_tsx.js"]},"../components/Chat/MessageBar.tsx -> @/UI/CaptureAudio":{"id":"../components/Chat/MessageBar.tsx -> @/UI/CaptureAudio","files":["static/chunks/src_components_UI_CaptureAudio_tsx.js"]}}
+self.__REACT_LOADABLE_MANIFEST={}
