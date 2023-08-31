@@ -17,11 +17,11 @@ import { IImages } from '@/types/images.types'
 import { bgChat } from '@/store/user/user.types'
 
 const images: IImages<bgChat>[] = [
-	{ name: 'color', value: '/bg-image/image-bg-color.jpg' },
-	{ name: 'white', value: '/bg-image/image-bg-white.jpg' },
-	{ name: 'pale', value: '/bg-image/image-bg-grey.png' },
-	{ name: 'teal', value: '/bg-image/image-bg-teal.jpg' },
-	{ name: 'space', value: '/bg-image/image-bg-space.jpg' }
+	{ name: 'bg-chat-background-color', value: '/bg-image/image-bg-color.jpg' },
+	{ name: 'bg-chat-background-white', value: '/bg-image/image-bg-white.jpg' },
+	{ name: 'bg-chat-background-pale', value: '/bg-image/image-bg-grey.png' },
+	{ name: 'bg-chat-background-teal', value: '/bg-image/image-bg-teal.jpg' },
+	{ name: 'bg-chat-background-space', value: '/bg-image/image-bg-space.jpg' }
 ]
 export function ChatHeader() {
 	const selectUser = useSelector(getSelectUser)
@@ -88,8 +88,8 @@ export function ChatHeader() {
 			{openModal && (
 				<PhotoLibrary
 					hiddenPhotoLib={setOpenModal}
-					change={changeBackgroundChat}
-					images={images}
+					changeBg={changeBackgroundChat}
+					imagesBg={images}
 					type='chat'
 				/>
 			)}

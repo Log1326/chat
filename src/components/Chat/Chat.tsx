@@ -32,7 +32,6 @@ export function Chat({ selectChatUserId, userId, socketRef }: ChatProps) {
 			<MessageBar
 				userId={Number(userId)}
 				selectChatUserId={Number(selectChatUserId)}
-				socketRef={socketRef}
 			/>
 		</section>
 	)

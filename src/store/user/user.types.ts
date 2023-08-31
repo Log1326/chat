@@ -6,7 +6,12 @@ export interface IUser {
 	about?: string
 	totalUnreadMessages?: number
 }
-export type bgChat = 'color' | 'pale' | 'space' | 'teal' | 'white'
+export type bgChat =
+	| 'bg-chat-background-color'
+	| 'bg-chat-background-pale'
+	| 'bg-chat-background-space'
+	| 'bg-chat-background-teal'
+	| 'bg-chat-background-white'
 
 export interface IInitialState {
 	userInfo: IUser

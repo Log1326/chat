@@ -15,37 +15,34 @@ interface ContextMenuProps {
 	}
 	idElement: string
 }
-export function ContextMenu({
-	item: { options, setContextMenu, coordinates, contextMenu },
-	idElement
-}: ContextMenuProps) {
-	const contextMenuRef = useHandleClickOutside(
-		() => setContextMenu(false),
-		'click',
+export function ContextMenu({ item, idElement }: ContextMenuProps) {
+	const contextMenuRef = useHandleClickOutside({
+		callback: () => item.setContextMenu(false),
+		type: 'click',
 		idElement
-	)
+	})
 	const handleClick = (e: MouseEvent<HTMLElement>, callback: () => void) => {
 		e.stopPropagation()
-		setContextMenu(false)
+		item.setContextMenu(false)
 		callback()
 	}
 	return (
 		<div
 			ref={contextMenuRef}
 			className={
-				contextMenu
+				item.contextMenu
 					? 'bg-dropdown-background rounded-lg fixed py-2 z-30 shadow-xl'
 					: ''
 			}
 			style={
-				coordinates && {
-					top: coordinates.y,
-					left: coordinates.x
+				item.coordinates && {
+					top: item.coordinates.y,
+					left: item.coordinates.x
 				}
 			}
 		>
 			<ul>
-				{options.map(({ name, callback }) => (
+				{item.options.map(({ name, callback }) => (
 					<li
 						className='px-5 py-2 cursor-pointer rounded-lg hover:opacity-70 hover:bg-search-input-container-background  duration-75'
 						key={name}

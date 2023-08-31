@@ -10,5 +10,9 @@
     "files": [
       "static/chunks/src_components_UI_CaptureAudio_tsx.js"
     ]
+  },
+  "../components/Chat/MessageBar.tsx -> emoji-picker-react": {
+    "id": "../components/Chat/MessageBar.tsx -> emoji-picker-react",
+    "files": []
   }
 }

@@ -4,6 +4,21 @@ import { IUser } from '@/store/user/user.types'
 export type TypeMessageStatus = 'sent' | 'read' | 'delivered'
 export type TypeMessage = 'text' | 'audio' | 'image'
 
+export interface IAddMessageImage {
+	formData: FormData
+	userId: number
+	selectChatUserId: number
+}
+export interface IAddMessageType {
+	from: number
+	to: number
+	message: string
+}
+export interface IGetMessages {
+	from: number | undefined | null
+	to: number | undefined | null
+}
+
 export interface IMessage {
 	createdAt: number
 	id: number
@@ -27,7 +42,7 @@ export interface UsersContactsAndUsersOnline {
 export interface IInitialStateMessage {
 	socketState?: Socket
 	messages?: IMessage[]
-	message?: ((val: string) => string) | string
+	message?: string
 	isSearchMessage?: boolean
 	loadingMessage?: boolean
 	errorMessage?: string

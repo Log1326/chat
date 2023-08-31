@@ -5,6 +5,8 @@ import {
 	UsersContactsAndUsersOnline
 } from '@/store/message/message.types'
 import {
+	addMessageImage,
+	addMessageSend,
 	getAllMessage,
 	getMessageContacts
 } from '@/store/message/message.action'
@@ -25,10 +27,7 @@ export const messageSlice = createSlice({
 		setMessages: ({ messages }, action: PayloadAction<IMessage>) => {
 			messages?.push(action.payload)
 		},
-		setMessage: (
-			state,
-			action: PayloadAction<((val: string) => string) | string>
-		) => {
+		setMessage: (state, action: PayloadAction<string>) => {
 			state.message = action.payload
 		},
 		setSocketState: (state, action) => {
@@ -71,6 +70,40 @@ export const messageSlice = createSlice({
 				state.usersContactsAndUsersOnline.usersContactsError = String(
 					action.payload
 				)
+			})
+			.addCase(addMessageImage.pending, state => {
+				state.loadingMessage = true
+				state.errorMessage = ''
+			})
+			.addCase(
+				addMessageImage.fulfilled,
+				(state, action: PayloadAction<IMessage>) => {
+					state.messages?.push(action.payload)
+					state.message = ''
+					state.loadingMessage = false
+					state.errorMessage = ''
+				}
+			)
+			.addCase(addMessageImage.rejected, (state, action) => {
+				state.loadingMessage = false
+				state.errorMessage = action.error.message
+			})
+			.addCase(addMessageSend.pending, state => {
+				state.loadingMessage = true
+				state.errorMessage = ''
+			})
+			.addCase(
+				addMessageSend.fulfilled,
+				(state, action: PayloadAction<IMessage>) => {
+					state.messages?.push(action.payload)
+					state.message = ''
+					state.loadingMessage = false
+					state.errorMessage = ''
+				}
+			)
+			.addCase(addMessageSend.rejected, (state, action) => {
+				state.loadingMessage = false
+				state.errorMessage = action.error.message
 			})
 	}
 })

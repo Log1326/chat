@@ -80,8 +80,8 @@ export const CustomAvatarMenu: FC<{ value: string }> = ({ value }) => {
 			</div>
 			{stateMenu.showPhotoLib && (
 				<PhotoLibrary
-					change={fn.setImage}
-					images={images}
+					changeAvatar={fn.setImage}
+					imagesAvatar={images}
 					hiddenPhotoLib={changeStateMenu.setShowPhotoLib}
 				/>
 			)}

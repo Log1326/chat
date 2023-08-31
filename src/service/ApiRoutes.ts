@@ -1,8 +1,10 @@
 import axios, { AxiosResponse } from 'axios'
 import { ILogin } from '@/types/login'
 import { IUser } from '@/store/user/user.types'
-import { IGetMessages } from '@/types/messageTypes'
-import { UsersContactsAndUsersOnline } from '@/store/message/message.types'
+import {
+	IGetMessages,
+	UsersContactsAndUsersOnline
+} from '@/store/message/message.types'
 import {
 	ADD_MESSAGE_AUDIO,
 	ADD_MESSAGE_IMAGE,
