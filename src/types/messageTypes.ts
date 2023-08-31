@@ -4,6 +4,6 @@ export interface IAddMessageType {
 	message: string
 }
 export interface IGetMessages {
-	from: number | undefined
-	to: number | undefined
+	from: number | undefined | null
+	to: number | undefined | null
 }

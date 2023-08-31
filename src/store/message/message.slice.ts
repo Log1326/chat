@@ -19,7 +19,7 @@ export const messageSlice = createSlice({
 	initialState,
 	name: 'messageStore',
 	reducers: {
-		toggleChatPage: (state, action) => {
+		toggleChatPage: (state, action: PayloadAction<boolean>) => {
 			state.toggleChatPage = action.payload
 		},
 		setMessages: ({ messages }, action: PayloadAction<IMessage>) => {
@@ -34,7 +34,7 @@ export const messageSlice = createSlice({
 		setSocketState: (state, action) => {
 			state.socketState = action.payload
 		},
-		changeIsSearchMessage: (state, action) => {
+		changeIsSearchMessage: (state, action: PayloadAction<boolean>) => {
 			state.isSearchMessage = action.payload
 		}
 	},

@@ -7,8 +7,8 @@ import { Socket } from 'socket.io-client/build/esm/socket'
 import { DefaultEventsMap } from '@socket.io/component-emitter'
 
 interface ChatProps {
-	selectChatUserId?: number
-	userId?: number
+	selectChatUserId?: number | null
+	userId?: number | null
 	socketRef: MutableRefObject<
 		Socket<DefaultEventsMap, DefaultEventsMap> | undefined
 	>
@@ -25,9 +25,8 @@ export function Chat({ selectChatUserId, userId, socketRef }: ChatProps) {
 			})
 		}
 	}, [socketRef.current])
-
 	return (
-		<section className='flex flex-col justify-between bg-search-input-container-background animate-scaleIn'>
+		<section className='flex h-full flex-col justify-between bg-search-input-container-background animate-scaleIn'>
 			<ChatHeader />
 			<ChatContainer />
 			<MessageBar

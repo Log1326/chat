@@ -4,15 +4,32 @@ import { useActions } from '@/hooks/useActions'
 import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { getUserImage } from '@/store/user/user.selector'
+import { DropDown } from '@/UI/DropDown'
+import { useToggle } from '@/hooks/useToggle'
+import { getAuth, signOut } from 'firebase/auth'
+import { useRouter } from 'next/router'
+import { RouterEnumPath } from '@/types/routerEnumPath'
 
 export function ChatListHeader() {
+	const { replace, reload } = useRouter()
 	const { toggleChatPage } = useActions()
+	const [openMenu, _, openMenuFn] = useToggle()
 	const userImage = useSelector(getUserImage)
-
 	const handleOpenChatList = useCallback(
 		() => toggleChatPage(false),
 		[toggleChatPage]
 	)
+	const logout = () => {
+		const auth = getAuth()
+		signOut(auth)
+			.then(async () => {
+				await replace(RouterEnumPath.LOGIN)
+			})
+			.catch(error => {
+				console.log(error)
+				reload()
+			})
+	}
 	return (
 		<article className='flex justify-between items-center  h-20 p-7 border-r-2 border-gray-400'>
 			{userImage && (
@@ -25,12 +42,18 @@ export function ChatListHeader() {
 						title='Chat'
 					/>
 				</button>
-				<button>
-					<BsThreeDotsVertical
-						className='h-6 w-6 hover:opacity-70'
-						title='Options'
-					/>
-				</button>
+				<DropDown
+					title={
+						<BsThreeDotsVertical
+							className='h-6 w-6 hover:opacity-70'
+							title='Options'
+							onClick={openMenuFn}
+						/>
+					}
+					toggle={openMenu}
+				>
+					<div onClick={() => logout()}>logout</div>
+				</DropDown>
 			</span>
 		</article>
 	)

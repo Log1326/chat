@@ -1,5 +1,5 @@
 import { BsCheck, BsCheckAll } from 'react-icons/bs'
-import { TypeMessageStatus } from '@/store/user/user.types'
+import { TypeMessageStatus } from '@/store/message/message.types'
 
 interface MessageStatusProps {
 	messageStatus?: TypeMessageStatus

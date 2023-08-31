@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { HOST } from '@/service/ApiRoutes'
 import { IMessage } from '@/store/message/message.types'
+import { HOST } from '@/service/const'
 
 interface IImageMessage {
 	message: IMessage

@@ -72,11 +72,11 @@ export const useAudioRecording = () => {
 			})
 		}
 	}
-	const handlePlayRecording = () => {
+	const handlePlayRecording = async () => {
 		if (recordedAudio) {
 			waveForm?.stop()
 			waveForm?.play()
-			recordedAudio.play()
+			await recordedAudio.play()
 			setIsPlaying(true)
 		}
 	}

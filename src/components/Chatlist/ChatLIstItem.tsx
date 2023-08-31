@@ -1,5 +1,4 @@
 import { useActions } from '@/hooks/useActions'
-import { useCallback } from 'react'
 import { IGetInitialUsersChat, IMessage } from '@/store/message/message.types'
 import { IUser } from '@/store/user/user.types'
 import { ChatTypeMessage } from '@/components/Chat/ChatTypeMessage'
@@ -11,10 +10,10 @@ interface ChatLIstItemProps {
 
 export function ChatLIstItem({ item }: ChatLIstItemProps) {
 	const { setSelectUser, toggleChatPage } = useActions()
-	const handleSelectUser = useCallback(() => {
+	const handleSelectUser = () => {
 		setSelectUser(item)
 		toggleChatPage(true)
-	}, [])
+	}
 	return (
 		<>
 			<div
@@ -24,11 +23,11 @@ export function ChatLIstItem({ item }: ChatLIstItemProps) {
 				<div className='flex w-full '>
 					<div className='flex items-center w-full gap-4'>
 						<Avatar type='lg' value={item.image} />
-						<article className='flex flex-col items-center justify-center'>
+						<article className='flex flex-col items-center justify-center  w-full'>
 							<p className='text-xl'>{item.name}</p>
-							<p className='text-gray-400 text-xs'>
+							<span className='text-gray-400 text-xs w-2/3 inline-block'>
 								<ChatTypeMessage message={item as IMessage} compressed={true} />
-							</p>
+							</span>
 						</article>
 					</div>
 					{item.totalUnreadMessages && item.totalUnreadMessages > 0 ? (

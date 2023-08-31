@@ -41,9 +41,9 @@ export const CheckAuthInServer = createAsyncThunk<ILogin, string>(
 	'userStore/checkUserServer',
 	async (email, thunkAPI) => {
 		try {
-			const response = await AuthService.checkAuth(email)
-			LocalStorageService.setUserLocalStorage(response.data.data)
-			return response.data
+			const { data } = await AuthService.checkAuth(email)
+			LocalStorageService.setUserLocalStorage(data.data)
+			return data
 		} catch (err) {
 			return thunkAPI.rejectWithValue(err)
 		}

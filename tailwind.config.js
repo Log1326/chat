@@ -4,7 +4,11 @@ module.exports = {
 	theme: {
 		extend: {
 			backgroundImage: {
-				'chat-background': "url('/chat-bg.png')"
+				'chat-background-color': "url('/bg-image/image-bg-color.jpg')",
+				'chat-background-white': "url('/bg-image/image-bg-white.jpg')",
+				'chat-background-pale': "url('/bg-image/image-bg-grey.png')",
+				'chat-background-teal': "url('/bg-image/image-bg-teal.jpg')",
+				'chat-background-space': "url('/bg-image/image-bg-space.jpg')"
 			},
 			colors: {
 				secondary: '#8696a0',
@@ -29,50 +33,50 @@ module.exports = {
 			},
 			gridTemplateColumns: {
 				main: '1fr 2.4fr'
-			}
-		},
-		keyframes: {
-			appearance: {
-				'0%': { transform: 'translateX(-150px)' },
-				'50%': { transform: 'translateX(-100px)' },
-				'100%': { transform: 'translateX(0px)' }
 			},
-			appearanceLeft: {
-				'0%': { transform: 'translateX(250px)' },
-				'50%': { transform: 'translateX(100px)' },
-				'100%': { transform: 'translateX(0px)' }
-			},
-			fade: {
-				from: { opacity: 0 },
-				to: { opacity: 1 }
-			},
-			fadeInfinite: {
-				from: { opacity: 0.3 },
-				to: { opacity: 0.8 }
-			},
-			scaleIn: {
-				'0%': {
-					opacity: 0,
-					transform: 'scale(0.9)'
+			keyframes: {
+				appearance: {
+					'0%': { transform: 'translateX(-150px)' },
+					'50%': { transform: 'translateX(-100px)' },
+					'100%': { transform: 'translateX(0px)' }
 				},
-				'5%': {
-					opacity: 0.3
+				appearanceLeft: {
+					'0%': { transform: 'translateX(250px)' },
+					'50%': { transform: 'translateX(100px)' },
+					'100%': { transform: 'translateX(0px)' }
 				},
-				'45%': {
-					opacity: 0.6
+				fade: {
+					from: { opacity: 0 },
+					to: { opacity: 1 }
 				},
-				'100%': {
-					opacity: 1,
-					transform: 'scale(1)'
+				fadeInfinite: {
+					from: { opacity: 0.3 },
+					to: { opacity: 0.8 }
+				},
+				scaleIn: {
+					'0%': {
+						opacity: 0,
+						transform: 'scale(0.9)'
+					},
+					'5%': {
+						opacity: 0.3
+					},
+					'45%': {
+						opacity: 0.6
+					},
+					'100%': {
+						opacity: 1,
+						transform: 'scale(1)'
+					}
 				}
+			},
+			animation: {
+				appearance: 'appearance 0.5s linear',
+				appearanceLeft: 'appearanceLeft 1s linear',
+				scaleIn: 'scaleIn .5s ease-in-out',
+				fadeInfinite: 'fadeInfinite 1.2s linear infinite',
+				fade: 'fade 1s linear '
 			}
-		},
-		animation: {
-			appearance: 'appearance 0.5s linear',
-			appearanceLeft: 'appearanceLeft 1s linear',
-			scaleIn: 'scaleIn .5s ease-in-out',
-			fadeInfinite: 'fadeInfinite 1.2s linear infinite',
-			fade: 'fade 1s linear '
 		}
 	}
 }

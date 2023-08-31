@@ -1,6 +1,5 @@
 import { MutableRefObject, useEffect, useRef } from 'react'
 import { LocalStorageService } from '@/service/LocalStorageService'
-import { HOST } from '@/service/ApiRoutes'
 import { io } from 'socket.io-client'
 import { useActions } from '@/hooks/useActions'
 import { useSelector } from 'react-redux'
@@ -12,18 +11,20 @@ import { Empty } from '@/components/Empty'
 import { Socket } from 'socket.io-client/build/esm/socket'
 import { getIsSearchMessage } from '@/store/message/message.selectors'
 import { SearchMessages } from '@/components/Chat/SearchMessages'
+import { HOST } from '@/service/const'
 
 export function Main() {
+	useAuth()
 	const { setSocketState } = useActions()
 	const selectChatUser = useSelector(getSelectUser)
 	const isSearchMessage = useSelector(getIsSearchMessage)
 	const socketRef: MutableRefObject<Socket | undefined> = useRef()
 	const user = LocalStorageService.getParseUserLocalStorage()
-	useAuth()
 	useEffect(() => {
 		if (user === undefined) LocalStorageService.removeUserLocalStorage()
 		if (user?.id) {
-			socketRef.current = io(HOST)
+			const api = HOST
+			if (api) socketRef.current = io(api)
 			socketRef.current?.emit('add-user', user.id)
 			setSocketState(socketRef.current)
 		}

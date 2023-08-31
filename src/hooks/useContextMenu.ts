@@ -60,7 +60,8 @@ export const useContextMenu = () => {
 			setIsContextMenuVisible
 		},
 		fn: {
-			photoChange
+			photoChange,
+			setImage
 		}
 	}
 }

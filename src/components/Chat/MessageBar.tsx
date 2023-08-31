@@ -2,7 +2,7 @@ import { BsEmojiSmile } from 'react-icons/bs'
 import { ImAttachment } from 'react-icons/im'
 import { MdSend } from 'react-icons/md'
 import { FaMicrophone } from 'react-icons/fa'
-import React, { KeyboardEvent, MutableRefObject, useCallback } from 'react'
+import React, { KeyboardEvent, MutableRefObject } from 'react'
 import { MessageService } from '@/service/ApiRoutes'
 import { Socket } from 'socket.io-client/build/esm/socket'
 import { DefaultEventsMap } from '@socket.io/component-emitter'
@@ -72,12 +72,7 @@ export function MessageBar({
 		'click',
 		EMOJI_ID_REF
 	)
-
-	const handleEmojiClick = useCallback(
-		(value: EmojiClickData) => setMessage((prev: string) => prev + value.emoji),
-		[]
-	)
-
+	const handleEmojiClick = (value: EmojiClickData) => setMessage(value.emoji)
 	const handleMessage = async () => {
 		const response = await MessageService.addMessageSent({
 			to: selectChatUserId,
@@ -94,8 +89,9 @@ export function MessageBar({
 	}
 	const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) =>
 		e.code === 'Enter' && handleMessage()
+	console.log(message)
 	return (
-		<article className='h-24 relative text-white flex bg-input-background p-2'>
+		<article className='h-20 relative text-white flex bg-input-background p-2'>
 			{!showAudioRecorder && (
 				<div className='animate-scaleIn flex gap-4 justify-around items-center w-full'>
 					<button>
@@ -107,7 +103,7 @@ export function MessageBar({
 						/>
 					</button>
 					{showEmoji && (
-						<div ref={emojiRef} className='absolute left-10 bottom-28'>
+						<div ref={emojiRef} className='absolute z-50 left-10 bottom-28'>
 							<EmojiPicker
 								onEmojiClick={handleEmojiClick}
 								theme={Theme.DARK}

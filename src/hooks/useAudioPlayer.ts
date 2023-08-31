@@ -1,7 +1,7 @@
-import { HOST } from '@/service/ApiRoutes'
 import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import WaveSurfer from 'wavesurfer.js'
 import { IMessage } from '@/store/message/message.types'
+import { HOST } from '@/service/const'
 
 export const useAudioPlayer = (message: IMessage) => {
 	const [audioMessage, setAudioMessage] = useState<HTMLAudioElement | null>(
@@ -14,11 +14,11 @@ export const useAudioPlayer = (message: IMessage) => {
 	const waveForm: MutableRefObject<WaveSurfer | null> = useRef(null)
 	const waveFormRef: MutableRefObject<HTMLDivElement | null> = useRef(null)
 
-	const handlePlayRecording = () => {
+	const handlePlayRecording = async () => {
 		if (audioMessage) {
 			waveForm.current?.stop()
 			waveForm.current?.play()
-			audioMessage.play()
+			await audioMessage.play()
 			setIsPlaying(true)
 		}
 	}

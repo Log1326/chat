@@ -32,7 +32,7 @@ export const ChatTypeMessage = ({
 					selectChatUserId={Number(selectChatUserId)}
 					userId={Number(userId)}
 				>
-					<p>{message.message}</p>
+					<span>{message.message}</span>
 				</ChatViewMessage>
 			)}
 			{!compressed && message.type === 'image' && (
@@ -60,7 +60,7 @@ export const ChatTypeMessage = ({
 					selectChatUserId={Number(selectChatUserId)}
 					userId={Number(userId)}
 				>
-					<p>{message.message}</p>
+					<span className='w-1/2 line-clamp-1'>{message.message}</span>
 				</ChatViewMessage>
 			)}
 			{compressed && message.type === 'image' && (
