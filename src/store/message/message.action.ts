@@ -8,6 +8,7 @@ import {
 	UsersContactsAndUsersOnline
 } from '@/store/message/message.types'
 import { TypeRootState } from '@/store/store'
+import { SEND_MSG } from '@/utils/constants'
 
 export const getAllMessage = createAsyncThunk<IMessage[], IGetMessages>(
 	'messageStore/getAllMessage',
@@ -44,7 +45,7 @@ export const addMessageImage = createAsyncThunk<IMessage, IAddMessageImage>(
 				selectChatUserId
 			)
 			if (status === 201) {
-				socketRef?.emit('send-msg', {
+				socketRef?.emit(SEND_MSG, {
 					to: selectChatUserId,
 					from: userId,
 					message: data.message
@@ -68,14 +69,12 @@ export const addMessageSend = createAsyncThunk<IMessage, IAddMessageType>(
 				from,
 				message: message ? message : ''
 			})
-			socketRef?.emit('send-msg', {
+			socketRef?.emit(SEND_MSG, {
 				to,
 				from,
 				message: response?.message
 			})
 			if (response) return response.message
-			// setMessages(response.message)
-			// setMessage('')
 		} catch (err) {
 			return thunkAPI.rejectWithValue(err)
 		}

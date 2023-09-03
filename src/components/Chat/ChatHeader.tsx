@@ -11,7 +11,11 @@ import { useToggle } from '@/hooks/useToggle'
 import { DropDown } from '@/UI/DropDown'
 import { useMemo } from 'react'
 import { ContextMenu } from '@/UI/ContextMenu'
-import { CHANGE_BG_IMAGE } from '@/constants/constants'
+import {
+	CHANGE_BG_IMAGE,
+	VIDEO_CALL_REF,
+	VOICE_CALL_REF
+} from '@/constants/constants'
 import { PhotoLibrary } from '@/UI/PhotoLibrary'
 import { IImages } from '@/types/images.types'
 import { bgChat } from '@/store/user/user.types'
@@ -26,11 +30,27 @@ const images: IImages<bgChat>[] = [
 export function ChatHeader() {
 	const selectUser = useSelector(getSelectUser)
 	const onlineUsers = useSelector(getStateMessageOnlineUsers)
-	const { setSelectUser, changeIsSearchMessage, changeBackgroundChat } =
-		useActions()
+	const {
+		setSelectUser,
+		changeIsSearchMessage,
+		changeBackgroundChat,
+		videoCallOpenWindow,
+		voiceCallOpenWindow,
+		videoCallOutgoingType,
+		voiceCallOutgoingCall
+	} = useActions()
 	const [openMenu, setOpenMenu, openMenuFn] = useToggle()
 	const [openModal, setOpenModal] = useToggle()
 	const isOnline = onlineUsers?.some(user => user === selectUser?.id)
+	const handleCallVoice = () => {
+		voiceCallOpenWindow(true)
+		videoCallOutgoingType('outgoing')
+	}
+	const handleCallVideo = () => {
+		videoCallOpenWindow(true)
+		voiceCallOutgoingCall('outgoing')
+	}
+
 	const contextMenu = useMemo(
 		() => [
 			{
@@ -66,8 +86,18 @@ export function ChatHeader() {
 					className='h-6 w-6 hover:text-gray-900'
 					onClick={() => changeIsSearchMessage(true)}
 				/>
-				<MdCall className='h-6 w-6 hover:text-gray-900' title='audio' />
-				<IoVideocam className='h-6 w-6 hover:text-gray-900' title='video' />
+				<MdCall
+					onClick={handleCallVoice}
+					className='h-6 w-6 hover:text-gray-900 '
+					title='audio'
+					id={VOICE_CALL_REF}
+				/>
+				<IoVideocam
+					onClick={handleCallVideo}
+					className='h-6 w-6 hover:text-gray-900'
+					title='video'
+					id={VIDEO_CALL_REF}
+				/>
 				<DropDown
 					title={
 						<BsThreeDotsVertical

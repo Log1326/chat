@@ -5,4 +5,6 @@ export const PHOTO_PICKER_MESSAGE: string = 'photo-picker-message'
 export const CHANGE_BG_IMAGE: string = 'change-bg-image'
 export const PHOTO_PICKER_MESSAGE_ELEMENT: string =
 	'photo-picker-message-element'
-export const EMOJI_ID_REF = 'emoji-id-open-ref'
+export const EMOJI_ID_REF: string = 'emoji-id-open-ref'
+export const VOICE_CALL_REF: string = 'voice-call-open-ref'
+export const VIDEO_CALL_REF: string = 'video-call-open-ref'
