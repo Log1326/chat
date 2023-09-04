@@ -2,33 +2,24 @@ import { IUser } from '@/store/user/user.types'
 
 export type CallView = 'outgoing' | 'incoming'
 export type CallType = 'audio' | 'video'
-interface CallState {
-	user: IUser
+export interface CallState {
+	user: Pick<IUser, 'id' | 'name' | 'image'>
 	type: CallView
 	callType: CallType
-	roomId: string
-	id: string
-}
-export interface IIncomingCall {
-	from: Pick<IUser, 'id' | 'name' | 'image'>
-	roomId: string
-	callType: string
+	roomId: number
+	id?: string
 }
 export interface IVideoCall {
 	videoCallState?: CallState
-	incomingVideoCall?: IIncomingCall
-	outgoingVideoCall?: CallState
-	isVideoCallAccepted: boolean
-	isVideoCallOutgoing: boolean
+	incomingVideoCall?: CallState
+	isVideoCall: boolean
 	isLoadingVideoCall: boolean
 	errorVideoCall?: string
 }
 export interface IVoiceCall {
 	voiceCallState?: CallState
-	incomingVoiceCall?: IIncomingCall
-	outgoingVoiceCall?: CallState
-	isVoiceCallOutgoing: boolean
-	isVoiceCallAccepted: boolean
+	incomingVoiceCall?: CallState
+	isVoiceCall: boolean
 	isLoadingVoiceCall: boolean
 	errorVoiceCall?: string
 }

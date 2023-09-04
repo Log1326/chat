@@ -3,18 +3,10 @@ import { RefObject, useEffect, useRef } from 'react'
 import { getAllMessagesState } from '@/store/message/message.selectors'
 import { ChatTypeMessage } from '@/components/Chat/ChatTypeMessage'
 import { getChatImage, getSelectUserId } from '@/store/user/user.selector'
-import {
-	getIsVideoCallOutgoing,
-	getIsVoiceCallOutgoing
-} from '@/store/call/call.selectors'
-import { VoiceCall } from '@/components/Call/VoiceCall'
-import { VideoCall } from '@/components/Call/VideoCall'
 
 export function ChatContainer() {
 	const messages = useSelector(getAllMessagesState)
 	const modeBg = useSelector(getChatImage) ?? 'bg-chat-background-teal'
-	const videoCall = useSelector(getIsVideoCallOutgoing)
-	const voiceCall = useSelector(getIsVoiceCallOutgoing)
 	const selectChatUserId = useSelector(getSelectUserId)
 	//================================
 	//TO DO
@@ -33,8 +25,6 @@ export function ChatContainer() {
 				className={`${modeBg} bg-auto bg-center w-full z-10 absolute`}
 				// ref={elementRef}
 			>
-				{voiceCall && !videoCall && <VoiceCall />}
-				{videoCall && !voiceCall && <VideoCall />}
 				<div className='text-white z-50 '>
 					{messages?.map(message => (
 						<article
