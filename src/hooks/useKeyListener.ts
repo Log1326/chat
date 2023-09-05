@@ -13,9 +13,12 @@ export const useKeyListener = ({
 	callback,
 	pressButton
 }: IUseKeyListener) => {
-	const handleKeyPress = useCallback((e: any) => {
-		if (e.key === pressButton) callback()
-	}, [])
+	const handleKeyPress = useCallback(
+		(e: any) => {
+			if (e.key === pressButton) callback()
+		},
+		[pressButton]
+	)
 
 	useEffect(() => {
 		window.addEventListener(methodListener, handleKeyPress)

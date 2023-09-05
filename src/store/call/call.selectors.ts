@@ -16,6 +16,8 @@ export const getVoiceCallState = (state: TypeRootState) =>
 	state.callStore.voiceCall?.voiceCallState
 export const getIsVoiceCall = (state: TypeRootState) =>
 	state.callStore.voiceCall?.isVoiceCall
+export const getIsVoiceAcceptCall = (state: TypeRootState) =>
+	state.callStore.voiceCall?.isVoiceAcceptCall
 export const getIncomingVoiceCall = (state: TypeRootState) =>
 	state.callStore.voiceCall?.incomingVoiceCall
 export const getIsLoadingVoiceCall = (state: TypeRootState) =>

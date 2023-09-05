@@ -22,7 +22,10 @@ export const callSlice = createSlice({
 		videoCall: (state, action: PayloadAction<CallState>) => {
 			if (state.videoCall) state.videoCall.videoCallState = action.payload
 		},
-		setIncomingVideoCall: (state, action: PayloadAction<CallState>) => {
+		setIncomingVideoCall: (
+			state,
+			action: PayloadAction<CallState | undefined>
+		) => {
 			if (state.videoCall) state.videoCall.incomingVideoCall = action.payload
 		},
 		voiceCallOpenWindow: (state, action: PayloadAction<boolean>) => {
@@ -36,6 +39,9 @@ export const callSlice = createSlice({
 			action: PayloadAction<CallState | undefined>
 		) => {
 			if (state.voiceCall) state.voiceCall.incomingVoiceCall = action.payload
+		},
+		setIsVoiceAcceptCall: (state, action: PayloadAction<boolean>) => {
+			if (state.voiceCall) state.voiceCall.isVoiceAcceptCall = action.payload
 		},
 		setEndCall: state => {
 			state.videoCall = null

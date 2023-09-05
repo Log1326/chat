@@ -37,10 +37,10 @@ export function Main() {
 	const selectChatUser = useSelector(getSelectUser)
 	const isSearchMessage = useSelector(getIsSearchMessage)
 	const socketRef: MutableRefObject<Socket | undefined> = useRef()
+	const isVideoCall = useSelector(getIsVideoCall)
 	const incomingVideoCall = useSelector(getIncomingVideoCall)
+	const isVoiceCall = useSelector(getIsVoiceCall)
 	const incomingVoiceCall = useSelector(getIncomingVoiceCall)
-	const videoCall = useSelector(getIsVideoCall)
-	const voiceCall = useSelector(getIsVoiceCall)
 	const {
 		setSocketState,
 		setIncomingVoiceCall,
@@ -80,7 +80,6 @@ export function Main() {
 			setEndCall()
 		})
 	}, [socketRef.current])
-	console.log(voiceCall)
 	return (
 		<>
 			<main className='h-screen grid grid-cols-4'>
@@ -104,9 +103,9 @@ export function Main() {
 					) : (
 						<Empty />
 					)}
-					{voiceCall && <VoiceCall />}
+					{isVoiceCall && <VoiceCall />}
 					{incomingVoiceCall && <IncomingVoiceCall />}
-					{videoCall && <VideoCall />}
+					{isVideoCall && <VideoCall />}
 					{incomingVideoCall && <IncomingVideoCall />}
 				</section>
 			</main>

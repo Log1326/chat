@@ -10,6 +10,7 @@ import {
 	ADD_MESSAGE_IMAGE,
 	ADD_MESSAGES,
 	CHECK_AUTH_ROUTE,
+	GENERATE_TOKEN_ROUTE,
 	GET_ALL_USERS,
 	GET_CONTACTS,
 	GET_MESSAGES,
@@ -23,6 +24,11 @@ export const AuthService = {
 		return axios.post<string, AxiosResponse<ILogin>>(CHECK_AUTH_ROUTE, {
 			email
 		})
+	},
+	async generateToken(id: string): Promise<AxiosResponse<{ token: string }>> {
+		return axios.get<string, AxiosResponse<{ token: string }>>(
+			`${GENERATE_TOKEN_ROUTE}/${id}`
+		)
 	}
 }
 export const UserService = {

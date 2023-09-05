@@ -18,16 +18,14 @@ export const useHandleClickOutside = ({
 				? EventListener
 				: Event
 		) => {
-			if ((event.target as Element).id !== idElement) {
+			if ((event.target as Element).id !== idElement)
 				if (ref.current && !ref.current.contains(event.target as Element)) {
+					console.log('here', idElement)
 					callback()
 				}
-			}
 		}
 		document.addEventListener(type, handleClickOutside)
-		return () => {
-			document.removeEventListener(type, handleClickOutside)
-		}
+		return () => document.removeEventListener(type, handleClickOutside)
 	}, [callback])
 
 	return ref
