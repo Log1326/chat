@@ -25,7 +25,7 @@ export const AuthService = {
 			email
 		})
 	},
-	async generateToken(id: string): Promise<AxiosResponse<{ token: string }>> {
+	async generateToken(id: string) {
 		return axios.get<string, AxiosResponse<{ token: string }>>(
 			`${GENERATE_TOKEN_ROUTE}/${id}`
 		)

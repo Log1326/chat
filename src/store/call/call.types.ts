@@ -19,7 +19,6 @@ export interface IVideoCall {
 export interface IVoiceCall {
 	voiceCallState?: CallState
 	incomingVoiceCall?: CallState
-	isVoiceAcceptCall?: boolean
 	isVoiceCall: boolean
 	isLoadingVoiceCall: boolean
 	errorVoiceCall?: string
@@ -28,4 +27,6 @@ export interface IVoiceCall {
 export interface IInitialStateCall {
 	videoCall: IVideoCall | null
 	voiceCall: IVoiceCall | null
+	token?: string
+	isAcceptCall?: boolean
 }

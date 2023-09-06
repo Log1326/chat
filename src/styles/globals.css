@@ -14,3 +14,7 @@
 .custom-scrollbar::-webkit-scrollbar-thumb {
     background-color:#fff;
 }
+.custom-img {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}

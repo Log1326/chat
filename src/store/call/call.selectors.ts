@@ -16,11 +16,13 @@ export const getVoiceCallState = (state: TypeRootState) =>
 	state.callStore.voiceCall?.voiceCallState
 export const getIsVoiceCall = (state: TypeRootState) =>
 	state.callStore.voiceCall?.isVoiceCall
-export const getIsVoiceAcceptCall = (state: TypeRootState) =>
-	state.callStore.voiceCall?.isVoiceAcceptCall
+export const getIsAcceptCall = (state: TypeRootState) =>
+	state.callStore.isAcceptCall
 export const getIncomingVoiceCall = (state: TypeRootState) =>
 	state.callStore.voiceCall?.incomingVoiceCall
 export const getIsLoadingVoiceCall = (state: TypeRootState) =>
 	state.callStore.voiceCall?.isLoadingVoiceCall
 export const getErrorVoiceCall = (state: TypeRootState) =>
 	state.callStore.voiceCall?.errorVoiceCall ?? ''
+
+export const getTokenCall = (state: TypeRootState) => state.callStore.token
