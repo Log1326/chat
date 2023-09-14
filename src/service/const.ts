@@ -1,5 +1,3 @@
-import process from 'process'
-
 export const HOST = process.env.API_HOST
 const AUTH_ROUTE = `${HOST}/api/auth`
 const MESSAGES_ROUTE = `${HOST}/api/messages`

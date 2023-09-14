@@ -24,10 +24,10 @@ export function useElementSize<T extends HTMLElement>(): [
 			width: ref.current?.offsetWidth || 0,
 			height: ref.current?.offsetHeight || 0
 		})
-	}, [ref.current?.offsetHeight, ref.current?.offsetWidth])
+	}, [])
 
 	useEffect(() => {
 		handleSize()
-	}, [ref.current?.offsetHeight, ref.current?.offsetWidth])
+	}, [handleSize, ref.current?.offsetHeight, ref.current?.offsetWidth])
 	return [ref, sizeState]
 }

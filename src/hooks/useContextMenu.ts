@@ -42,7 +42,7 @@ export const useContextMenu = () => {
 				}
 			}
 		],
-		[]
+		[setGrabPhoto, setImage, setShowCapturePhoto, setShowPhotoLib]
 	)
 	return {
 		menu: {

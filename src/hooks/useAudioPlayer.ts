@@ -36,7 +36,6 @@ export const useAudioPlayer = (message: IMessage) => {
 				cursorColor: '#435766',
 				barWidth: 2,
 				height: 30,
-				responsive: true
 			})
 			waveForm.current?.on('finish', () => setIsPlaying(false))
 			return () => waveForm.current?.destroy()

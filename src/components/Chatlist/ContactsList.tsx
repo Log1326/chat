@@ -2,7 +2,6 @@ import { BiArrowBack } from 'react-icons/bi'
 import { useActions } from '@/hooks/useActions'
 import { SearchBar } from '@/components/Chatlist/SearchBar'
 import { ChatLIstItem } from '@/components/Chatlist/ChatLIstItem'
-import { v4 } from 'uuid'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getUsersSelected } from '@/store/user/user.selector'
@@ -18,9 +17,10 @@ export function ContactsList() {
 		getAllUsers()
 	}, [])
 	return (
-		<section className='flex flex-col h-screen'>
+		<section data-testid='contact-list' className='flex flex-col h-screen'>
 			<article className='flex justify-start items-center h-[5.43rem]'>
 				<button
+					data-testid='button-contact-list'
 					onClick={handleCloseContactList}
 					className='text-white p-4 hover:text-zinc-950'
 				>
@@ -36,14 +36,20 @@ export function ContactsList() {
 				/>
 				<div className=' h-[calc(100vh-10rem)] overflow-y-scroll custom-scrollbar'>
 					{users.map(values => (
-						<div key={values.key + v4()}>
-							<div className='text-teal-light pl-10 py-5'>{values.key}</div>
+						<div key={values.key}>
+							<div className='text-teal-light pl-10 py-5'>
+								{values.key}
+							</div>
 							{values.users.map(user => (
 								<div
-									key={user.id + v4()}
+									key={user.id}
 									className='text-white cursor-pointer text-center w-full flex justify-center'
 								>
-									<ChatLIstItem item={user as IGetInitialUsersChat<IUser>} />
+									<ChatLIstItem
+										item={
+											user as IGetInitialUsersChat<IUser>
+										}
+									/>
 								</div>
 							))}
 						</div>

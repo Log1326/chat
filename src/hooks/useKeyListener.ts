@@ -17,7 +17,7 @@ export const useKeyListener = ({
 		(e: any) => {
 			if (e.key === pressButton) callback()
 		},
-		[pressButton]
+		[callback, pressButton]
 	)
 
 	useEffect(() => {

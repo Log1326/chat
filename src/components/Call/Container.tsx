@@ -4,7 +4,7 @@ import { useActions } from '@/hooks/useActions'
 import { CallState } from '@/store/call/call.types'
 import { useSelector } from 'react-redux'
 import { getSocketState } from '@/store/message/message.selectors'
-import { memo, useEffect } from 'react'
+import { useEffect } from 'react'
 import { REJECT_VIDEO_CALL, REJECT_VOICE_CALL } from '@/utils/constants'
 import { useKeyListener } from '@/hooks/useKeyListener'
 import { getIsAcceptCall } from '@/store/call/call.selectors'
@@ -16,7 +16,7 @@ interface ContainerProps {
 	data: CallState
 }
 
-export const Container = memo(function ({ type, data }: ContainerProps) {
+export const Container =  ({ type, data }: ContainerProps) => {
 	const {
 		state: { zgVar, localStream, publishStream }
 	} = useZego(data)
@@ -64,7 +64,7 @@ export const Container = memo(function ({ type, data }: ContainerProps) {
 	})
 	useEffect(() => {
 		getTokenCallAsync(String(data.user.id))
-	}, [acceptCall])
+	}, [acceptCall, data.user.id])
 	return (
 		<div className='flex flex-col items-center gap-2'>
 			<span className='text-xl text-white'>{`Calling ${type}`}</span>
@@ -88,4 +88,4 @@ export const Container = memo(function ({ type, data }: ContainerProps) {
 			</button>
 		</div>
 	)
-})
+}

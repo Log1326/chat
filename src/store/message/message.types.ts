@@ -1,4 +1,5 @@
-import { Socket } from 'socket.io-client/build/esm/socket'
+import { Socket } from 'socket.io-client'
+
 import { IUser } from '@/store/user/user.types'
 
 export type TypeMessageStatus = 'sent' | 'read' | 'delivered'

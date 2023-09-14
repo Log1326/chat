@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { FcGoogle } from 'react-icons/fc'
 import { useRouter } from 'next/router'
 import { useActions } from '@/hooks/useActions'
@@ -8,10 +7,11 @@ import {
 	getUser
 } from '@/store/user/user.selector'
 import { useSelector } from 'react-redux'
-import { SignIn } from '@/UI/SignIn'
-import { Loading } from '@/UI/Loading'
 import { useEffect } from 'react'
 import { RouterEnumPath } from '@/types/routerEnumPath'
+import { Loading } from '@/UI/Loading'
+import { SignIn } from '@/UI/SignIn'
+import Image from 'next/image'
 
 function login() {
 	const userInfo = useSelector(getUser)

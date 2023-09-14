@@ -9,13 +9,15 @@ const rootReducer = combineReducers({
 	messageStore: messageSlice.reducer,
 	callStore: callSlice.reducer
 })
-export const store = configureStore({
-	reducer: rootReducer,
-	devTools: process.env.MODE_DEVELEPMENT !== 'production',
-	middleware: getDefaultMiddleware =>
-		getDefaultMiddleware({
-			serializableCheck: false
-		})
-})
-
+export const store = (initialState = {}) => {
+	return configureStore({
+		reducer: rootReducer,
+		preloadedState: initialState,
+		devTools: process.env.MODE_DEVELOPMENT !== 'production',
+		middleware: getDefaultMiddleware =>
+			getDefaultMiddleware({
+				serializableCheck: false
+			})
+	})
+}
 export type TypeRootState = ReturnType<typeof rootReducer>

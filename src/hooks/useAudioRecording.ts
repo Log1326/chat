@@ -145,7 +145,6 @@ export const useAudioRecording = () => {
 			cursorColor: '#435766',
 			barWidth: 2,
 			height: 30,
-			responsive: true
 		})
 		setWaveForm(wavesurfer)
 		wavesurfer.on('finish', () => setIsPlaying(false))

@@ -14,6 +14,7 @@ export function Avatar({ type, value, className }: AvatarProps) {
 	return (
 		<>
 			<div
+				data-testid='avatar'
 				className={`flex items-center justify-center cursor-pointer ${className}`}
 			>
 				{type === 'sm' && (

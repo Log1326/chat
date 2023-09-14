@@ -7,7 +7,10 @@ import { getToggleChatPage } from '@/store/message/message.selectors'
 export function ChatList() {
 	const toggleChatPage = useSelector(getToggleChatPage)
 	return (
-		<aside className='flex flex-col bg-input-background'>
+		<aside
+			data-testid='chat-list'
+			className='flex flex-col bg-input-background'
+		>
 			{toggleChatPage ? (
 				<section className='animate-appearance'>
 					<ChatListHeader />

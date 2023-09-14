@@ -6,7 +6,7 @@ import '@/styles/globals.css'
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<Provider store={store}>
+		<Provider store={store()}>
 			<Head>
 				<title>Whatsapp</title>
 				<link rel='shortcut icon' href='/favicon.png' />

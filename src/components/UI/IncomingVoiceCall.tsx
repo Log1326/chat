@@ -16,11 +16,11 @@ export const IncomingVoiceCall = () => {
 		voiceCallOpenWindow(true)
 		socketRef?.emit(ACCEPT_INCOMING_CALL, { id: incomingCall?.user.id })
 		setIncomingVoiceCall(undefined)
-	}, [incomingCall])
+	}, [incomingCall, setIncomingVoiceCall, socketRef, voiceCall, voiceCallOpenWindow])
 	const reject = useCallback(() => {
 		socketRef?.emit(REJECT_VOICE_CALL, { to: incomingCall?.user.id })
 		setIncomingVoiceCall(undefined)
-	}, [])
+	}, [incomingCall?.user.id, setIncomingVoiceCall, socketRef])
 	if (incomingCall)
 		return (
 			<Popup>

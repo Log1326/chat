@@ -3,7 +3,7 @@ import { ChatContainer } from '@/components/Chat/ChatContainer'
 import { MessageBar } from '@/components/Chat/MessageBar'
 import { MutableRefObject, useEffect } from 'react'
 import { useActions } from '@/hooks/useActions'
-import { Socket } from 'socket.io-client/build/esm/socket'
+import { Socket } from 'socket.io-client'
 import { DefaultEventsMap } from '@socket.io/component-emitter'
 import { MESSAGE_RECEIVE } from '@/utils/constants'
 
@@ -18,7 +18,7 @@ export function Chat({ selectChatUserId, userId, socketRef }: ChatProps) {
 	const { getAllMessage, setMessages } = useActions()
 	useEffect(() => {
 		if (selectChatUserId) getAllMessage({ to: userId, from: selectChatUserId })
-	}, [selectChatUserId])
+	}, [getAllMessage, selectChatUserId, userId])
 	useEffect(() => {
 		if (socketRef.current)
 			socketRef.current.on(MESSAGE_RECEIVE, data => {

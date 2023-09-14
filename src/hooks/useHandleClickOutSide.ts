@@ -20,7 +20,6 @@ export const useHandleClickOutside = ({
 		) => {
 			if ((event.target as Element).id !== idElement)
 				if (ref.current && !ref.current.contains(event.target as Element)) {
-					console.log('here', idElement)
 					callback()
 				}
 		}

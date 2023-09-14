@@ -18,7 +18,8 @@ export function SearchBar({
 		(event: ChangeEvent<HTMLInputElement>) => {
 			if (setState) setState(event.target.value)
 		},
-		[]
+		
+		[setState]
 	)
 
 	return (

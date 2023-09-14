@@ -18,7 +18,8 @@ export function List() {
 	const loadingContacts = useSelector(getStateMessageLoading)
 	const { getMessageContacts } = useActions()
 	const [searchUser, setSearchUser] = useState<string>('')
-	const [filterUser, setFilterUser] = useState<IGetInitialUsersChat<IUser>[]>()
+	const [filterUser, setFilterUser] =
+		useState<IGetInitialUsersChat<IUser>[]>()
 
 	useEffect(() => {
 		user?.id && getMessageContacts(user.id)
@@ -45,7 +46,10 @@ export function List() {
 			{loadingContacts ? (
 				<Loading size='text-2xl' center />
 			) : (
-				<div className='inline-block w-full overflow-hidden'>
+				<div
+					data-testid='list'
+					className='inline-block w-full overflow-hidden'
+				>
 					{searchUser ? (
 						<>
 							{!filterUser?.length ? (
@@ -55,7 +59,10 @@ export function List() {
 							) : (
 								<>
 									{filterUser?.map(user => (
-										<ChatLIstItem key={String(user.id)} item={user} />
+										<ChatLIstItem
+											key={String(user.id)}
+											item={user}
+										/>
 									))}
 								</>
 							)}
@@ -63,7 +70,10 @@ export function List() {
 					) : (
 						<>
 							{usersContacts?.map(userContact => (
-								<ChatLIstItem key={String(userContact.id)} item={userContact} />
+								<ChatLIstItem
+									key={String(userContact.id)}
+									item={userContact}
+								/>
 							))}
 						</>
 					)}
