@@ -13,6 +13,7 @@ export const Loading = (props: LoadingProps) => {
 	} = props
 	return (
 		<div
+			data-testid='loading'
 			className={`${color} ${size} ${flex ? 'flex' : ''} ${
 				center ? 'justify-center items-center' : ''
 			}`}

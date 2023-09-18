@@ -5,10 +5,7 @@ export const getTokenCallAsync = createAsyncThunk<string | undefined, string>(
 	'callStore/getTokenCall',
 	async (id, thunkAPI) => {
 		try {
-			const {
-				data: { token }
-			} = await AuthService.generateToken(String(id))
-			return token
+			return (await AuthService.generateToken(String(id))).data.token
 		} catch (err) {
 			thunkAPI.rejectWithValue(err)
 		}

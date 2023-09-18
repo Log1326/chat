@@ -1,7 +1,6 @@
 import { Avatar } from '@/UI/Avatar'
 import { BsFillChatLeftTextFill, BsThreeDotsVertical } from 'react-icons/bs'
 import { useActions } from '@/hooks/useActions'
-import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { getUserImage } from '@/store/user/user.selector'
 import { DropDown } from '@/UI/DropDown'
@@ -15,10 +14,7 @@ export function ChatListHeader() {
 	const { toggleChatPage } = useActions()
 	const [openMenu, _, openMenuFn] = useToggle()
 	const userImage = useSelector(getUserImage)
-	const handleOpenChatList = useCallback(
-		() => toggleChatPage(false),
-		[toggleChatPage]
-	)
+	const handleOpenChatList = () => toggleChatPage(false)
 	const logout = () => {
 		const auth = getAuth()
 		signOut(auth)
@@ -33,10 +29,17 @@ export function ChatListHeader() {
 	return (
 		<article className='flex justify-between items-center  h-20 p-7 border-r-2 border-gray-400'>
 			{userImage && (
-				<Avatar type={'sm'} value={userImage} className='hover:opacity-70' />
+				<Avatar
+					type={'sm'}
+					value={userImage}
+					className='hover:opacity-70'
+				/>
 			)}
 			<span className='flex items-center gap-4 cursor-pointer text-white'>
-				<button onClick={handleOpenChatList}>
+				<button
+					data-testid='chat-header-list-click'
+					onClick={handleOpenChatList}
+				>
 					<BsFillChatLeftTextFill
 						className='h-6 w-6 hover:opacity-70'
 						title='Chat'

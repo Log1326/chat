@@ -7,6 +7,7 @@
   "rules": {
     "react-hooks/rules-of-hooks": "off",
     "react-hooks/exhaustive-deps": "warn",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "react/no-children-prop": "off"
   }
 }

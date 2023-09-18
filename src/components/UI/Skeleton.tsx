@@ -17,6 +17,7 @@ export const Skeleton = memo((props: SkeletonProps) => {
 
 	return (
 		<div
+			data-testid='skeleton'
 			style={styles}
 			className='grid place-items-center h-[300px] w-[300px] bg-gray-300 rounded-lg animate-pulse dark:bg-gray-700'
 		>

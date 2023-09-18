@@ -26,11 +26,15 @@ export function ChatLIstItem({ item }: ChatLIstItemProps) {
 						<article className='flex flex-col items-center justify-center  w-full'>
 							<p className='text-xl'>{item.name}</p>
 							<span className='text-gray-400 text-xs w-2/3 inline-block'>
-								<ChatTypeMessage message={item as IMessage} compressed={true} />
+								<ChatTypeMessage
+									message={item as IMessage}
+									compressed={true}
+								/>
 							</span>
 						</article>
 					</div>
-					{item.totalUnreadMessages && item.totalUnreadMessages > 0 ? (
+					{item.totalUnreadMessages &&
+					item.totalUnreadMessages > 0 ? (
 						<div className='flex items-center'>
 							<p className='flex justify-center items-center bg-teal-800 rounded-full h-8 w-8  p-2 text-white'>
 								{item.totalUnreadMessages}

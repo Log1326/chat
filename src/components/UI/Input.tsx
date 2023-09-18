@@ -1,26 +1,26 @@
-import { ChangeEvent, FC, useCallback } from 'react'
+import { ChangeEvent, FC } from 'react'
 
 type InputType = 'email' | 'text' | 'password'
 interface InputProps {
 	name?: string
-	value: string
-	onChange: (value: string) => void
+	value?: string
+	onChange?: (value: string) => void
 	label?: boolean
 	type?: InputType
+	placeholder?: string
 }
 export const InputCustom: FC<InputProps> = ({
 	label = false,
 	value,
 	onChange,
 	name,
-	type = 'text'
+	type = 'text',
+	placeholder
 }) => {
-	const handleChange = useCallback(
-		(e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value),
-		[]
-	)
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
+		onChange?.(e.target.value)
 	return (
-		<div className='flex gap-1 flex-col'>
+		<div className='flex gap-1 flex-col' data-testid='inputCustom'>
 			{label && (
 				<label htmlFor={name} className='text-teal-light text-lg px-1'>
 					{name}
@@ -28,9 +28,12 @@ export const InputCustom: FC<InputProps> = ({
 			)}
 			<div>
 				<input
+					data-testid='input-value'
+					id={name}
 					type={type}
 					value={value}
 					onChange={handleChange}
+					placeholder={placeholder}
 					className='bg-input-background text-start focus:outline-none text-white h-10 rounded-lg px-5'
 				/>
 			</div>
