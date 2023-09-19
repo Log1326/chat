@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.25% </span>
+                <span class="strong">27.77% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/16</span>
+                <span class='fraction'>5/18</span>
             </div>
         
             
@@ -122,22 +122,31 @@
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -152,17 +161,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -178,20 +189,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { CallState, IInitialStateCall } from '@/store/call/call.types'
+import {
+	CallState,
+	CallStateIncoming,
+	IInitialStateCall
+} from '@/store/call/call.types'
 import { getTokenCallAsync } from '@/store/call/call.action'
 &nbsp;
 const initialState: IInitialStateCall = {
 	videoCall: {
-		isLoadingVideoCall: false,
 		isVideoCall: false
 	},
 	voiceCall: {
-		isLoadingVoiceCall: false,
 		isVoiceCall: false
 	}
 }
@@ -208,9 +224,10 @@ export const callSlice = createSlice({
 		},
 		setIncomingVideoCall: <span class="fstat-no" title="function not covered" >(</span>
 			state,
-			action: PayloadAction&lt;CallState | undefined&gt;
+			action: PayloadAction&lt;CallStateIncoming | undefined&gt;
 		) =&gt; {
-<span class="cstat-no" title="statement not covered" >			<span class="missing-if-branch" title="if path not taken" >I</span>if (state.videoCall) <span class="cstat-no" title="statement not covered" >state.videoCall.incomingVideoCall = action.payload</span></span>
+<span class="cstat-no" title="statement not covered" >			<span class="missing-if-branch" title="if path not taken" >I</span>if (state.videoCall)</span>
+<span class="cstat-no" title="statement not covered" >				state.videoCall.incomingVideoCall = action.payload</span>
 		},
 		voiceCallOpenWindow: <span class="fstat-no" title="function not covered" >(s</span>tate, action: PayloadAction&lt;boolean&gt;) =&gt; {
 <span class="cstat-no" title="statement not covered" >			<span class="missing-if-branch" title="if path not taken" >I</span>if (state.voiceCall) <span class="cstat-no" title="statement not covered" >state.voiceCall.isVoiceCall = action.payload</span></span>
@@ -220,9 +237,10 @@ export const callSlice = createSlice({
 		},
 		setIncomingVoiceCall: <span class="fstat-no" title="function not covered" >(</span>
 			state,
-			action: PayloadAction&lt;CallState | undefined&gt;
+			action: PayloadAction&lt;CallStateIncoming | undefined&gt;
 		) =&gt; {
-<span class="cstat-no" title="statement not covered" >			<span class="missing-if-branch" title="if path not taken" >I</span>if (state.voiceCall) <span class="cstat-no" title="statement not covered" >state.voiceCall.incomingVoiceCall = action.payload</span></span>
+<span class="cstat-no" title="statement not covered" >			<span class="missing-if-branch" title="if path not taken" >I</span>if (state.voiceCall)</span>
+<span class="cstat-no" title="statement not covered" >				state.voiceCall.incomingVoiceCall = action.payload</span>
 		},
 		setIsAcceptCall: <span class="fstat-no" title="function not covered" >(s</span>tate, action: PayloadAction&lt;boolean&gt;) =&gt; {
 <span class="cstat-no" title="statement not covered" >			state.isAcceptCall = action.payload</span>
@@ -236,9 +254,12 @@ export const callSlice = createSlice({
 		}
 	},
 	extraReducers: builder =&gt;
-		builder.addCase(getTokenCallAsync.fulfilled, <span class="fstat-no" title="function not covered" >(s</span>tate, action) =&gt; {
-<span class="cstat-no" title="statement not covered" >			state.token = action.payload</span>
-		})
+		builder.addCase(
+			getTokenCallAsync.fulfilled,
+<span class="fstat-no" title="function not covered" >			(s</span>tate, action: PayloadAction&lt;string | undefined&gt;) =&gt; {
+<span class="cstat-no" title="statement not covered" >				state.token = action.payload</span>
+			}
+		)
 })
 &nbsp;</pre></td></tr></table></pre>
 
@@ -247,7 +268,7 @@ export const callSlice = createSlice({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-09-18T11:08:28.922Z
+                at 2023-09-19T13:07:47.590Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

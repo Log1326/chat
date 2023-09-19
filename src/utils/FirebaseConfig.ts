@@ -12,4 +12,4 @@ const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig)
-export const firebasaeAuth = getAuth(app)
+export const firebaseAuth = getAuth(app)

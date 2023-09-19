@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react'
 import { ChatList } from '@/components/Chatlist/ChatList'
-import { renderWithReduxAndNextRouter } from '../../helper/renderWithReduxAndNextRouter'
+import { renderWithReduxAndNextRouter } from '@/utils/helper/renderWithReduxAndNextRouter'
 import userEvent from '@testing-library/user-event'
 
 describe('ChatList.test', () => {

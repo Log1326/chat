@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react'
 import { ContactsList } from '@/components/Chatlist/ContactsList'
-import { renderWithRedux } from '../../helper/renderWithRedux'
+import { renderWithRedux } from '@/utils/helper/renderWithRedux'
 import userEvent from '@testing-library/user-event'
 
 describe('ContactsList.test', () => {

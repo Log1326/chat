@@ -33,8 +33,7 @@ export const AuthService = {
 }
 export const UserService = {
 	async getAllUsers(): Promise<Record<string, IUser[]>> {
-		const users = await axios.get(GET_ALL_USERS)
-		return users.data.users
+		return (await axios.get(GET_ALL_USERS)).data.users
 	},
 	async createUser(data: IUser): Promise<AxiosResponse<ILogin>> {
 		return axios.post<string, AxiosResponse<ILogin>>(ONBOARD_USER_ROUTE, {

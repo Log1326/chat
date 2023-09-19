@@ -5,12 +5,103 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76e8b4a5-518b-4d45-8a2b-64dbf958178e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/__tests__/store/user/user.action.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__tests__/store/user/user.selectors.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__tests__/store/user/user.slice.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/trace" beforeDir="false" afterPath="$PROJECT_DIR$/.next/trace" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/components/ChatList/ChatList.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/components/ChatList/ChatList.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/components/ChatList/ContactsList.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/components/ChatList/ContactsList.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/components/UI/IncomingVideoCall.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/components/UI/IncomingVideoCall.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/helper/renderWithNextRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/helper/renderWithNextRouter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/helper/renderWithRedux.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/helper/renderWithRedux.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/helper/renderWithReduxAndNextRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/helper/renderWithReduxAndNextRouter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/store/call/call.async.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/store/call/call.async.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/clover.xml" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/clover.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/coverage-final.json" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/coverage-final.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/ChatTypeMessage.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/ChatTypeMessage.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/ChatViewMessage.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/ChatViewMessage.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/ImageMessage.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/ImageMessage.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ChatLIstItem.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ChatLIstItem.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ChatList.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ChatList.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ChatListHeader.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ChatListHeader.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ContactsList.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ContactsList.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/List.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/List.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/SearchBar.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/SearchBar.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Empty.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Empty.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Avatar.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Avatar.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/CapturePhoto.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/CapturePhoto.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/ContextMenu.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/ContextMenu.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/CustomAvatarMenu.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/CustomAvatarMenu.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/DropDown.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/DropDown.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/IncomingContainer.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/IncomingContainer.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/IncomingVideoCall.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/IncomingVideoCall.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Input.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Input.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Loading.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Loading.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/MessageStatus.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/MessageStatus.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/PhotoLibrary.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/PhotoLibrary.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/PhotoPicker.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/PhotoPicker.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Popup.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Popup.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Skeleton.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Skeleton.tsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/constants/constants.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/constants/constants.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/constants/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/constants/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/hooks/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/hooks/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/hooks/useActions.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/hooks/useActions.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/hooks/useContextMenu.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/hooks/useContextMenu.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/hooks/useGrabPhoto.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/hooks/useGrabPhoto.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/hooks/useHandleClickOutSide.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/hooks/useHandleClickOutSide.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/hooks/useToggle.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/hooks/useToggle.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/service/ApiRoutes.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/service/ApiRoutes.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/service/LocalStorageService.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/service/LocalStorageService.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/service/const.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/service/const.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/service/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/service/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/call/call.action.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/call/call.action.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/call/call.selectors.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/call/call.selectors.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/call/call.slice.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/call/call.slice.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/call/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/call/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/message/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/message/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/message/message.action.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/message/message.action.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/message/message.selectors.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/message/message.selectors.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/message/message.slice.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/message/message.slice.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/root-action.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/root-action.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/store.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/store.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/user/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/user/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/user/user.action.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/user/user.action.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/user/user.selector.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/user/user.selector.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/user/user.slice.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/user/user.slice.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/types/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/types/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/types/routerEnumPath.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/types/routerEnumPath.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/utils/CalculateTime.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/utils/CalculateTime.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/utils/FirebaseConfig.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/utils/FirebaseConfig.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/utils/constants.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/utils/constants.ts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/utils/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/utils/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov.info" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useAuth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useAuth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/ApiRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ApiRoutes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/call/call.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/call/call.action.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/user/user.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user.action.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/user/user.selector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user.selector.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/user/user.slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user.slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/CalculateTime.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/CalculateTime.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/FirebaseConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/FirebaseConfig.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="false" />
+    <option name="myAllFileTypesSelected" value="true" />
+    <option name="mySelectedFileTypes">
+      <set />
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -29,106 +120,109 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "test",
-    "last_opened_file_path": "/home/pavel/WebstormProjects/clones-react/whats-up/server",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs.jest.jest_package": "/home/pavel/WebstormProjects/clones-react/whats-up/next-test/node_modules/jest",
-    "nodejs_package_manager_path": "npm",
-    "prettier.import.notification.dismissed": "true",
-    "prettierjs.PrettierConfiguration.Package": "/home/pavel/WebstormProjects/clones-react/whats-up/next-test/node_modules/prettier",
-    "settings.editor.selected.configurable": "editing.templates",
-    "ts.external.directory.path": "/home/pavel/WebstormProjects/clones-react/whats-up/next-test/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;test&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/pavel/WebstormProjects/clones-react/whats-up/server&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;/home/pavel/WebstormProjects/clones-react/whats-up/next-test/node_modules/jest&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettier.import.notification.dismissed&quot;: &quot;true&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/pavel/WebstormProjects/clones-react/whats-up/next-test/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/pavel/WebstormProjects/clones-react/whats-up/next-test/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/utils" />
       <recent name="$PROJECT_DIR$/__tests__/components" />
       <recent name="$PROJECT_DIR$/__tests__" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.call.async.test">
-    <configuration name="callReducer.test" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/__tests__/store/call/callReducer.test.ts" />
-      <test-names>
-        <test-name value="callReducer.test" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="callReducer.test.setEndCall" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Jest.user.action.test.RegistrationNewUser new user">
+    <configuration name="user.action.test.RegistrationNewUser new user" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/__tests__/store/call/callReducer.test.ts" />
+      <test-file value="$PROJECT_DIR$/__tests__/store/user/user.action.test.ts" />
       <test-names>
-        <test-name value="callReducer.test" />
-        <test-name value="setEndCall" />
+        <test-name value="user.action.test" />
+        <test-name value="RegistrationNewUser new user" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="callReducer.test.setToken" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="user.action.test.RegistrationNewUser user already have" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/__tests__/store/call/callReducer.test.ts" />
+      <test-file value="$PROJECT_DIR$/__tests__/store/user/user.action.test.ts" />
       <test-names>
-        <test-name value="callReducer.test" />
-        <test-name value="setToken" />
+        <test-name value="user.action.test" />
+        <test-name value="RegistrationNewUser user already have" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="callReducer.test.videoCall" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="user.action.test.getAllUsers reject" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/__tests__/store/call/callReducer.test.ts" />
+      <test-file value="$PROJECT_DIR$/__tests__/store/user/user.action.test.ts" />
       <test-names>
-        <test-name value="callReducer.test" />
-        <test-name value="videoCall" />
+        <test-name value="user.action.test" />
+        <test-name value="getAllUsers reject" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="call.async.test" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="user.action.test.getAllUsers " type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/__tests__/store/call/call.async.test.ts" />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/__tests__/store/user/user.action.test.ts" />
       <test-names>
-        <test-name value="call.async.test" />
+        <test-name value="user.action.test" />
+        <test-name value="getAllUsers " />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="user.slice.test.extra RegistrationNewUser.rejected" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/__tests__/store/user/user.slice.test.ts" />
+      <test-names>
+        <test-name value="user.slice.test" />
+        <test-name value="extra RegistrationNewUser.rejected" />
       </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.call.async.test" />
-        <item itemvalue="Jest.callReducer.test" />
-        <item itemvalue="Jest.callReducer.test.setEndCall" />
-        <item itemvalue="Jest.callReducer.test.setToken" />
-        <item itemvalue="Jest.callReducer.test.videoCall" />
+        <item itemvalue="Jest.user.action.test.RegistrationNewUser new user" />
+        <item itemvalue="Jest.user.action.test.RegistrationNewUser user already have" />
+        <item itemvalue="Jest.user.slice.test.extra RegistrationNewUser.rejected" />
+        <item itemvalue="Jest.user.action.test.getAllUsers reject" />
+        <item itemvalue="Jest.user.action.test.getAllUsers " />
       </list>
     </recent_temporary>
   </component>
@@ -148,6 +242,8 @@
       <workItem from="1694771297269" duration="608000" />
       <workItem from="1694933985804" duration="16283000" />
       <workItem from="1695030469121" duration="13168000" />
+      <workItem from="1695045382614" duration="150000" />
+      <workItem from="1695109170116" duration="14041000" />
     </task>
     <servers />
   </component>

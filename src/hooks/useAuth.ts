@@ -1,5 +1,5 @@
 import { onAuthStateChanged } from '@firebase/auth'
-import { firebasaeAuth } from '@/utils/FirebaseConfig'
+import { firebaseAuth } from '@/utils/FirebaseConfig'
 import { useToggle } from '@/hooks/useToggle'
 import { useActions } from '@/hooks/useActions'
 import { useEffect } from 'react'
@@ -10,7 +10,7 @@ export const useAuth = () => {
 	const { replace } = useRouter()
 	const { CheckAuthInServer, changeIsLoading } = useActions()
 	const [redirect, setRedirect] = useToggle(false)
-	onAuthStateChanged(firebasaeAuth, async currentUser => {
+	onAuthStateChanged(firebaseAuth, async currentUser => {
 		CheckAuthInServer(currentUser?.email ?? '')
 		const { data } = await AuthService.checkAuth(currentUser?.email)
 		if (!currentUser?.email || !data.status) setRedirect(true)

@@ -1,12 +1,12 @@
 import { AuthService, UserService } from '@/service/ApiRoutes'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { GoogleAuthProvider, signInWithPopup } from '@firebase/auth'
-import { firebasaeAuth } from '@/utils/FirebaseConfig'
+import { firebaseAuth } from '@/utils/FirebaseConfig'
 import { IUser } from '@/store/user/user.types'
 import { ILogin } from '@/types/login'
 import { LocalStorageService } from '@/service/LocalStorageService'
 
-interface CheckUserAccountInGoogle extends IUser {
+export interface CheckUserAccountInGoogle extends IUser {
 	newUser?: boolean
 }
 export const CheckAuthInGoogleAccount = createAsyncThunk<
@@ -19,17 +19,16 @@ export const CheckAuthInGoogleAccount = createAsyncThunk<
 			const provider = new GoogleAuthProvider()
 			const {
 				user: { displayName: name, email, photoURL: image }
-			} = await signInWithPopup(firebasaeAuth, provider)
-			const { data } = await AuthService.checkAuth(email)
-			if (!data.status) {
-				return {
-					email,
-					image: image ?? '',
-					name: name ?? '',
-					about: 'Available',
-					newUser: true
-				}
+			} = await signInWithPopup(firebaseAuth, provider)
+			const fakeData = {
+				email,
+				image: image ?? '',
+				name: name ?? '',
+				about: 'Available',
+				newUser: true
 			}
+			const { data } = await AuthService.checkAuth(email)
+			if (!data.status) return fakeData
 			LocalStorageService.setUserLocalStorage(data.data)
 			return data.data
 		} catch (err) {
@@ -44,24 +43,22 @@ export const CheckAuthInServer = createAsyncThunk<ILogin, string>(
 			const { data } = await AuthService.checkAuth(email)
 			LocalStorageService.setUserLocalStorage(data.data)
 			return data
-		} catch (err) {
-			return thunkAPI.rejectWithValue(err)
+		} catch (err: any) {
+			return thunkAPI.rejectWithValue(err.response.data)
 		}
 	}
 )
 
 export const RegistrationNewUser = createAsyncThunk<IUser, IUser>(
 	'userStore/register',
-	async (data, thunkAPI) => {
+	async (newUSer, thunkAPI) => {
 		try {
-			const response = await UserService.createUser(data)
-			if (response.data.status) {
-				LocalStorageService.setUserLocalStorage(response.data.data)
-				return response.data.data
-			}
-			return thunkAPI.rejectWithValue(response.data.msg)
-		} catch (err) {
-			return thunkAPI.rejectWithValue(err)
+			const { data } = await UserService.createUser(newUSer)
+			if (!data.status) new Error(data.msg)
+			LocalStorageService.setUserLocalStorage(data.data)
+			return data.data
+		} catch (err: any) {
+			return thunkAPI.rejectWithValue(err.response.data.message)
 		}
 	}
 )

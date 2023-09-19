@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
 	CheckAuthInGoogleAccount,
 	CheckAuthInServer,
+	CheckUserAccountInGoogle,
 	getAllUsers,
 	RegistrationNewUser
 } from '@/store/user/user.action'
@@ -52,14 +53,16 @@ export const userSlice = createSlice({
 				state.isLoading = true
 				state.error = ''
 			})
-			.addCase(CheckAuthInGoogleAccount.fulfilled, (state, { payload }) => {
-				if (!payload.newUser) {
-					state.userInfo = payload
-				} else {
-					state.isNewUser = true
-					state.userInfo = payload
+			.addCase(
+				CheckAuthInGoogleAccount.fulfilled,
+				(state, action: PayloadAction<CheckUserAccountInGoogle>) => {
+					if (!action.payload.newUser) state.userInfo = action.payload
+					else {
+						state.isNewUser = true
+						state.userInfo = action.payload
+					}
 				}
-			})
+			)
 			.addCase(CheckAuthInGoogleAccount.rejected, (state, action) => {
 				state.isLoading = false
 				state.error = action.error.message
@@ -74,7 +77,7 @@ export const userSlice = createSlice({
 			})
 			.addCase(CheckAuthInServer.rejected, (state, action) => {
 				state.isLoading = false
-				state.error = action.error.message
+				state.error = `${action.meta.requestStatus}/${action.payload}`
 			})
 			.addCase(RegistrationNewUser.pending, state => {
 				state.isLoading = true
@@ -84,10 +87,11 @@ export const userSlice = createSlice({
 				state.userInfo = action.payload
 				state.isNewUser = false
 				state.isLoading = false
+				state.error = ''
 			})
 			.addCase(RegistrationNewUser.rejected, (state, action) => {
 				state.isLoading = false
-				state.error = action.error.message
+				state.error = action.meta.requestStatus
 			})
 			.addCase(getAllUsers.pending, state => {
 				state.isLoading = true
@@ -99,7 +103,7 @@ export const userSlice = createSlice({
 			})
 			.addCase(getAllUsers.rejected, (state, action) => {
 				state.isLoading = false
-				state.error = action.error.message
+				state.error = action.meta.requestStatus
 			})
 	}
 })

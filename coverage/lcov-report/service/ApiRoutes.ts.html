@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">47.82% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/24</span>
+                <span class='fraction'>11/23</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.11% </span>
+                <span class="strong">44.44% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/9</span>
+                <span class='fraction'>4/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">45% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/21</span>
+                <span class='fraction'>9/20</span>
             </div>
         
             
@@ -169,8 +169,7 @@
 <a name='L104'></a><a href='#L104'>104</a>
 <a name='L105'></a><a href='#L105'>105</a>
 <a name='L106'></a><a href='#L106'>106</a>
-<a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
+<a name='L107'></a><a href='#L107'>107</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -187,34 +186,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -296,27 +294,26 @@ import {
 	ONBOARD_USER_ROUTE
 } from '@/service/const'
 &nbsp;
-export const <span class="cstat-no" title="statement not covered" >AuthService </span>= {
-<span class="fstat-no" title="function not covered" >	async c</span>heckAuth(
+export const AuthService = {
+	async checkAuth(
 		email: string | null | undefined
 	): Promise&lt;AxiosResponse&lt;ILogin&gt;&gt; {
-<span class="cstat-no" title="statement not covered" >		return axios.post&lt;string, AxiosResponse&lt;ILogin&gt;&gt;(CHECK_AUTH_ROUTE, {</span>
+		return axios.post&lt;string, AxiosResponse&lt;ILogin&gt;&gt;(CHECK_AUTH_ROUTE, {
 			email
 		})
 	},
-<span class="fstat-no" title="function not covered" >	async g</span>enerateToken(id: string) {
-<span class="cstat-no" title="statement not covered" >		return axios.get&lt;string, AxiosResponse&lt;{ token: string }&gt;&gt;(</span>
+	async generateToken(id: string) {
+		return axios.get&lt;string, AxiosResponse&lt;{ token: string }&gt;&gt;(
 			`${GENERATE_TOKEN_ROUTE}/${id}`
 		)
 	}
 }
 export const UserService = {
 	async getAllUsers(): Promise&lt;Record&lt;string, IUser[]&gt;&gt; {
-		const users = await axios.get(GET_ALL_USERS)
-		return users.data.users
+		return (await axios.get(GET_ALL_USERS)).data.users
 	},
-<span class="fstat-no" title="function not covered" >	async c</span>reateUser(data: IUser): Promise&lt;AxiosResponse&lt;ILogin&gt;&gt; {
-<span class="cstat-no" title="statement not covered" >		return axios.post&lt;string, AxiosResponse&lt;ILogin&gt;&gt;(ONBOARD_USER_ROUTE, {</span>
+	async createUser(data: IUser): Promise&lt;AxiosResponse&lt;ILogin&gt;&gt; {
+		return axios.post&lt;string, AxiosResponse&lt;ILogin&gt;&gt;(ONBOARD_USER_ROUTE, {
 			data
 		})
 	}
@@ -391,7 +388,7 @@ export const <span class="cstat-no" title="statement not covered" >MessageServic
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-09-18T11:08:28.922Z
+                at 2023-09-19T13:07:47.590Z
             </div>
         <script src="../prettify.js"></script>
         <script>

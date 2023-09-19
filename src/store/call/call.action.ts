@@ -7,7 +7,7 @@ export const getTokenCallAsync = createAsyncThunk<string | undefined, string>(
 		try {
 			return (await AuthService.generateToken(String(id))).data.token
 		} catch (err) {
-			thunkAPI.rejectWithValue(err)
+			return thunkAPI.rejectWithValue(err)
 		}
 	}
 )

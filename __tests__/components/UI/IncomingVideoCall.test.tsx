@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react'
 import { IncomingVideoCall } from '@/UI/IncomingVideoCall'
-import { renderWithRedux } from '../../helper/renderWithRedux'
+import { renderWithRedux } from '@/utils/helper/renderWithRedux'
 
 describe('IncomingVideoCall.test', () => {
 	test('first', () => {
