@@ -3,18 +3,22 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { AuthService } from '@/service/ApiRoutes'
 import { useActions } from '@/hooks/useActions'
+import { RouterEnumPath } from '@/types/routerEnumPath'
+import { LocalStorageService } from '@/service/LocalStorageService'
 
 export const SignIn = () => {
 	const { push } = useRouter()
 	const { setUser } = useActions()
 	const [email, setEmail] = useState('')
 	const loginUserHandler = async () => {
-		const res = await AuthService.checkAuth(email)
-		if (res.data.status) {
-			setUser(res.data.data)
-			push('/')
+		const { data } = await AuthService.checkAuth(email)
+		if (data.status) {
+			setUser(data.data)
+			LocalStorageService.setUserLocalStorage(data.data)
+			await push(RouterEnumPath.MAIN)
 		} else alert('user not found. try again!')
 	}
+	console.log(email)
 	return (
 		<article>
 			<InputCustom
@@ -27,7 +31,7 @@ export const SignIn = () => {
 			<button
 				className='w-full bg-search-input-container-background p-1 mt-5 rounded-lg text-white disabled:opacity-50'
 				onClick={loginUserHandler}
-				disabled={email.length < 3}
+				disabled={email.length < 5}
 			>
 				Sign in
 			</button>

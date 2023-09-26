@@ -1,22 +1,26 @@
-import { onAuthStateChanged } from '@firebase/auth'
-import { firebaseAuth } from '@/utils/FirebaseConfig'
-import { useToggle } from '@/hooks/useToggle'
-import { useActions } from '@/hooks/useActions'
 import { useEffect } from 'react'
+import { LocalStorageService } from '@/service/LocalStorageService'
 import { useRouter } from 'next/router'
-import { AuthService } from '@/service/ApiRoutes'
+import { useToggle } from '@/hooks/useToggle'
+import { RouterEnumPath } from '@/types/routerEnumPath'
+import { useActions } from '@/hooks/useActions'
 
 export const useAuth = () => {
 	const { replace } = useRouter()
-	const { CheckAuthInServer, changeIsLoading } = useActions()
+	const { CheckAuthInServer } = useActions()
 	const [redirect, setRedirect] = useToggle(false)
-	onAuthStateChanged(firebaseAuth, async currentUser => {
-		CheckAuthInServer(currentUser?.email ?? '')
-		const { data } = await AuthService.checkAuth(currentUser?.email)
-		if (!currentUser?.email || !data.status) setRedirect(true)
-		if (currentUser?.email && data) changeIsLoading(false)
-	})
+	const currentUser = LocalStorageService.getParseUserLocalStorage()
+	//  onAuthStateChanged(firebaseAuth, async currentUser => {
+	// 	 const { data } = await AuthService.checkAuth(currentUser?.email)
+	// 	 if (!currentUser?.email || !data.status) setRedirect(true)
+	// 	 if (currentUser?.email && data) changeIsLoading(false)
+	// 	CheckAuthInServer(currentUser?.email ?? '')
+	// })
 	useEffect(() => {
-		if (redirect) replace('/login')
+		CheckAuthInServer(currentUser?.email ?? '')
+		if (!currentUser?.email) setRedirect(true)
+	}, [])
+	useEffect(() => {
+		if (redirect) replace(RouterEnumPath.LOGIN)
 	}, [redirect])
 }

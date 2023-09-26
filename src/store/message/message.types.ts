@@ -34,6 +34,10 @@ export interface IGetInitialUsersChat<T> extends IUser, Omit<IMessage, 'id'> {
 	reciever?: T
 	sender?: T
 }
+export interface MessageByIDAndMessage
+	extends Pick<IMessage, 'id' | 'message'> {
+	status?: string
+}
 export interface UsersContactsAndUsersOnline {
 	usersContacts?: IGetInitialUsersChat<IUser>[]
 	onlineUsers?: number[]

@@ -70,7 +70,10 @@ export function MessageBar({ userId, selectChatUserId }: MessageBarProps) {
 						/>
 					</button>
 					{showEmoji && (
-						<div ref={emojiRef} className='absolute z-50 left-10 bottom-28'>
+						<div
+							ref={emojiRef}
+							className='absolute z-50 left-10 bottom-28'
+						>
 							<Picker
 								onEmojiClick={handleEmojiClick}
 								theme={Theme.DARK}
@@ -93,7 +96,7 @@ export function MessageBar({ userId, selectChatUserId }: MessageBarProps) {
 					</button>
 					<input
 						type='text'
-						value={message as string}
+						value={message}
 						autoFocus
 						onChange={e => setMessage(e.target.value)}
 						placeholder='Type a message'
@@ -121,7 +124,9 @@ export function MessageBar({ userId, selectChatUserId }: MessageBarProps) {
 					onChange={photoChange}
 				/>
 			)}
-			{showAudioRecorder && <CaptureAudio hideAudio={setShowAudioRecorder} />}
+			{showAudioRecorder && (
+				<CaptureAudio hideAudio={setShowAudioRecorder} />
+			)}
 		</article>
 	)
 }

@@ -30,7 +30,7 @@ export function IncomingVideoCall() {
 	}, [])
 	if (incomingCall)
 		return (
-			<Popup>
+			<Popup classname='absolute bottom-24'>
 				<IncomingContainer
 					accept={accept}
 					reject={reject}

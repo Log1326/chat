@@ -5,91 +5,53 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76e8b4a5-518b-4d45-8a2b-64dbf958178e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/__tests__/store/user/user.action.test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__tests__/store/user/user.selectors.test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__tests__/store/user/user.slice.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cypress/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/build-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/.next/build-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/react-loadable-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/.next/react-loadable-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/server/middleware-build-manifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/server/middleware-build-manifest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/server/middleware-react-loadable-manifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/server/middleware-react-loadable-manifest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/server/pages-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/.next/server/pages-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/static/chunks/webpack.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/static/chunks/webpack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/static/development/_buildManifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/static/development/_buildManifest.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.next/trace" beforeDir="false" afterPath="$PROJECT_DIR$/.next/trace" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/components/ChatList/ChatList.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/components/ChatList/ChatList.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/components/ChatList/ContactsList.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/components/ChatList/ContactsList.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/components/UI/IncomingVideoCall.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/components/UI/IncomingVideoCall.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/helper/renderWithNextRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/helper/renderWithNextRouter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/helper/renderWithRedux.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/helper/renderWithRedux.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/helper/renderWithReduxAndNextRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/helper/renderWithReduxAndNextRouter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/store/call/call.async.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/store/call/call.async.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/clover.xml" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/clover.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/coverage-final.json" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/coverage-final.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/ChatTypeMessage.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/ChatTypeMessage.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/ChatViewMessage.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/ChatViewMessage.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/ImageMessage.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/ImageMessage.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chat/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ChatLIstItem.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ChatLIstItem.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ChatList.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ChatList.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ChatListHeader.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ChatListHeader.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ContactsList.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/ContactsList.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/List.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/List.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/SearchBar.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/SearchBar.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Chatlist/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/Empty.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/Empty.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Avatar.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Avatar.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/CapturePhoto.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/CapturePhoto.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/ContextMenu.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/ContextMenu.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/CustomAvatarMenu.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/CustomAvatarMenu.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/DropDown.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/DropDown.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/IncomingContainer.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/IncomingContainer.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/IncomingVideoCall.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/IncomingVideoCall.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Input.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Input.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Loading.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Loading.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/MessageStatus.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/MessageStatus.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/PhotoLibrary.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/PhotoLibrary.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/PhotoPicker.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/PhotoPicker.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Popup.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Popup.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Skeleton.tsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/Skeleton.tsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/UI/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/UI/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/components/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/components/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/constants/constants.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/constants/constants.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/constants/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/constants/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/hooks/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/hooks/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/hooks/useActions.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/hooks/useActions.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/hooks/useContextMenu.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/hooks/useContextMenu.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/hooks/useGrabPhoto.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/hooks/useGrabPhoto.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/hooks/useHandleClickOutSide.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/hooks/useHandleClickOutSide.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/hooks/useToggle.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/hooks/useToggle.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/service/ApiRoutes.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/service/ApiRoutes.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/service/LocalStorageService.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/service/LocalStorageService.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/service/const.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/service/const.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/service/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/service/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/call/call.action.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/call/call.action.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/call/call.selectors.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/call/call.selectors.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/call/call.slice.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/call/call.slice.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/call/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/call/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/message/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/message/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/message/message.action.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/message/message.action.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/message/message.selectors.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/message/message.selectors.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/message/message.slice.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/message/message.slice.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/root-action.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/root-action.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/store.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/store.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/user/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/user/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/user/user.action.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/user/user.action.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/user/user.selector.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/user/user.selector.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/store/user/user.slice.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/store/user/user.slice.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/types/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/types/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/types/routerEnumPath.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/types/routerEnumPath.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/utils/CalculateTime.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/utils/CalculateTime.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/utils/FirebaseConfig.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/utils/FirebaseConfig.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/utils/constants.ts.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/utils/constants.ts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/utils/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/utils/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov.info" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/store/call/call.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/store/call/call.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Chat/ChatContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Chat/ChatContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Chat/ChatHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Chat/ChatHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Chat/MessageBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Chat/MessageBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Chatlist/ChatListHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Chatlist/ChatListHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/Avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Avatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/CapturePhoto.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/CapturePhoto.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/ContextMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/ContextMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/CustomAvatarMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/CustomAvatarMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/DropDown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/DropDown.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/IncomingVideoCall.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/IncomingVideoCall.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/IncomingVoiceCall.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/IncomingVoiceCall.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/Popup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Popup.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/SignIn.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/constants.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/useAuth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useAuth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/onboarding.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/onboarding.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/ApiRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ApiRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/call/call.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/call/call.action.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/const.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/message/message.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/message/message.action.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/message/message.slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/message/message.slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/message/message.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/message/message.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/user/user.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user.action.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/user/user.selector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user.selector.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/user/user.slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user.slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/CalculateTime.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/CalculateTime.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/FirebaseConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/FirebaseConfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/user/user.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/user/user.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,28 +82,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;test&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/pavel/WebstormProjects/clones-react/whats-up/server&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;/home/pavel/WebstormProjects/clones-react/whats-up/next-test/node_modules/jest&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettier.import.notification.dismissed&quot;: &quot;true&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/pavel/WebstormProjects/clones-react/whats-up/next-test/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/pavel/WebstormProjects/clones-react/whats-up/next-test/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "test",
+    "last_opened_file_path": "/home/pavel/WebstormProjects/clones-react/whats-up/server",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "/home/pavel/WebstormProjects/clones-react/whats-up/next-test/node_modules/jest",
+    "nodejs_package_manager_path": "npm",
+    "prettier.import.notification.dismissed": "true",
+    "prettierjs.PrettierConfiguration.Package": "/home/pavel/WebstormProjects/clones-react/whats-up/next-test/node_modules/prettier",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/home/pavel/WebstormProjects/clones-react/whats-up/next-test/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cypress" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -243,7 +206,14 @@
       <workItem from="1694933985804" duration="16283000" />
       <workItem from="1695030469121" duration="13168000" />
       <workItem from="1695045382614" duration="150000" />
-      <workItem from="1695109170116" duration="14041000" />
+      <workItem from="1695109170116" duration="14511000" />
+      <workItem from="1695279714112" duration="5048000" />
+      <workItem from="1695286976060" duration="187000" />
+      <workItem from="1695298156694" duration="1095000" />
+      <workItem from="1695644424928" duration="6826000" />
+      <workItem from="1695652122485" duration="1239000" />
+      <workItem from="1695711749343" duration="13672000" />
+      <workItem from="1695727643636" duration="8825000" />
     </task>
     <servers />
   </component>

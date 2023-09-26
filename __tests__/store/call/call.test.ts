@@ -4,9 +4,9 @@ import { getIsAcceptCall, getTokenCall } from '@/store/call/call.selectors'
 describe('call', () => {
 	test('getIsAcceptCall', () => {
 		const state: DeepPartial<TypeRootState> = {
-			callStore: { isAcceptCall: true }
+			callStore: { isAcceptCall: false }
 		}
-		expect(getIsAcceptCall(state as TypeRootState)).toEqual(true)
+		expect(getIsAcceptCall(state as TypeRootState)).toEqual(false)
 	})
 	test('getTokenCall', () => {
 		const token: string = 'sdafghgewr324!@#DSdsdfwsdfasd'

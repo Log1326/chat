@@ -6,6 +6,10 @@ export interface IUser {
 	about?: string
 	totalUnreadMessages?: number
 }
+export type TypeCoordinates = {
+	x: number
+	y: number
+}
 export type bgChat =
 	| 'bg-chat-background-color'
 	| 'bg-chat-background-pale'
@@ -21,4 +25,5 @@ export interface IInitialState {
 	isLoading?: boolean
 	backgroundChat?: bgChat
 	error?: string
+	coordinates?: TypeCoordinates
 }

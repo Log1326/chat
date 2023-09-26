@@ -46,8 +46,13 @@ export function CapturePhoto({ hide }: CapturePhotoProps) {
 				>
 					<IoClose className='h-10 w-10' />
 				</div>
-				<div className='flex justify-center w-full h-full mt-20 rounded-2xl '>
-					<video id='video' width='400' autoPlay ref={videoRef}></video>
+				<div className='flex justify-center w-full h-full mt-20 rounded-2xl custom-img'>
+					<video
+						id='video'
+						width='400'
+						autoPlay
+						ref={videoRef}
+					></video>
 				</div>
 				<div className='mx-auto'>
 					<button

@@ -8,6 +8,7 @@ import { useToggle } from '@/hooks/useToggle'
 import { getAuth, signOut } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import { RouterEnumPath } from '@/types/routerEnumPath'
+import { LocalStorageService } from '@/service/LocalStorageService'
 
 export function ChatListHeader() {
 	const { replace, reload } = useRouter()
@@ -25,6 +26,7 @@ export function ChatListHeader() {
 				console.log(error)
 				reload()
 			})
+		LocalStorageService.removeUserLocalStorage()
 	}
 	return (
 		<article className='flex justify-between items-center  h-20 p-7 border-r-2 border-gray-400'>
@@ -46,6 +48,7 @@ export function ChatListHeader() {
 					/>
 				</button>
 				<DropDown
+					classname={'absolute top-0 right-0 w-36'}
 					title={
 						<BsThreeDotsVertical
 							className='h-6 w-6 hover:opacity-70'

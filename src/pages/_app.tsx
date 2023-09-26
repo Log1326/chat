@@ -4,9 +4,11 @@ import { Provider } from 'react-redux'
 import { store } from '@/store/store'
 import '@/styles/globals.css'
 
+const storeFN = store()
+
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<Provider store={store()}>
+		<Provider store={storeFN}>
 			<Head>
 				<title>Whatsapp</title>
 				<link rel='shortcut icon' href='/favicon.png' />

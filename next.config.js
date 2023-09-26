@@ -16,7 +16,8 @@ const nextConfig = {
 			'lh3.googleusercontent.com',
 			'localhost',
 			'i.ndtvimg.com',
-			'klike.net'
+			'klike.net',
+			'imagetest.jpeg'
 		]
 	}
 }

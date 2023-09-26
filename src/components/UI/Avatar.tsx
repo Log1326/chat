@@ -21,7 +21,7 @@ export function Avatar({ type, value, className }: AvatarProps) {
 					<div className='relative '>
 						{value ? (
 							<Image
-								src={value}
+								src={value ?? ''}
 								alt='imageAvatar'
 								className='rounded-full '
 								width={30}

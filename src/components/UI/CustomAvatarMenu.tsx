@@ -1,20 +1,18 @@
 import { CONTEXT_OPENED, PHOTO_PICKER } from '@/constants/constants'
 import { FaCamera } from 'react-icons/fa'
-import Image from 'next/image'
-import React, { FC, useCallback, useState } from 'react'
+import React, { FC, useCallback } from 'react'
 import { ContextMenu } from '@/UI/ContextMenu'
 import { PhotoLibrary } from '@/UI/PhotoLibrary'
 import { CapturePhoto } from '@/UI/CapturePhoto'
 import { PhotoPicker } from '@/UI/PhotoPicker'
 import { useToggle } from '@/hooks/useToggle'
-import { TypeContextCoordinates } from '@/types/contextTypes'
 import { useContextMenu } from '@/hooks/useContextMenu'
 import { IImages } from '@/types/images.types'
+import Image from 'next/image'
+import { useSelector } from 'react-redux'
+import { getCoordinates } from '@/store/user/user.selector'
+import { useActions } from '@/hooks/useActions'
 
-const initialContextMenuCoordinates = {
-	x: 0,
-	y: 0
-}
 const images: IImages<string>[] = [
 	{ name: 'one', value: '/avatars/1.png' },
 	{ name: 'two', value: '/avatars/2.png' },
@@ -27,17 +25,17 @@ const images: IImages<string>[] = [
 	{ name: 'nine', value: '/avatars/9.png' }
 ]
 export const CustomAvatarMenu: FC<{ value: string }> = ({ value }) => {
+	const coordinates = useSelector(getCoordinates)
+	const { setCoordinates } = useActions()
 	const [hover, _, handleHoverFn] = useToggle()
 	const { menu, stateMenu, changeStateMenu, fn } = useContextMenu()
-	const [contextMenuCoordinates, setContextMenuCoordinates] =
-		useState<TypeContextCoordinates>(initialContextMenuCoordinates)
 	const showContextVisible = useCallback(
 		(e: React.MouseEvent<HTMLDivElement>) => {
 			e.preventDefault()
-			setContextMenuCoordinates({ x: e.pageX, y: e.pageY })
+			setCoordinates({ x: e.pageX, y: e.pageY })
 			changeStateMenu.setIsContextMenuVisible(true)
 		},
-		[]
+		[changeStateMenu, setCoordinates]
 	)
 	return (
 		<>
@@ -50,10 +48,13 @@ export const CustomAvatarMenu: FC<{ value: string }> = ({ value }) => {
 				{hover && (
 					<div
 						id={CONTEXT_OPENED}
-						className='z-20 w-full h-full  absolute flex flex-col justify-center items-center'
+						className='z-20 w-full h-full absolute flex flex-col justify-center items-center'
 					>
 						<FaCamera />
-						<span className='flex text-center w-14 ' id={CONTEXT_OPENED}>
+						<span
+							className='flex text-center w-14 '
+							id={CONTEXT_OPENED}
+						>
 							Change
 							<br />
 							profile photo
@@ -61,8 +62,8 @@ export const CustomAvatarMenu: FC<{ value: string }> = ({ value }) => {
 					</div>
 				)}
 				<Image
-					src={value ?? ''}
-					alt='imageAvatar'
+					src={value || '/default_avatar.png'}
+					alt='imageAvatar here'
 					className={`rounded-full ${hover && 'opacity-40'}`}
 					fill
 				/>
@@ -70,9 +71,10 @@ export const CustomAvatarMenu: FC<{ value: string }> = ({ value }) => {
 					<ContextMenu
 						item={{
 							options: menu.contextMenuOptions,
-							coordinates: contextMenuCoordinates,
+							coordinates: coordinates,
 							contextMenu: stateMenu.isContextMenuVisible,
-							setContextMenu: changeStateMenu.setIsContextMenuVisible
+							setContextMenu:
+								changeStateMenu.setIsContextMenuVisible
 						}}
 						idElement={CONTEXT_OPENED}
 					/>
@@ -89,7 +91,10 @@ export const CustomAvatarMenu: FC<{ value: string }> = ({ value }) => {
 				<CapturePhoto hide={changeStateMenu.setShowCapturePhoto} />
 			)}
 			{stateMenu.grabPhoto && (
-				<PhotoPicker idPhotoPicker={PHOTO_PICKER} onChange={fn.photoChange} />
+				<PhotoPicker
+					idPhotoPicker={PHOTO_PICKER}
+					onChange={fn.photoChange}
+				/>
 			)}
 		</>
 	)

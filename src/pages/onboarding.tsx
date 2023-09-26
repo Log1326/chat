@@ -1,40 +1,36 @@
-import Image from 'next/image'
 import {
 	getLoadingUser,
 	getNewUserBool,
 	getUser
 } from '@/store/user/user.selector'
-import { InputCustom } from '@/UI/Input'
-import { useEffect } from 'react'
-import { Avatar } from '@/UI/Avatar'
-import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
+import { IUser } from '@/store/user/user.types'
+import { useRouter } from 'next/router'
 import { useActions } from '@/hooks/useActions'
 import { Loading } from '@/UI/Loading'
+import { InputCustom } from '@/UI/Input'
+import { Avatar } from '@/UI/Avatar'
+import Image from 'next/image'
+import { useEffect } from 'react'
 import { RouterEnumPath } from '@/types/routerEnumPath'
-import { IUser } from '@/store/user/user.types'
 
 function onboarding() {
-	const { name, image, about, email } = useSelector(getUser) as IUser
+	const { push } = useRouter()
+	const { RegistrationNewUser, setName, setAbout, changeIsLoading } =
+		useActions()
+	const userInfo = useSelector(getUser)
 	const newUserBool = useSelector(getNewUserBool)
 	const isLoading = useSelector(getLoadingUser)
-	const { push } = useRouter()
-	const { RegistrationNewUser, setName, setAbout, setImage, changeIsLoading } =
-		useActions()
 	useEffect(() => {
-		if (!email || !newUserBool) push(RouterEnumPath.LOGIN)
-		if (!newUserBool && email) push(RouterEnumPath.MAIN)
-	}, [newUserBool, email])
-	useEffect(() => {
-		if (!image) setImage('/default_avatar.png')
-	}, [image])
+		if (!userInfo?.email || !newUserBool) push(RouterEnumPath.LOGIN)
+		if (!newUserBool && userInfo?.email) push(RouterEnumPath.MAIN)
+	}, [newUserBool, userInfo?.email])
 	useEffect(() => {
 		changeIsLoading(false)
 	}, [])
-	const onboardUserHandler = () =>
-		RegistrationNewUser({ name, about, image, email })
-	const disableButton = name.length < 3 || (about && about.length < 3)
-
+	const disableButton =
+		(userInfo && userInfo.name.length < 3) ||
+		(userInfo?.about && userInfo.about.length < 3)
 	return (
 		<div className='bg-panel-header-background h-screen text-white flex flex-col items-center justify-center gap-6'>
 			{isLoading ? (
@@ -43,7 +39,7 @@ function onboarding() {
 				<>
 					<div className='flex items-center justify-center gap-2'>
 						<Image
-							src='/whatsapp.gif'
+							src={'/whatsapp.gif' ?? ''}
 							alt='whatsapp'
 							width={300}
 							height={300}
@@ -56,26 +52,28 @@ function onboarding() {
 							<InputCustom
 								name='Display Name'
 								onChange={setName}
-								value={name}
+								value={userInfo?.name}
 								label
 							/>
 							<InputCustom
 								name='About'
 								onChange={setAbout}
-								value={about!}
+								value={userInfo?.about!}
 								label
 							/>
 							<button
 								disabled={!!disableButton}
-								onClick={onboardUserHandler}
+								onClick={() =>
+									RegistrationNewUser(userInfo as IUser)
+								}
 								className={`p-4 rounded-xl bg-search-input-container-background disabled:opacity-10 
-						${disableButton ? '' : 'hover:bg-gray-700'}`}
+						${!!disableButton ? '' : 'hover:bg-gray-700'}`}
 							>
 								Create profile
 							</button>
 						</div>
 						<div>
-							<Avatar type='xl' value={image} />
+							<Avatar type='xl' value={userInfo?.image ?? ''} />
 						</div>
 					</div>
 				</>

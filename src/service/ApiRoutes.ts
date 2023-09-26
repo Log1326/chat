@@ -14,7 +14,9 @@ import {
 	GET_ALL_USERS,
 	GET_CONTACTS,
 	GET_MESSAGES,
-	ONBOARD_USER_ROUTE
+	ONBOARD_USER_ROUTE,
+	REMOVE_MESSAGE_ID,
+	UPDATE_MESSAGE_ID
 } from '@/service/const'
 
 export const AuthService = {
@@ -58,15 +60,19 @@ export const MessageService = {
 			console.log(err)
 		}
 	},
+	async removeMessageId(id: number) {
+		return await axios.delete(`${REMOVE_MESSAGE_ID}/${id}`)
+	},
+	async updateMessageId(id: number, message: string) {
+		return await axios.put(`${UPDATE_MESSAGE_ID}/${id}`, {
+			message
+		})
+	},
 	async receiveMessage(data: IGetMessages) {
-		try {
-			const response = await axios.get(
-				`${GET_MESSAGES}/${data.from}/${data.to}`
-			)
-			return response.data
-		} catch (err) {
-			console.log(err)
-		}
+		const response = await axios.get(
+			`${GET_MESSAGES}/${data.from}/${data.to}`
+		)
+		return response.data
 	},
 	async getContacts(
 		from: number

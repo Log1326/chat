@@ -1,12 +1,13 @@
 import React, { JSX, ReactElement } from 'react'
 
 interface DropDownProps {
-	title: string | ReactElement
+	title?: string | ReactElement
 	children: JSX.Element | JSX.Element[]
 	toggle: boolean
+	classname?: string
 }
 export const DropDown = (props: DropDownProps) => {
-	const { title, children, toggle } = props
+	const { title, children, toggle, classname } = props
 	return (
 		<div
 			data-testid='dropdown'
@@ -20,7 +21,7 @@ export const DropDown = (props: DropDownProps) => {
 			{toggle && (
 				<button
 					data-testid='dropdown-button'
-					className='absolute w-36 text-white block px-4 py-2 text-sm top-0 right-0 z-10 mt-10 rounded-md bg-panel-header-background '
+					className={`${classname} text-white  px-4 py-2 text-sm z-10 mt-10 rounded-md bg-panel-header-background`}
 				>
 					{children}
 				</button>

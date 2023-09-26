@@ -2,13 +2,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
 	IInitialStateMessage,
 	IMessage,
+	MessageByIDAndMessage,
 	UsersContactsAndUsersOnline
 } from '@/store/message/message.types'
 import {
 	addMessageImage,
 	addMessageSend,
 	getAllMessage,
-	getMessageContacts
+	getMessageContacts,
+	removeMessageIdAsync,
+	updateMessageIdAsync
 } from '@/store/message/message.action'
 
 const initialState: IInitialStateMessage = {
@@ -62,7 +65,8 @@ export const messageSlice = createSlice({
 						action.payload.usersContacts
 					state.usersContactsAndUsersOnline.onlineUsers =
 						action.payload.onlineUsers
-					state.usersContactsAndUsersOnline.usersContactsLoading = false
+					state.usersContactsAndUsersOnline.usersContactsLoading =
+						false
 				}
 			)
 			.addCase(getMessageContacts.rejected, (state, action) => {
@@ -104,6 +108,44 @@ export const messageSlice = createSlice({
 			.addCase(addMessageSend.rejected, (state, action) => {
 				state.loadingMessage = false
 				state.errorMessage = action.error.message
+			})
+			.addCase(removeMessageIdAsync.pending, state => {
+				state.loadingMessage = true
+				state.errorMessage = ''
+			})
+			.addCase(
+				removeMessageIdAsync.fulfilled,
+				(
+					state,
+					action: PayloadAction<{ message: string; id: number }>
+				) => {
+					state.loadingMessage = false
+					state.messages = state.messages?.filter(
+						item => item.id !== action.payload.id
+					)
+				}
+			)
+			.addCase(removeMessageIdAsync.rejected, (state, action) => {
+				state.loadingMessage = false
+				state.errorMessage = String(action.payload)
+			})
+			.addCase(updateMessageIdAsync.pending, state => {
+				state.loadingMessage = true
+				state.errorMessage = ''
+			})
+			.addCase(
+				updateMessageIdAsync.fulfilled,
+				(state, action: PayloadAction<MessageByIDAndMessage>) => {
+					state.loadingMessage = false
+					state.messages?.find(item => {
+						if (item.id === action.payload.id)
+							item.message = action.payload.message
+					})
+				}
+			)
+			.addCase(updateMessageIdAsync.rejected, (state, action) => {
+				state.loadingMessage = false
+				state.errorMessage = String(action.payload)
 			})
 	}
 })

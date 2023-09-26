@@ -1,9 +1,8 @@
 import { MutableRefObject, useEffect, useRef } from 'react'
-import { LocalStorageService } from '@/service/LocalStorageService'
 import { io, Socket } from 'socket.io-client'
 import { useActions } from '@/hooks/useActions'
 import { useSelector } from 'react-redux'
-import { getSelectUser } from '@/store/user/user.selector'
+import { getSelectUser, getUser } from '@/store/user/user.selector'
 import { ChatList } from '@/components/Chatlist/ChatList'
 import { Chat } from '@/components/Chat/Chat'
 import { Empty } from '@/components/Empty'
@@ -32,7 +31,7 @@ import { useAuth } from '@/hooks/useAuth'
 
 export function Main() {
 	useAuth()
-	const user = LocalStorageService.getParseUserLocalStorage()
+	const user = useSelector(getUser)
 	const selectChatUser = useSelector(getSelectUser)
 	const isSearchMessage = useSelector(getIsSearchMessage)
 	const socketRef: MutableRefObject<Socket | undefined> = useRef()
@@ -80,7 +79,7 @@ export function Main() {
 		})
 	}, [socketRef.current])
 	return (
-		<main className='h-screen grid grid-cols-4'>
+		<main className='h-screen grid grid-cols-4' data-testid='mainPage'>
 			<ChatList />
 			<section className='grid col-span-3 bg-panel-header-background h-screen overflow-hidden border-b-4 border-teal-500'>
 				{selectChatUser ? (

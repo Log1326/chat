@@ -11,3 +11,5 @@ export const GET_MESSAGES = `${MESSAGES_ROUTE}/get-messages`
 export const GET_CONTACTS = `${MESSAGES_ROUTE}/get-contacts`
 export const ADD_MESSAGE_IMAGE = `${MESSAGES_ROUTE}/add-image-message`
 export const ADD_MESSAGE_AUDIO = `${MESSAGES_ROUTE}/add-audio-message`
+export const REMOVE_MESSAGE_ID = `${MESSAGES_ROUTE}/remove-message`
+export const UPDATE_MESSAGE_ID = `${MESSAGES_ROUTE}/update-message`

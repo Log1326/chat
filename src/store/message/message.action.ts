@@ -5,6 +5,7 @@ import {
 	IAddMessageType,
 	IGetMessages,
 	IMessage,
+	MessageByIDAndMessage,
 	UsersContactsAndUsersOnline
 } from '@/store/message/message.types'
 import { TypeRootState } from '@/store/store'
@@ -80,3 +81,25 @@ export const addMessageSend = createAsyncThunk<IMessage, IAddMessageType>(
 		}
 	}
 )
+export const removeMessageIdAsync = createAsyncThunk<
+	{ message: string; id: number },
+	number
+>('messageStore/removeMessageIdAsync', async (id, thunkAPI) => {
+	try {
+		const { data } = await MessageService.removeMessageId(id)
+		return data
+	} catch (err) {
+		thunkAPI.rejectWithValue(err)
+	}
+})
+export const updateMessageIdAsync = createAsyncThunk<
+	MessageByIDAndMessage,
+	MessageByIDAndMessage
+>('messageStore/updateMessageIdAsync', async ({ id, message }, thunkAPI) => {
+	try {
+		const { data } = await MessageService.updateMessageId(id, message)
+		return data
+	} catch (err) {
+		thunkAPI.rejectWithValue(err)
+	}
+})

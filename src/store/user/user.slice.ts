@@ -1,4 +1,4 @@
-import { bgChat, IInitialState, IUser } from './user.types'
+import { bgChat, IInitialState, IUser, TypeCoordinates } from './user.types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
 	CheckAuthInGoogleAccount,
@@ -10,7 +10,7 @@ import {
 import { LocalStorageService } from '@/service/LocalStorageService'
 
 const initialState: IInitialState = {
-	userInfo: { name: '', image: '', about: '', email: '' },
+	userInfo: { name: '', about: '', email: '', image: '' },
 	users: [],
 	isNewUser: false,
 	isLoading: false,
@@ -22,16 +22,16 @@ export const userSlice = createSlice({
 	name: 'userStore',
 	reducers: {
 		setName: (state, action: PayloadAction<string>) => {
-			state.userInfo.name = action.payload
+			if (state.userInfo) state.userInfo.name = action.payload
 		},
 		setAbout: (state, action: PayloadAction<string>) => {
-			state.userInfo.about = action.payload
+			if (state.userInfo) state.userInfo.about = action.payload
 		},
-		setImage: ({ userInfo }, action: PayloadAction<string>) => {
-			userInfo.image = action.payload
+		setImage: (state, action: PayloadAction<string>) => {
+			if (state.userInfo) state.userInfo.image = action.payload
 		},
-		setEmail: ({ userInfo }, action: PayloadAction<string>) => {
-			userInfo.email = action.payload
+		setEmail: (state, action: PayloadAction<string>) => {
+			if (state.userInfo) state.userInfo.email = action.payload
 		},
 		setSelectUser: (state, action: PayloadAction<IUser | undefined>) => {
 			state.selectUser = action.payload
@@ -45,6 +45,9 @@ export const userSlice = createSlice({
 		changeBackgroundChat: (state, action: PayloadAction<bgChat>) => {
 			state.backgroundChat = action.payload
 			LocalStorageService.setChatBg(action.payload)
+		},
+		setCoordinates: (state, action: PayloadAction<TypeCoordinates>) => {
+			state.coordinates = action.payload
 		}
 	},
 	extraReducers: builder => {
@@ -56,6 +59,7 @@ export const userSlice = createSlice({
 			.addCase(
 				CheckAuthInGoogleAccount.fulfilled,
 				(state, action: PayloadAction<CheckUserAccountInGoogle>) => {
+					console.log(action.payload)
 					if (!action.payload.newUser) state.userInfo = action.payload
 					else {
 						state.isNewUser = true

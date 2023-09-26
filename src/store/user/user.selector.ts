@@ -19,13 +19,15 @@ export const getSelectUser = (state: TypeRootState) =>
 	state.userStore.selectUser
 export const getSelectUserId = (state: TypeRootState) =>
 	state.userStore.selectUser?.id ?? null
+export const getCoordinates = (state: TypeRootState) =>
+	state.userStore.coordinates
 export const getUsersSelected = createSelector(
 	getUser,
 	getUsers,
 	(user, users) => {
 		return Object.entries(users).map(
 			([_, values]): { key: string; users: IUser[] } => {
-				const users = values.filter(value => value.id !== user.id)
+				const users = values.filter(value => value.id !== user?.id)
 				const key = users
 					.map(user => user.name.at(0))
 					.join()

@@ -20,4 +20,5 @@ export const store = (initialState = {}) => {
 			})
 	})
 }
+
 export type TypeRootState = ReturnType<typeof rootReducer>

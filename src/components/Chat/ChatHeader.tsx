@@ -10,7 +10,6 @@ import { getStateMessageOnlineUsers } from '@/store/message/message.selectors'
 import { useToggle } from '@/hooks/useToggle'
 import { DropDown } from '@/UI/DropDown'
 import { useMemo } from 'react'
-import { ContextMenu } from '@/UI/ContextMenu'
 import {
 	CHANGE_BG_IMAGE,
 	VIDEO_CALL_REF,
@@ -19,6 +18,7 @@ import {
 import { PhotoLibrary } from '@/UI/PhotoLibrary'
 import { IImages } from '@/types/images.types'
 import { bgChat } from '@/store/user/user.types'
+import { ContextMenu } from '@/UI/ContextMenu'
 
 const images: IImages<bgChat>[] = [
 	{ name: 'bg-chat-background-color', value: '/bg-image/image-bg-color.jpg' },
@@ -73,16 +73,10 @@ export function ChatHeader() {
 
 	const contextMenu = useMemo(
 		() => [
-			{
-				name: 'close chat',
-				callback: () => setSelectUser(undefined)
-			},
-			{
-				name: 'change bg',
-				callback: () => setOpenModal(true)
-			}
+			{ name: 'close chat', callback: () => setSelectUser(undefined) },
+			{ name: 'change bg', callback: () => setOpenModal(true) }
 		],
-		[]
+		[setOpenModal, setSelectUser]
 	)
 	return (
 		<article className='bg-input-background h-20 p-2 flex justify-between items-center'>
@@ -119,6 +113,7 @@ export function ChatHeader() {
 					id={VIDEO_CALL_REF}
 				/>
 				<DropDown
+					classname={'absolute top-3 right-4 w-40 flex'}
 					title={
 						<BsThreeDotsVertical
 							className='h-6 w-6 hover:text-gray-900'
@@ -130,7 +125,10 @@ export function ChatHeader() {
 					toggle={openMenu}
 				>
 					<ContextMenu
-						item={{ options: contextMenu, setContextMenu: setOpenMenu }}
+						item={{
+							options: contextMenu,
+							setContextMenu: setOpenMenu
+						}}
 						idElement={CHANGE_BG_IMAGE}
 					/>
 				</DropDown>

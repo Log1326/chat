@@ -22,7 +22,7 @@ export const CheckAuthInGoogleAccount = createAsyncThunk<
 			} = await signInWithPopup(firebaseAuth, provider)
 			const fakeData = {
 				email,
-				image: image ?? '',
+				image: image ?? '/default_avatar.png',
 				name: name ?? '',
 				about: 'Available',
 				newUser: true
