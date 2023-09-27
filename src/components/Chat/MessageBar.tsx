@@ -58,7 +58,7 @@ export function MessageBar({ userId, selectChatUserId }: MessageBarProps) {
 		idElement: EMOJI_ID_REF
 	})
 	return (
-		<article className='h-20 relative text-white flex bg-input-background p-2'>
+		<article className='h-[4.5rem] mt-2 relative text-white bg-input-background p-4 border-b-4 border-teal-500'>
 			{!showAudioRecorder && (
 				<div className='animate-scaleIn flex gap-4 justify-around items-center w-full'>
 					<button>

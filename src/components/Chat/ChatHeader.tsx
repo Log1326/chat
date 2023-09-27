@@ -98,6 +98,7 @@ export function ChatHeader() {
 			<article className='inline-flex gap-4 pr-4 text-white cursor-pointer'>
 				<BiSearchAlt2
 					className='h-6 w-6 hover:text-gray-900'
+					title='search messages...'
 					onClick={() => changeIsSearchMessage(true)}
 				/>
 				<MdCall

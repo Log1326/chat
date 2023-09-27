@@ -8,9 +8,10 @@ interface AvatarProps {
 	type: TypeAvatar
 	value: string
 	className?: string
+	title?: string
 }
 
-export function Avatar({ type, value, className }: AvatarProps) {
+export function Avatar({ type, value, className, title }: AvatarProps) {
 	return (
 		<>
 			<div
@@ -26,6 +27,7 @@ export function Avatar({ type, value, className }: AvatarProps) {
 								className='rounded-full '
 								width={30}
 								height={30}
+								title={title}
 							/>
 						) : (
 							<AiOutlineLoading className='animate-spin' />
@@ -39,6 +41,7 @@ export function Avatar({ type, value, className }: AvatarProps) {
 								src={value ?? ''}
 								alt='imageAvatar'
 								className='rounded-full'
+								title={title}
 								fill
 							/>
 						) : (

@@ -7,7 +7,6 @@ import { ChatList } from '@/components/Chatlist/ChatList'
 import { Chat } from '@/components/Chat/Chat'
 import { Empty } from '@/components/Empty'
 import { getIsSearchMessage } from '@/store/message/message.selectors'
-import { SearchMessages } from '@/components/Chat/SearchMessages'
 import { HOST } from '@/service/const'
 import {
 	ADD_USER,
@@ -28,6 +27,7 @@ import {
 import { VoiceCall } from '@/components/Call/VoiceCall'
 import { VideoCall } from '@/components/Call/VideoCall'
 import { useAuth } from '@/hooks/useAuth'
+import { SearchMessages } from '@/components/Chat/SearchMessages'
 
 export function Main() {
 	useAuth()
@@ -78,10 +78,12 @@ export function Main() {
 			setEndCall()
 		})
 	}, [socketRef.current])
+	const { changeIsSearchMessage } = useActions()
+
 	return (
 		<main className='h-screen grid grid-cols-4' data-testid='mainPage'>
 			<ChatList />
-			<section className='grid col-span-3 bg-panel-header-background h-screen overflow-hidden border-b-4 border-teal-500'>
+			<section className='grid col-span-3 bg-panel-header-background h-full overflow-hidden '>
 				{selectChatUser ? (
 					<div
 						className={`${
@@ -95,7 +97,15 @@ export function Main() {
 							userId={user?.id}
 							selectChatUserId={selectChatUser.id}
 						/>
-						{isSearchMessage && <SearchMessages />}
+						{isSearchMessage && (
+							// <Drawer
+							// 	classname='cursor-wait'
+							// 	isOpen={isSearchMessage}
+							// 	onCloseFn={() => changeIsSearchMessage(false)}
+							// >
+							<SearchMessages />
+							// </Drawer>
+						)}
 					</div>
 				) : (
 					<Empty />

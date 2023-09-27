@@ -2,7 +2,7 @@ import { Avatar } from '@/UI/Avatar'
 import { BsFillChatLeftTextFill, BsThreeDotsVertical } from 'react-icons/bs'
 import { useActions } from '@/hooks/useActions'
 import { useSelector } from 'react-redux'
-import { getUserImage } from '@/store/user/user.selector'
+import { getUserImage, getUserName } from '@/store/user/user.selector'
 import { DropDown } from '@/UI/DropDown'
 import { useToggle } from '@/hooks/useToggle'
 import { getAuth, signOut } from 'firebase/auth'
@@ -11,11 +11,11 @@ import { RouterEnumPath } from '@/types/routerEnumPath'
 import { LocalStorageService } from '@/service/LocalStorageService'
 
 export function ChatListHeader() {
+	const userImage = useSelector(getUserImage)
+	const userName = useSelector(getUserName)
 	const { replace, reload } = useRouter()
 	const { toggleChatPage } = useActions()
 	const [openMenu, _, openMenuFn] = useToggle()
-	const userImage = useSelector(getUserImage)
-	const handleOpenChatList = () => toggleChatPage(false)
 	const logout = () => {
 		const auth = getAuth()
 		signOut(auth)
@@ -35,12 +35,13 @@ export function ChatListHeader() {
 					type={'sm'}
 					value={userImage}
 					className='hover:opacity-70'
+					title={userName}
 				/>
 			)}
 			<span className='flex items-center gap-4 cursor-pointer text-white'>
 				<button
 					data-testid='chat-header-list-click'
-					onClick={handleOpenChatList}
+					onClick={() => toggleChatPage(false)}
 				>
 					<BsFillChatLeftTextFill
 						className='h-6 w-6 hover:opacity-70'

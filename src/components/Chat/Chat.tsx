@@ -17,7 +17,8 @@ interface ChatProps {
 export function Chat({ selectChatUserId, userId, socketRef }: ChatProps) {
 	const { getAllMessage, setMessages } = useActions()
 	useEffect(() => {
-		if (selectChatUserId) getAllMessage({ to: userId, from: selectChatUserId })
+		if (selectChatUserId)
+			getAllMessage({ to: userId, from: selectChatUserId })
 	}, [getAllMessage, selectChatUserId, userId])
 	useEffect(() => {
 		if (socketRef.current)
@@ -26,7 +27,7 @@ export function Chat({ selectChatUserId, userId, socketRef }: ChatProps) {
 			})
 	}, [socketRef.current])
 	return (
-		<section className='flex h-full flex-col justify-between bg-search-input-container-background animate-scaleIn'>
+		<section className='flex flex-col h-full w-full bg-search-input-container-background animate-scaleIn'>
 			<ChatHeader />
 			<ChatContainer />
 			<MessageBar

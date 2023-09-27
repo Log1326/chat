@@ -5,17 +5,15 @@ import { IMessage } from '@/store/message/message.types'
 
 interface IChatViewMessage {
 	message: IMessage
-	selectChatUserId: number
-	userId: number
 	children: ReactNode
 	compressed?: boolean
+	isSender?: boolean
 }
 export const ChatViewMessage = ({
 	message,
-	selectChatUserId,
-	userId,
 	compressed,
-	children
+	children,
+	isSender
 }: IChatViewMessage) => {
 	return (
 		<div
@@ -23,7 +21,7 @@ export const ChatViewMessage = ({
 			${
 				compressed
 					? 'bg-incoming-background'
-					: message.senderId === selectChatUserId
+					: !isSender
 					? 'bg-incoming-background'
 					: 'bg-outgoing-background'
 			}
@@ -33,7 +31,7 @@ export const ChatViewMessage = ({
 			<span className='text-xs self-end'>
 				{calculateTime(String(message.createdAt))}
 			</span>
-			{message.senderId === userId && (
+			{isSender && (
 				<MessageStatus messageStatus={message.messageStatus} />
 			)}
 		</div>

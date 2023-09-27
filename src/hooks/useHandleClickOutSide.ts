@@ -4,7 +4,7 @@ type RefType = 'click' | 'mousedown' | 'keydown'
 interface IUseHandleClickOutside {
 	callback: () => void
 	type: RefType
-	idElement: string
+	idElement?: string
 }
 export const useHandleClickOutside = ({
 	callback,
@@ -19,7 +19,10 @@ export const useHandleClickOutside = ({
 				: Event
 		) => {
 			if ((event.target as Element).id !== idElement)
-				if (ref.current && !ref.current.contains(event.target as Element)) {
+				if (
+					ref.current &&
+					!ref.current.contains(event.target as Element)
+				) {
 					callback()
 				}
 		}

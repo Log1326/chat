@@ -13,6 +13,8 @@ export const getNewUserBool = (state: TypeRootState) =>
 export const getUsers = (state: TypeRootState) => state.userStore.users
 export const getUserImage = (state: TypeRootState) =>
 	state.userStore.userInfo?.image ?? ''
+export const getUserName = (state: TypeRootState) =>
+	state.userStore.userInfo?.name ?? ''
 export const getChatImage = (state: TypeRootState) =>
 	state.userStore.backgroundChat ?? LocalStorageService.getChatBg()
 export const getSelectUser = (state: TypeRootState) =>

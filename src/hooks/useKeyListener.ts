@@ -23,5 +23,5 @@ export const useKeyListener = ({
 	useEffect(() => {
 		window.addEventListener(methodListener, handleKeyPress)
 		return () => window.removeEventListener(methodListener, handleKeyPress)
-	}, [handleKeyPress])
+	}, [handleKeyPress, methodListener])
 }

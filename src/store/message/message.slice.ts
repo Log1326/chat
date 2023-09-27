@@ -63,8 +63,6 @@ export const messageSlice = createSlice({
 				(state, action: PayloadAction<UsersContactsAndUsersOnline>) => {
 					state.usersContactsAndUsersOnline.usersContacts =
 						action.payload.usersContacts
-					state.usersContactsAndUsersOnline.onlineUsers =
-						action.payload.onlineUsers
 					state.usersContactsAndUsersOnline.usersContactsLoading =
 						false
 				}
@@ -137,10 +135,11 @@ export const messageSlice = createSlice({
 				updateMessageIdAsync.fulfilled,
 				(state, action: PayloadAction<MessageByIDAndMessage>) => {
 					state.loadingMessage = false
-					state.messages?.find(item => {
-						if (item.id === action.payload.id)
-							item.message = action.payload.message
-					})
+					if (action.payload?.id)
+						state.messages?.find(item => {
+							if (item.id === action.payload.id)
+								item.message = action.payload.message
+						})
 				}
 			)
 			.addCase(updateMessageIdAsync.rejected, (state, action) => {

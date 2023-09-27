@@ -35,10 +35,12 @@ export function ChatContainer() {
 	const { removeMessageIdAsync, updateMessageIdAsync, setCoordinates } =
 		useActions()
 	const handleDoubleClick = useCallback(
-		(e: React.MouseEvent<HTMLDivElement>) => {
-			e.preventDefault()
-			setCoordinates({ x: e.pageX, y: e.pageY })
-			setOpenMenu(true)
+		(e: React.MouseEvent<HTMLElement>, isSender: boolean) => {
+			if (isSender) {
+				e.preventDefault()
+				setCoordinates({ x: e.pageX, y: e.pageY })
+				setOpenMenu(true)
+			}
 		},
 		[setCoordinates, setOpenMenu]
 	)
@@ -60,90 +62,92 @@ export function ChatContainer() {
 				block: 'end'
 			})
 	}, [messages])
-	const handleCloseAndClearInput = () =>
-		useCallback(() => {
-			setOpenInputField(false)
-			setAlterText('')
-		}, [])
-	const inputRef = useHandleClickOutside({
-		callback: handleCloseAndClearInput(),
-		type: 'click',
-		idElement: INPUT_ALTER_ID_REF
-	})
-	const handleCloseAndSend = () => {
+
+	const handleCloseAndClearInput = useCallback(() => {
+		setOpenInputField(false)
+		setAlterText('')
+	}, [setOpenInputField])
+	const handleCloseAndSend = useCallback(() => {
 		updateMessageIdAsync({
 			id: Number(findId),
 			message: alterText
 		})
 		setOpenInputField(false)
 		setAlterText('')
-	}
+	}, [alterText, findId, setOpenInputField, updateMessageIdAsync])
 	useKeyListener({
 		methodListener: 'keydown',
-		pressButton: 'Enter',
-		callback: handleCloseAndSend
+		pressButton: 'Escape',
+		callback: () => handleCloseAndClearInput()
+	})
+	const inputRef = useHandleClickOutside({
+		callback: () => handleCloseAndClearInput(),
+		type: 'click',
+		idElement: INPUT_ALTER_ID_REF
 	})
 	return (
-		<article className='custom-scrollbar h-[calc(100vh-10rem)] overflow-y-auto text-white relative'>
-			<div className={`${modeBg} bg-auto bg-center w-full z-10 absolute`}>
-				<div className='text-white z-50 relative'>
-					{openMenu && (
-						<ContextMenu
-							fixed
-							item={{
-								options: contextMenu,
-								setContextMenu: setOpenMenu,
-								coordinates: coordinates,
-								contextMenu: openMenu
-							}}
-							idElement={MENU_MESSAGE_WINDOW}
-						/>
-					)}
-					{openInputField && (
-						<Popup classname='absolute top-1/2 right-1/4'>
-							<div
-								className='flex items-end space-x-3'
-								id={INPUT_ALTER_ID_REF}
-								ref={inputRef}
+		<article className='custom-scrollbar h-[calc(100vh-10rem)] overflow-auto text-white relative'>
+			<div className={`${modeBg} bg-contain h-full w-full fixed z-0 `} />
+			<div className='text-white z-50 relative'>
+				{openMenu && (
+					<ContextMenu
+						fixed
+						item={{
+							options: contextMenu,
+							setContextMenu: setOpenMenu,
+							coordinates: coordinates,
+							contextMenu: openMenu
+						}}
+						idElement={MENU_MESSAGE_WINDOW}
+					/>
+				)}
+				{openInputField && (
+					<Popup classname='fixed top-1/2 left-1/2'>
+						<div
+							className='flex items-end space-x-3'
+							id={INPUT_ALTER_ID_REF}
+							ref={inputRef}
+						>
+							<InputCustom
+								value={alterText}
+								onChange={setAlterText}
+								placeholder='Input...'
+								label='Replace message'
+								classname='w-40 '
+								autoFocus
+								callback={handleCloseAndSend}
+							/>
+							<button
+								onClick={handleCloseAndSend}
+								className='py-2 px-4 bg-teal-800 rounded-xl cursor-pointer hover:opacity-80'
 							>
-								<InputCustom
-									value={alterText}
-									onChange={setAlterText}
-									placeholder='Input...'
-									label
-									name={'Replace message'}
-									classname='w-40 '
-									autoFocus
-								/>
-								<button
-									onClick={() => handleCloseAndSend()}
-									className='py-2 px-4 bg-teal-800 rounded-xl cursor-pointer hover:opacity-80'
-								>
-									<span>alter</span>
-								</button>
-							</div>
-						</Popup>
-					)}
-					{messages?.map(message => (
+								<span>alter</span>
+							</button>
+						</div>
+					</Popup>
+				)}
+				{messages?.map(message => {
+					const isSender = message.senderId !== selectChatUserId
+					return (
 						<article
-							onDoubleClick={handleDoubleClick}
+							onDoubleClick={event =>
+								handleDoubleClick(event, isSender)
+							}
 							onClick={() => setFindId(message.id)}
 							key={message.id}
-							className={`text-white px-10 text-2xl flex hover:cursor-pointer hover:opacity-80 ${
-								message.senderId === selectChatUserId
-									? 'justify-start '
-									: 'justify-end '
-							}`}
+							className={`text-white px-10 text-2xl flex  cursor-default
+							${isSender && 'hover:opacity-80 cursor-pointer'}
+						 ${isSender ? 'justify-start ' : 'justify-end '}`}
 						>
 							<ChatTypeMessage
+								isSender={isSender}
 								message={message}
-								key={message.id}
 							/>
 						</article>
-					))}
-				</div>
-				<span ref={positionRef} />
+					)
+				})}
 			</div>
+			<span ref={positionRef} />
 		</article>
 	)
 }

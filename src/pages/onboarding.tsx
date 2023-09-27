@@ -50,16 +50,14 @@ function onboarding() {
 					<div className='flex gap-6 mt-6'>
 						<div className='flex flex-col items-center justify-center mt-5 gap-4'>
 							<InputCustom
-								name='Display Name'
 								onChange={setName}
 								value={userInfo?.name}
-								label
+								label='Display Name'
 							/>
 							<InputCustom
-								name='About'
 								onChange={setAbout}
 								value={userInfo?.about!}
-								label
+								label='About'
 							/>
 							<button
 								disabled={!!disableButton}

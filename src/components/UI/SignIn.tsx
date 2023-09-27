@@ -23,8 +23,7 @@ export const SignIn = () => {
 		<article>
 			<InputCustom
 				type='email'
-				label
-				name='Email'
+				label='Email'
 				value={email}
 				onChange={setEmail}
 			/>
