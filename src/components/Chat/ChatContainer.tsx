@@ -88,7 +88,7 @@ export function ChatContainer() {
 	return (
 		<article className='custom-scrollbar h-[calc(100vh-10rem)] overflow-auto text-white relative'>
 			<div className={`${modeBg} bg-contain h-full w-full fixed z-0 `} />
-			<div className='text-white z-50 relative'>
+			<div className='text-white z-20 relative'>
 				{openMenu && (
 					<ContextMenu
 						fixed
@@ -135,7 +135,7 @@ export function ChatContainer() {
 							}
 							onClick={() => setFindId(message.id)}
 							key={message.id}
-							className={`text-white px-10 text-2xl flex  cursor-default
+							className={`text-white px-10 text-2xl z-20 flex cursor-default
 							${isSender && 'hover:opacity-80 cursor-pointer'}
 						 ${isSender ? 'justify-start ' : 'justify-end '}`}
 						>

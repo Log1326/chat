@@ -1,5 +1,5 @@
 import { useActions } from '@/hooks/useActions'
-import { useEffect, useState } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getSelectUser } from '@/store/user/user.selector'
 import { IMessage } from '@/store/message/message.types'
@@ -7,19 +7,15 @@ import { getAllMessagesState } from '@/store/message/message.selectors'
 import { calculateTime } from '@/utils/CalculateTime'
 import { SearchBar } from '@/components/Chatlist/SearchBar'
 import { IoClose } from 'react-icons/io5'
-import { useHandleClickOutside } from '@/hooks/useHandleClickOutSide'
-import { useToggle } from '@/hooks/useToggle'
 
-export function SearchMessages() {
-	const [init, setInit] = useToggle(false)
+export const SearchMessages = memo(function SearchMessages() {
 	const { changeIsSearchMessage } = useActions()
 	const selectedUser = useSelector(getSelectUser)
 	const messages = useSelector(getAllMessagesState)
 	const [searchTerm, setSearchTerm] = useState('')
 	const [messageFilter, setMessageFilter] = useState<IMessage[]>([])
 	useEffect(() => {
-		if (!messages) return
-		if (searchTerm)
+		if (messages && searchTerm)
 			setMessageFilter(
 				messages?.filter(
 					msg =>
@@ -27,58 +23,57 @@ export function SearchMessages() {
 				)
 			)
 		else setMessageFilter([])
-	}, [messages, searchTerm])
-	const handleClose = () => changeIsSearchMessage(false)
-	const closeRef = useHandleClickOutside({
-		callback: () => {
-			setInit(true)
-			if (init) handleClose()
-		},
-		type: 'click'
-	})
+	}, [searchTerm])
+	const closeSearchMessagesDrawer = useCallback(
+		() => changeIsSearchMessage(false),
+		[changeIsSearchMessage]
+	)
 	return (
-		<div
-			ref={closeRef}
-			className='h-full bg-background-default-hover w-full relative overflow-auto custom-scrollbar grow'
-		>
-			<span className='p-2 absolute px-5'>
+		<div className='bg-background-default-hover z-40 h-full w-auto relative overflow-auto custom-scrollbar'>
+			<span className='p-2 px-5 absolute'>
 				<IoClose
 					className='h-8 w-8 text-gray-400 hover:text-gray-800 cursor-pointer'
-					onClick={handleClose}
+					onClick={closeSearchMessagesDrawer}
 				/>
 			</span>
-			<SearchBar
-				placeholder={'Find message ...'}
-				state={searchTerm}
-				setState={setSearchTerm}
-			/>
-			<div className='h-full w-full px-10'>
-				{!searchTerm && (
-					<div className='flex justify-center items-center gap-2 text-lg text-gray-300 animate-fade mt-2'>
-						Search for messages with{' '}
-						<span className='underline text-xl decoration-1'>
-							{selectedUser?.name}
-						</span>
-					</div>
-				)}
-				{searchTerm && !messageFilter.length && (
-					<span className='flex justify-center items-center text-xl animate-fade text-gray-950'>
-						Messages not found
-					</span>
-				)}
-				{searchTerm &&
-					messageFilter &&
-					messageFilter.map(message => (
-						<div className='flex flex-col' key={message.id}>
-							<span className='text-xs text-gray-400 '>
-								{calculateTime(String(message.createdAt))}
-							</span>
-							<span className='text-teal-600 text-xl'>
-								{message.message}
+			<div className='py-4 px-1 mt-4'>
+				<SearchBar
+					autoFocus
+					placeholder='Find message ...'
+					state={searchTerm}
+					setState={setSearchTerm}
+				/>
+				<div className='px-8 mx-1'>
+					{!searchTerm && (
+						<div className='grid place-items-center gap-2 animate-fade text-lg text-gray-300 mt-2'>
+							Search for messages with{' '}
+							<span className='underline text-xl decoration-1'>
+								{selectedUser?.name}
 							</span>
 						</div>
-					))}
+					)}
+					{searchTerm && !messageFilter.length && (
+						<span className='grid place-items-center text-xl animate-fade text-gray-950'>
+							Messages not found
+						</span>
+					)}
+					{searchTerm &&
+						messageFilter &&
+						messageFilter.map(message => (
+							<div
+								className='flex flex-col break-all animate-appearance'
+								key={message.id}
+							>
+								<span className='text-xs text-gray-400 '>
+									{calculateTime(String(message.createdAt))}
+								</span>
+								<span className='text-teal-600 text-xl'>
+									{message.message}
+								</span>
+							</div>
+						))}
+				</div>
 			</div>
 		</div>
 	)
-}
+})

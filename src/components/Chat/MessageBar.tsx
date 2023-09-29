@@ -72,7 +72,7 @@ export function MessageBar({ userId, selectChatUserId }: MessageBarProps) {
 					{showEmoji && (
 						<div
 							ref={emojiRef}
-							className='absolute z-50 left-10 bottom-28'
+							className='absolute z-30 left-10 bottom-28'
 						>
 							<Picker
 								onEmojiClick={handleEmojiClick}

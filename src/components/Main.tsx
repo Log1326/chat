@@ -28,6 +28,7 @@ import { VoiceCall } from '@/components/Call/VoiceCall'
 import { VideoCall } from '@/components/Call/VideoCall'
 import { useAuth } from '@/hooks/useAuth'
 import { SearchMessages } from '@/components/Chat/SearchMessages'
+import { Drawer } from '@/UI/Drawer'
 
 export function Main() {
 	useAuth()
@@ -81,30 +82,26 @@ export function Main() {
 	const { changeIsSearchMessage } = useActions()
 
 	return (
-		<main className='h-screen grid grid-cols-4' data-testid='mainPage'>
+		<main
+			className='h-screen grid grid-cols-4 overflow-hidden'
+			data-testid='mainPage'
+		>
 			<ChatList />
-			<section className='grid col-span-3 bg-panel-header-background h-full overflow-hidden '>
+			<section className='grid col-span-3 relative bg-panel-header-background h-full overflow-hidden transition-width'>
 				{selectChatUser ? (
-					<div
-						className={`${
-							isSearchMessage
-								? 'grid grid-cols-2'
-								: 'grid-cols-4 animate-fade'
-						}`}
-					>
+					<div className='grid-cols-4'>
 						<Chat
 							socketRef={socketRef}
 							userId={user?.id}
 							selectChatUserId={selectChatUser.id}
 						/>
 						{isSearchMessage && (
-							// <Drawer
-							// 	classname='cursor-wait'
-							// 	isOpen={isSearchMessage}
-							// 	onCloseFn={() => changeIsSearchMessage(false)}
-							// >
-							<SearchMessages />
-							// </Drawer>
+							<Drawer
+								isOpen={isSearchMessage}
+								onCloseFn={() => changeIsSearchMessage(false)}
+							>
+								<SearchMessages />
+							</Drawer>
 						)}
 					</div>
 				) : (

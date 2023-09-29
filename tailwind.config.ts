@@ -3,6 +3,10 @@ module.exports = {
 	content: ['./src/**/*.{js,jsx,ts,tsx}'],
 	theme: {
 		extend: {
+			transitionProperty: {
+				width: 'width',
+				height: 'height'
+			},
 			backgroundImage: {
 				'chat-background-color': "url('/bg-image/image-bg-color.jpg')",
 				'chat-background-white': "url('/bg-image/image-bg-white.jpg')",

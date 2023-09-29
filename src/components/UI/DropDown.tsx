@@ -9,10 +9,7 @@ interface DropDownProps {
 export const DropDown = (props: DropDownProps) => {
 	const { title, children, toggle, classname } = props
 	return (
-		<div
-			data-testid='dropdown'
-			className='relative inline-block text-left z-50'
-		>
+		<div data-testid='dropdown' className='relative inline-block text-left'>
 			{title && (
 				<button className='inline-flex w-full justify-center'>
 					{title}

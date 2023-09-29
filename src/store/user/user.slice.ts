@@ -59,7 +59,6 @@ export const userSlice = createSlice({
 			.addCase(
 				CheckAuthInGoogleAccount.fulfilled,
 				(state, action: PayloadAction<CheckUserAccountInGoogle>) => {
-					console.log(action.payload)
 					if (!action.payload.newUser) state.userInfo = action.payload
 					else {
 						state.isNewUser = true

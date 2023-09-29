@@ -1,27 +1,23 @@
 import { BiSearchAlt2 } from 'react-icons/bi'
 import { BsFilter } from 'react-icons/bs'
-import { ChangeEvent, Dispatch, SetStateAction, useCallback } from 'react'
+import { ChangeEvent, Dispatch, memo, SetStateAction } from 'react'
 
 interface SearchBarProps {
 	viewFilter?: boolean
 	state?: string
 	setState?: Dispatch<SetStateAction<string>>
 	placeholder?: string
+	autoFocus?: boolean
 }
-export function SearchBar({
-	viewFilter = false,
+export const SearchBar = memo(function ({
 	state,
 	setState,
-	placeholder = 'Search...'
+	placeholder = 'Search...',
+	viewFilter = false,
+	autoFocus = false
 }: SearchBarProps) {
-	const handleChangeState = useCallback(
-		(event: ChangeEvent<HTMLInputElement>) => {
-			if (setState) setState(event.target.value)
-		},
-		
-		[setState]
-	)
-
+	const handleChangeState = (event: ChangeEvent<HTMLInputElement>) =>
+		setState?.(event.target.value)
 	return (
 		<article
 			className={`flex items-center justify-center gap-2  p-1 ${
@@ -31,6 +27,7 @@ export function SearchBar({
 			<div className='flex items-center justify-center bg-input-background text-white rounded-lg p-2'>
 				<BiSearchAlt2 className='w-6 h-6 cursor-pointer' />
 				<input
+					autoFocus={autoFocus}
 					type='text'
 					placeholder={placeholder}
 					value={state ?? ''}
@@ -43,4 +40,4 @@ export function SearchBar({
 			)}
 		</article>
 	)
-}
+})

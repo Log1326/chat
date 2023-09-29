@@ -1,6 +1,6 @@
-import { useDrag } from '@use-gesture/react'
-import { a, config, useSpring } from '@react-spring/web'
 import { ReactNode, useCallback, useEffect } from 'react'
+import { a, config, useSpring } from '@react-spring/web'
+import { useDrag } from '@use-gesture/react'
 
 interface DrawerProps {
 	onCloseFn?: () => void
@@ -9,66 +9,58 @@ interface DrawerProps {
 	classname?: string
 	lazy?: boolean
 }
+let width: any
+if (typeof window !== 'undefined') width = window.innerWidth - 100
+export const Drawer = (props: DrawerProps) => {
+	const { children, onCloseFn, isOpen, classname } = props
+	const [{ x }, api] = useSpring(() => ({ x: width }))
 
-export const Drawer = ({
-	children,
-	lazy,
-	onCloseFn,
-	isOpen,
-	classname
-}: DrawerProps) => {
-	const height = window.innerHeight - 100
-
-	const [{ y }, api] = useSpring(() => ({ y: height }))
 	const openDrawer = useCallback(() => {
-		api.start({ y: 0, immediate: false })
+		api.start({ x: 0, immediate: false })
 	}, [api])
+
 	useEffect(() => {
 		if (isOpen) openDrawer()
 	}, [api, isOpen, openDrawer])
+
 	const close = (velocity = 0) => {
 		api.start({
-			y: height,
+			x: width,
 			immediate: false,
 			config: { ...config.stiff, velocity },
 			onResolve: onCloseFn
 		})
 	}
+
 	const bind = useDrag(
-		({
-			last,
-			velocity: [, velocity],
-			direction: [, direction],
-			movement: [, movement],
-			cancel
-		}) => {
-			if (movement < 70) cancel()
+		({ last, velocity: [vx], direction: [dx], movement: [mx], cancel }) => {
+			if (mx < -60) cancel()
 			if (last) {
-				if (
-					movement > height + 0.5 ||
-					(velocity > 0.5 && direction > 0)
-				)
-					close()
+				if (mx > width * 0.5 || (vx > 0.5 && dx > 0)) close()
 				else openDrawer()
-			} else api.start({ y: movement, immediate: true })
+			} else api.start({ x: mx, immediate: true })
 		},
 		{
-			from: () => [0, y.get()],
+			from: () => [0, x.get()],
 			filterTaps: true,
 			bounds: { top: 0 },
 			rubberband: true
 		}
 	)
 	if (!isOpen) return null
-	const display = y.to(py => (py < height ? 'block' : 'none'))
+	const display = x.to((py: string) => (py < width ? 'block' : 'none'))
 	return (
-		<div onClick={() => close()}>
+		<div
+			className={`absolute z-40 top-0 right-0 w-1/2 h-full cursor-grab ${classname}`}
+			style={{ overflow: 'hidden' }}
+		>
+			<span onClick={() => close()} />
 			<a.div
-				className={`${classname} z-[100] bg-background-default-hover fixed w-full h-full touch-none p-4`}
+				className='h-full w-full touch-none'
 				style={{
 					display,
-					right: `calc(-100vh + ${height - 700}px)`,
-					y
+					left: `calc(-100vh + ${width - 100}px)`,
+					x
 				}}
 				{...bind()}
 			>
