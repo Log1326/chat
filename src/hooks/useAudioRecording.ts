@@ -20,11 +20,11 @@ export const useAudioRecording = () => {
 		null
 	)
 	const [waveForm, setWaveForm] = useState<WaveSurfer>()
-
 	const audioRef: MutableRefObject<HTMLVideoElement | null> = useRef(null)
 	const waveFormRef: MutableRefObject<HTMLDivElement | null> = useRef(null)
 
-	const mediaRecordedRef: MutableRefObject<MediaRecorder | null> = useRef(null)
+	const mediaRecordedRef: MutableRefObject<MediaRecorder | null> =
+		useRef(null)
 	const [recordingDuration, setRecordingDuration] = useState<number>(0)
 	const [currentPlayBackTime, setCurrentPlayBackTime] = useState<number>(0)
 	const [totalDuration, setTotalDuration] = useState<number>(0)
@@ -44,7 +44,9 @@ export const useAudioRecording = () => {
 				const chunks: BlobPart[] | undefined = []
 				mediaRecorder.ondataavailable = event => chunks.push(event.data)
 				mediaRecorder.onstop = () => {
-					const blob = new Blob(chunks, { type: 'audio/webm;codecs=opus' })
+					const blob = new Blob(chunks, {
+						type: 'audio/webm;codecs=opus'
+					})
 					const audioURL = URL.createObjectURL(blob)
 					const audio = new Audio(audioURL)
 					setRecordedAudio(audio)
@@ -109,7 +111,7 @@ export const useAudioRecording = () => {
 	}
 
 	const formatTime = (time: number) => {
-		if (isNaN(time)) return '00:00'
+		if (isNaN(time)) return null
 		const minutes = Math.floor(time / 60)
 		const seconds = Math.floor(time % 60)
 		return `${minutes.toString().padStart(2, '0')}:${seconds
@@ -122,7 +124,10 @@ export const useAudioRecording = () => {
 				setCurrentPlayBackTime(recordedAudio.currentTime)
 			recordedAudio.addEventListener('timeupdate', updatePlayBackTime)
 			return () =>
-				recordedAudio?.removeEventListener('timeupdate', updatePlayBackTime)
+				recordedAudio?.removeEventListener(
+					'timeupdate',
+					updatePlayBackTime
+				)
 		}
 	}, [recordedAudio])
 	useEffect(() => {
@@ -144,7 +149,7 @@ export const useAudioRecording = () => {
 			progressColor: '#4a9eff',
 			cursorColor: '#435766',
 			barWidth: 2,
-			height: 30,
+			height: 30
 		})
 		setWaveForm(wavesurfer)
 		wavesurfer.on('finish', () => setIsPlaying(false))

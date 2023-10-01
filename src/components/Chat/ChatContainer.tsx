@@ -135,7 +135,7 @@ export function ChatContainer() {
 							}
 							onClick={() => setFindId(message.id)}
 							key={message.id}
-							className={`text-white px-10 text-2xl z-20 flex cursor-default
+							className={`text-white px-10 text-2xl z-20 flex cursor-default break-all
 							${isSender && 'hover:opacity-80 cursor-pointer'}
 						 ${isSender ? 'justify-start ' : 'justify-end '}`}
 						>

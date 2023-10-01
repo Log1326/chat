@@ -1,11 +1,10 @@
 import { BiArrowBack } from 'react-icons/bi'
 import { useActions } from '@/hooks/useActions'
 import { SearchBar } from '@/components/Chatlist/SearchBar'
-import { ChatLIstItem } from '@/components/Chatlist/ChatLIstItem'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getUsersSelected } from '@/store/user/user.selector'
-import { IGetInitialUsersChat } from '@/store/message/message.types'
+import { ChatLIstItem } from '@/components/Chatlist/ChatLIstItem'
 import { IUser } from '@/store/user/user.types'
 
 export function ContactsList() {
@@ -45,11 +44,7 @@ export function ContactsList() {
 									key={user.id}
 									className='text-white cursor-pointer text-center w-full flex justify-center'
 								>
-									<ChatLIstItem
-										item={
-											user as IGetInitialUsersChat<IUser>
-										}
-									/>
+									<ChatLIstItem<IUser> item={user} />
 								</div>
 							))}
 						</div>

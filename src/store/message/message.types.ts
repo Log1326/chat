@@ -21,13 +21,13 @@ export interface IGetMessages {
 }
 
 export interface IMessage {
-	createdAt: number
 	id: number
-	message: string
-	messageStatus: TypeMessageStatus
 	reciverId: number
 	senderId: number
 	type: TypeMessage
+	message: string
+	messageStatus: TypeMessageStatus
+	createdAt: number
 	totalUnreadMessages?: number
 }
 export interface IGetInitialUsersChat<T> extends IUser, Omit<IMessage, 'id'> {

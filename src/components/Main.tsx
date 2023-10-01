@@ -6,7 +6,6 @@ import { getSelectUser, getUser } from '@/store/user/user.selector'
 import { ChatList } from '@/components/Chatlist/ChatList'
 import { Chat } from '@/components/Chat/Chat'
 import { Empty } from '@/components/Empty'
-import { getIsSearchMessage } from '@/store/message/message.selectors'
 import { HOST } from '@/service/const'
 import {
 	ADD_USER,
@@ -27,14 +26,11 @@ import {
 import { VoiceCall } from '@/components/Call/VoiceCall'
 import { VideoCall } from '@/components/Call/VideoCall'
 import { useAuth } from '@/hooks/useAuth'
-import { SearchMessages } from '@/components/Chat/SearchMessages'
-import { Drawer } from '@/UI/Drawer'
 
 export function Main() {
 	useAuth()
 	const user = useSelector(getUser)
 	const selectChatUser = useSelector(getSelectUser)
-	const isSearchMessage = useSelector(getIsSearchMessage)
 	const socketRef: MutableRefObject<Socket | undefined> = useRef()
 	const isVideoCall = useSelector(getIsVideoCall)
 	const incomingVideoCall = useSelector(getIncomingVideoCall)
@@ -79,31 +75,19 @@ export function Main() {
 			setEndCall()
 		})
 	}, [socketRef.current])
-	const { changeIsSearchMessage } = useActions()
-
 	return (
 		<main
 			className='h-screen grid grid-cols-4 overflow-hidden'
 			data-testid='mainPage'
 		>
 			<ChatList />
-			<section className='grid col-span-3 relative bg-panel-header-background h-full overflow-hidden transition-width'>
+			<section className='grid col-span-3 relative bg-panel-header-background h-full overflow-hidden'>
 				{selectChatUser ? (
-					<div className='grid-cols-4'>
-						<Chat
-							socketRef={socketRef}
-							userId={user?.id}
-							selectChatUserId={selectChatUser.id}
-						/>
-						{isSearchMessage && (
-							<Drawer
-								isOpen={isSearchMessage}
-								onCloseFn={() => changeIsSearchMessage(false)}
-							>
-								<SearchMessages />
-							</Drawer>
-						)}
-					</div>
+					<Chat
+						socketRef={socketRef}
+						userId={user?.id}
+						selectChatUserId={selectChatUser.id}
+					/>
 				) : (
 					<Empty />
 				)}

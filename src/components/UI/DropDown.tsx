@@ -1,4 +1,4 @@
-import React, { JSX, ReactElement } from 'react'
+import React, { JSX, memo, ReactElement } from 'react'
 
 interface DropDownProps {
 	title?: string | ReactElement
@@ -6,7 +6,7 @@ interface DropDownProps {
 	toggle: boolean
 	classname?: string
 }
-export const DropDown = (props: DropDownProps) => {
+export const DropDown = memo((props: DropDownProps) => {
 	const { title, children, toggle, classname } = props
 	return (
 		<div data-testid='dropdown' className='relative inline-block text-left'>
@@ -25,4 +25,4 @@ export const DropDown = (props: DropDownProps) => {
 			)}
 		</div>
 	)
-}
+})

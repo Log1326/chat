@@ -7,6 +7,7 @@ import { getAllMessagesState } from '@/store/message/message.selectors'
 import { calculateTime } from '@/utils/CalculateTime'
 import { SearchBar } from '@/components/Chatlist/SearchBar'
 import { IoClose } from 'react-icons/io5'
+import { Icon } from '@/UI/Icon'
 
 export const SearchMessages = memo(function SearchMessages() {
 	const { changeIsSearchMessage } = useActions()
@@ -31,7 +32,8 @@ export const SearchMessages = memo(function SearchMessages() {
 	return (
 		<div className='bg-background-default-hover z-40 h-full w-auto relative overflow-auto custom-scrollbar'>
 			<span className='p-2 px-5 absolute'>
-				<IoClose
+				<Icon
+					Svg={IoClose}
 					className='h-8 w-8 text-gray-400 hover:text-gray-800 cursor-pointer'
 					onClick={closeSearchMessagesDrawer}
 				/>

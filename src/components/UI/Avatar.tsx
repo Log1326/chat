@@ -1,56 +1,40 @@
-import Image from 'next/image'
-import React from 'react'
 import { AiOutlineLoading } from 'react-icons/ai'
 import { CustomAvatarMenu } from '@/UI/CustomAvatarMenu'
+import { ImageView } from '@/UI/ImageView'
+import { memo } from 'react'
 
-type TypeAvatar = 'sm' | 'lg' | 'xl'
+type TypeAvatar = 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
+const TypeAndSize: Record<TypeAvatar, { width: number; height: number }> = {
+	sm: { height: 30, width: 30 },
+	md: { height: 50, width: 50 },
+	lg: { height: 80, width: 80 },
+	xl: { height: 100, width: 100 },
+	xxl: { height: 150, width: 150 }
+}
 interface AvatarProps {
 	type: TypeAvatar
-	value: string
+	src: string
+	alt: string
+	width?: number
+	height?: number
 	className?: string
 	title?: string
+	priority?: boolean
 }
-
-export function Avatar({ type, value, className, title }: AvatarProps) {
+const SizeAvatar: Record<TypeAvatar, React.FC<AvatarProps>> = {
+	sm: ImageView,
+	md: ImageView,
+	lg: ImageView,
+	xl: ImageView,
+	xxl: CustomAvatarMenu
+}
+export const Avatar = memo(function Avatar(props: AvatarProps) {
+	const size = TypeAndSize[props.type]
+	const View = SizeAvatar[props.type]
+	if (!props.src) return <AiOutlineLoading className='animate-spin' />
 	return (
-		<>
-			<div
-				data-testid='avatar'
-				className={`flex items-center justify-center cursor-pointer ${className}`}
-			>
-				{type === 'sm' && (
-					<div className='relative '>
-						{value ? (
-							<Image
-								src={value ?? ''}
-								alt='imageAvatar'
-								className='rounded-full '
-								width={30}
-								height={30}
-								title={title}
-							/>
-						) : (
-							<AiOutlineLoading className='animate-spin' />
-						)}
-					</div>
-				)}
-				{type === 'lg' && (
-					<div className='relative h-16 w-16'>
-						{value ? (
-							<Image
-								src={value ?? ''}
-								alt='imageAvatar'
-								className='rounded-full'
-								title={title}
-								fill
-							/>
-						) : (
-							<AiOutlineLoading className='animate-spin' />
-						)}
-					</div>
-				)}
-				{type === 'xl' && <CustomAvatarMenu value={value} />}
-			</div>
-		</>
+		<div data-testid='avatar'>
+			<View {...size} {...props} />
+		</div>
 	)
-}
+})

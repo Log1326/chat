@@ -1,7 +1,13 @@
-import { MutableRefObject, useEffect, useRef, useState } from 'react'
-import WaveSurfer from 'wavesurfer.js'
+import {
+	MutableRefObject,
+	useCallback,
+	useEffect,
+	useRef,
+	useState
+} from 'react'
 import { IMessage } from '@/store/message/message.types'
 import { HOST } from '@/service/const'
+import WaveSurfer from 'wavesurfer.js'
 
 export const useAudioPlayer = (message: IMessage) => {
 	const [audioMessage, setAudioMessage] = useState<HTMLAudioElement | null>(
@@ -14,28 +20,28 @@ export const useAudioPlayer = (message: IMessage) => {
 	const waveForm: MutableRefObject<WaveSurfer | null> = useRef(null)
 	const waveFormRef: MutableRefObject<HTMLDivElement | null> = useRef(null)
 
-	const handlePlayRecording = async () => {
+	const handlePlayRecording = useCallback(async () => {
 		if (audioMessage) {
 			waveForm.current?.stop()
 			waveForm.current?.play()
 			await audioMessage.play()
 			setIsPlaying(true)
 		}
-	}
-	const handlePauseRecording = () => {
+	}, [audioMessage])
+	const handlePauseRecording = useCallback(() => {
 		waveForm.current?.stop()
 		audioMessage?.pause()
 		setIsPlaying(false)
-	}
+	}, [audioMessage])
 	useEffect(() => {
-		if (waveForm.current === null) {
+		if (!waveForm.current) {
 			waveForm.current = WaveSurfer.create({
-				container: waveFormRef.current as string | HTMLElement,
+				container: waveFormRef?.current as any,
 				waveColor: '#ccc',
 				progressColor: '#4a9eff',
 				cursorColor: '#435766',
 				barWidth: 2,
-				height: 30,
+				height: 30
 			})
 			waveForm.current?.on('finish', () => setIsPlaying(false))
 			return () => waveForm.current?.destroy()
@@ -45,10 +51,12 @@ export const useAudioPlayer = (message: IMessage) => {
 		if (audioMessage) {
 			const updatePlayBackTime = () =>
 				setCurrentPlayBackTime(audioMessage.currentTime)
-
 			audioMessage.addEventListener('timeupdate', updatePlayBackTime)
 			return () => {
-				audioMessage?.removeEventListener('timeupdate', updatePlayBackTime)
+				audioMessage?.removeEventListener(
+					'timeupdate',
+					updatePlayBackTime
+				)
 			}
 		}
 	}, [audioMessage])
@@ -62,9 +70,18 @@ export const useAudioPlayer = (message: IMessage) => {
 			setTotalDuration(Number(waveForm.current?.getDuration()))
 		})
 	}, [message.message])
+	const formatTime = (time: number) => {
+		if (isNaN(time)) return '00:00'
+		const minutes = Math.floor(time / 60)
+		const seconds = Math.floor(time % 60)
+		return `${minutes.toString().padStart(2, '0')}:${seconds
+			.toString()
+			.padStart(2, '0')}`
+	}
 	return {
 		state: { audioMessage, isPlaying, currentPlayBackTime, totalDuration },
 		audioFn: { handlePlayRecording, handlePauseRecording },
-		refs: { waveForm, waveFormRef }
+		refs: { waveForm, waveFormRef },
+		formatTime
 	}
 }

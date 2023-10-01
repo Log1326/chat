@@ -6,6 +6,10 @@ import { useActions } from '@/hooks/useActions'
 import { Socket } from 'socket.io-client'
 import { DefaultEventsMap } from '@socket.io/component-emitter'
 import { MESSAGE_RECEIVE } from '@/utils/constants'
+import { useSelector } from 'react-redux'
+import { getIsSearchMessage } from '@/store/message/message.selectors'
+import { Drawer } from '@/UI/Drawer'
+import { SearchMessages } from '@/components/Chat/SearchMessages'
 
 interface ChatProps {
 	selectChatUserId?: number | null
@@ -15,7 +19,9 @@ interface ChatProps {
 	>
 }
 export function Chat({ selectChatUserId, userId, socketRef }: ChatProps) {
-	const { getAllMessage, setMessages } = useActions()
+	const { getAllMessage, setMessages, changeIsSearchMessage } = useActions()
+	const isSearchMessage = useSelector(getIsSearchMessage)
+
 	useEffect(() => {
 		if (selectChatUserId)
 			getAllMessage({ to: userId, from: selectChatUserId })
@@ -34,6 +40,14 @@ export function Chat({ selectChatUserId, userId, socketRef }: ChatProps) {
 				userId={Number(userId)}
 				selectChatUserId={Number(selectChatUserId)}
 			/>
+			{isSearchMessage && (
+				<Drawer
+					isOpen={isSearchMessage}
+					onCloseFn={() => changeIsSearchMessage(false)}
+				>
+					<SearchMessages />
+				</Drawer>
+			)}
 		</section>
 	)
 }

@@ -24,7 +24,7 @@ const images: IImages<string>[] = [
 	{ name: 'eight', value: '/avatars/8.png' },
 	{ name: 'nine', value: '/avatars/9.png' }
 ]
-export const CustomAvatarMenu: FC<{ value: string }> = ({ value }) => {
+export const CustomAvatarMenu: FC<{ src: string }> = ({ src }) => {
 	const coordinates = useSelector(getCoordinates)
 	const { setCoordinates } = useActions()
 	const [hover, _, handleHoverFn] = useToggle()
@@ -62,7 +62,7 @@ export const CustomAvatarMenu: FC<{ value: string }> = ({ value }) => {
 					</div>
 				)}
 				<Image
-					src={value || '/default_avatar.png'}
+					src={src || '/default_avatar.png'}
 					alt='imageAvatar here'
 					className={`rounded-full ${hover && 'opacity-40'}`}
 					fill

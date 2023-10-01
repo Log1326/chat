@@ -17,13 +17,13 @@ export const ChatViewMessage = ({
 }: IChatViewMessage) => {
 	return (
 		<div
-			className={`flex items-end gap-2 mt-3 rounded-xl p-3 
+			className={`flex items-end gap-2 mt-3 rounded-xl p-3 border w-fit  border-teal-600
 			${
 				compressed
-					? 'bg-incoming-background'
+					? 'bg-incoming-background w-40 border-none'
 					: !isSender
-					? 'bg-incoming-background'
-					: 'bg-outgoing-background'
+					? 'bg-incoming-background w-fit'
+					: 'bg-outgoing-background w-fit'
 			}
 			`}
 		>

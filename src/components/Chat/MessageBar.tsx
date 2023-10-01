@@ -2,7 +2,7 @@ import { BsEmojiSmile } from 'react-icons/bs'
 import { ImAttachment } from 'react-icons/im'
 import { MdSend } from 'react-icons/md'
 import { FaMicrophone } from 'react-icons/fa'
-import React, { KeyboardEvent } from 'react'
+import React, { KeyboardEvent, useCallback } from 'react'
 import { useActions } from '@/hooks/useActions'
 import { useToggle } from '@/hooks/useToggle'
 import { Categories, Theme } from 'emoji-picker-react'
@@ -14,6 +14,7 @@ import { useGrabPhoto } from '@/hooks/useGrabPhoto'
 import dynamic from 'next/dynamic'
 import { useSelector } from 'react-redux'
 import { getMessageState } from '@/store/message/message.selectors'
+import { Icon } from '@/UI/Icon'
 
 const Picker = dynamic(
 	() => {
@@ -41,10 +42,13 @@ export function MessageBar({ userId, selectChatUserId }: MessageBarProps) {
 		addMessageImage({ formData, userId, selectChatUserId })
 	const handleMessage = async () =>
 		addMessageSend({ message, from: userId, to: selectChatUserId })
-	const handleEmojiClick = (value: EmojiClickData) => {
-		setMessage(value.emoji)
-		setShowEmoji(false)
-	}
+	const handleEmojiClick = useCallback(
+		(value: EmojiClickData) => {
+			setMessage(value.emoji)
+			setShowEmoji(false)
+		},
+		[setMessage, setShowEmoji]
+	)
 	const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) =>
 		e.code === 'Enter' && handleMessage()
 	const { grabPhoto, photoChange, fnGrabPhoto } = useGrabPhoto({
@@ -57,12 +61,21 @@ export function MessageBar({ userId, selectChatUserId }: MessageBarProps) {
 		type: 'click',
 		idElement: EMOJI_ID_REF
 	})
+	const startRecording = useCallback(
+		() => setShowAudioRecorder(true),
+		[setShowAudioRecorder]
+	)
+	const onChangeInput = useCallback(
+		(e: React.ChangeEvent<HTMLInputElement>) => setMessage(e.target.value),
+		[setMessage]
+	)
 	return (
-		<article className='h-[4.5rem] mt-2 relative text-white bg-input-background p-4 border-b-4 border-teal-500'>
+		<section className='h-[4.5rem] mt-2 relative text-white bg-input-background p-4 border-b-4 border-teal-500'>
 			{!showAudioRecorder && (
 				<div className='animate-scaleIn flex gap-4 justify-around items-center w-full'>
 					<button>
-						<BsEmojiSmile
+						<Icon
+							Svg={BsEmojiSmile}
 							className='h-6 w-6 cursor-pointer hover:opacity-70'
 							title='Choose emoji'
 							id={EMOJI_ID_REF}
@@ -88,7 +101,8 @@ export function MessageBar({ userId, selectChatUserId }: MessageBarProps) {
 						</div>
 					)}
 					<button>
-						<ImAttachment
+						<Icon
+							Svg={ImAttachment}
 							className='h-6 w-6 cursor-pointer hover:opacity-70'
 							title='Attached'
 							onClick={fnGrabPhoto}
@@ -98,22 +112,24 @@ export function MessageBar({ userId, selectChatUserId }: MessageBarProps) {
 						type='text'
 						value={message}
 						autoFocus
-						onChange={e => setMessage(e.target.value)}
+						onChange={onChangeInput}
 						placeholder='Type a message'
 						className='outline-none rounded-lg w-full bg-gray-600 px-5 placeholder:text-sm h-10 text-xl'
 						onKeyDown={handleKeyDown}
 					/>
 					<button onClick={handleMessage}>
-						<MdSend
+						<Icon
+							Svg={MdSend}
 							className='h-6 w-6 cursor-pointer hover:text-zinc-950'
 							title='Send message'
 						/>
 					</button>
 					<button>
-						<FaMicrophone
+						<Icon
+							Svg={FaMicrophone}
 							className='h-6 w-6 cursor-pointer hover:text-zinc-950'
 							title='Record message'
-							onClick={() => setShowAudioRecorder(true)}
+							onClick={startRecording}
 						/>
 					</button>
 				</div>
@@ -127,6 +143,6 @@ export function MessageBar({ userId, selectChatUserId }: MessageBarProps) {
 			{showAudioRecorder && (
 				<CaptureAudio hideAudio={setShowAudioRecorder} />
 			)}
-		</article>
+		</section>
 	)
 }

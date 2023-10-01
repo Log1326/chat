@@ -71,7 +71,12 @@ function onboarding() {
 							</button>
 						</div>
 						<div>
-							<Avatar type='xl' value={userInfo?.image ?? ''} />
+							<Avatar
+								type='xxl'
+								src={userInfo?.image ?? ''}
+								alt={userInfo.name}
+								title={userInfo.name}
+							/>
 						</div>
 					</div>
 				</>

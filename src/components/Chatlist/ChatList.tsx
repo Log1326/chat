@@ -12,10 +12,10 @@ export function ChatList() {
 			className='flex flex-col bg-input-background'
 		>
 			{toggleChatPage ? (
-				<section className='animate-appearance'>
+				<>
 					<ChatListHeader />
 					<List />
-				</section>
+				</>
 			) : (
 				<ContactsList />
 			)}

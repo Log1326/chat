@@ -13,17 +13,16 @@ import { IUser } from '@/store/user/user.types'
 import { Loading } from '@/UI/Loading'
 
 export function List() {
+	const [searchUser, setSearchUser] = useState<string>('')
+	const [filterUser, setFilterUser] =
+		useState<IGetInitialUsersChat<IUser>[]>()
 	const user = useSelector(getUser)
 	const usersContacts = useSelector(getStateMessageContacts)
 	const loadingContacts = useSelector(getStateMessageLoading)
 	const { getMessageContacts } = useActions()
-	const [searchUser, setSearchUser] = useState<string>('')
-	const [filterUser, setFilterUser] =
-		useState<IGetInitialUsersChat<IUser>[]>()
-
 	useEffect(() => {
 		user?.id && getMessageContacts(user.id)
-	}, [user])
+	}, [user.id])
 	useEffect(() => {
 		if (searchUser)
 			setFilterUser(
@@ -45,38 +44,29 @@ export function List() {
 					viewFilter={true}
 				/>
 			</div>
-
 			{loadingContacts ? (
 				<Loading size='text-2xl' center />
 			) : (
 				<div className='inline-block w-full overflow-hidden'>
-					{searchUser ? (
-						<>
-							{!filterUser?.length ? (
-								<div className=' text-2xl text-white flex justify-center opacity-70'>
-									There is no data...
-								</div>
-							) : (
-								<>
-									{filterUser?.map(user => (
-										<ChatLIstItem
-											key={String(user.id)}
-											item={user}
-										/>
-									))}
-								</>
-							)}
-						</>
-					) : (
-						<>
-							{usersContacts?.map(userContact => (
-								<ChatLIstItem
-									key={String(userContact.id)}
-									item={userContact}
-								/>
-							))}
-						</>
+					{searchUser && !filterUser?.length && (
+						<p className='mt-4 text-2xl text-white flex justify-center animate-pulse opacity-70'>
+							There is no data...
+						</p>
 					)}
+					{searchUser &&
+						filterUser?.map(user => (
+							<ChatLIstItem<IGetInitialUsersChat<IUser>>
+								key={String(user.id)}
+								item={user}
+							/>
+						))}
+					{!searchUser &&
+						usersContacts?.map(userContact => (
+							<ChatLIstItem<IGetInitialUsersChat<IUser>>
+								key={String(userContact.id)}
+								item={userContact}
+							/>
+						))}
 				</div>
 			)}
 		</article>

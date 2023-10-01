@@ -9,7 +9,7 @@ import { useActions } from '@/hooks/useActions'
 import { getStateMessageOnlineUsers } from '@/store/message/message.selectors'
 import { useToggle } from '@/hooks/useToggle'
 import { DropDown } from '@/UI/DropDown'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import {
 	CHANGE_BG_IMAGE,
 	VIDEO_CALL_REF,
@@ -19,6 +19,7 @@ import { PhotoLibrary } from '@/UI/PhotoLibrary'
 import { IImages } from '@/types/images.types'
 import { bgChat } from '@/store/user/user.types'
 import { ContextMenu } from '@/UI/ContextMenu'
+import { Icon } from '@/UI/Icon'
 
 const images: IImages<bgChat>[] = [
 	{ name: 'bg-chat-background-color', value: '/bg-image/image-bg-color.jpg' },
@@ -42,7 +43,7 @@ export function ChatHeader() {
 	const [openMenu, setOpenMenu, openMenuFn] = useToggle()
 	const [openModal, setOpenModal] = useToggle()
 	const isOnline = onlineUsers?.some(user => user === selectUser?.id)
-	const handleCallVoice = () => {
+	const handleCallVoice = useCallback(() => {
 		voiceCallOpenWindow(true)
 		voiceCall({
 			id: String(selectUser?.id),
@@ -55,8 +56,14 @@ export function ChatHeader() {
 			type: 'outgoing',
 			roomId: Date.now()
 		})
-	}
-	const handleCallVideo = () => {
+	}, [
+		selectUser?.id,
+		selectUser?.image,
+		selectUser?.name,
+		voiceCall,
+		voiceCallOpenWindow
+	])
+	const handleCallVideo = useCallback(() => {
 		videoCallOpenWindow(true)
 		videoCall({
 			id: String(selectUser?.id),
@@ -69,7 +76,13 @@ export function ChatHeader() {
 			type: 'outgoing',
 			roomId: Date.now()
 		})
-	}
+	}, [
+		selectUser?.id,
+		selectUser?.image,
+		selectUser?.name,
+		videoCall,
+		videoCallOpenWindow
+	])
 
 	const contextMenu = useMemo(
 		() => [
@@ -78,45 +91,53 @@ export function ChatHeader() {
 		],
 		[setOpenModal, setSelectUser]
 	)
+	const openSearchDrawer = useCallback(
+		() => changeIsSearchMessage(true),
+		[changeIsSearchMessage]
+	)
 	return (
 		<article className='bg-input-background h-20 p-2 flex justify-between items-center'>
 			<div className='flex items-center justify-center gap-4 pl-4'>
-				{selectUser ? (
+				{selectUser && (
 					<Avatar
-						type='sm'
-						value={selectUser?.image}
+						type='md'
+						src={selectUser?.image ?? '/default_avatar.png'}
+						alt={selectUser.name}
 						className={'hover:opacity-70'}
 					/>
-				) : (
-					<Avatar type='lg' value={'/default_avatar.png'} />
 				)}
-				<article className='text-white cursor-default'>
+				<div className='text-white cursor-default'>
 					<p>{selectUser?.name}</p>
 					<p>{isOnline ? 'online' : 'offline'}</p>
-				</article>
+				</div>
 			</div>
-			<article className='inline-flex gap-4 pr-4 text-white cursor-pointer'>
-				<BiSearchAlt2
+			<section className='inline-flex gap-4 pr-4 text-white cursor-pointer'>
+				<Icon
+					Svg={BiSearchAlt2}
 					className='h-6 w-6 hover:text-gray-900'
 					title='search messages...'
-					onClick={() => changeIsSearchMessage(true)}
+					onClick={openSearchDrawer}
 				/>
-				<MdCall
+				<Icon
+					Svg={MdCall}
 					onClick={handleCallVoice}
 					className='h-6 w-6 hover:text-gray-900 '
 					title='audio'
 					id={VOICE_CALL_REF}
 				/>
-				<IoVideocam
+				<Icon
+					Svg={IoVideocam}
 					onClick={handleCallVideo}
 					className='h-6 w-6 hover:text-gray-900'
 					title='video'
 					id={VIDEO_CALL_REF}
 				/>
+
 				<DropDown
 					classname={'absolute top-3 z-30 right-4 w-40 flex'}
 					title={
-						<BsThreeDotsVertical
+						<Icon
+							Svg={BsThreeDotsVertical}
 							className='h-6 w-6 hover:text-gray-900 z-30'
 							title='options'
 							onClick={openMenuFn}
@@ -133,7 +154,7 @@ export function ChatHeader() {
 						idElement={CHANGE_BG_IMAGE}
 					/>
 				</DropDown>
-			</article>
+			</section>
 			{openModal && (
 				<PhotoLibrary
 					hiddenPhotoLib={setOpenModal}
