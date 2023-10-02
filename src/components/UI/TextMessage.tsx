@@ -1,5 +1,6 @@
 import { IMessage } from '@/store/message/message.types'
 import { memo } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 interface TextMessageProps {
 	message: IMessage
@@ -11,7 +12,10 @@ export const TextMessage = memo(function TextMessage({
 }: TextMessageProps) {
 	return (
 		<span
-			className={`select-none w-fit ${compressed && 'p-1 line-clamp-1'}`}
+			className={twMerge(
+				'select-none',
+				compressed && 'line-clamp-1 w-20 p-1'
+			)}
 		>
 			{message.message}
 		</span>

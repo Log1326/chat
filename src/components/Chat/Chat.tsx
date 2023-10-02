@@ -31,9 +31,9 @@ export function Chat({ selectChatUserId, userId, socketRef }: ChatProps) {
 			socketRef.current.on(MESSAGE_RECEIVE, data => {
 				setMessages(data.message)
 			})
-	}, [socketRef.current])
+	}, [socketRef?.current])
 	return (
-		<section className='flex flex-col h-full w-full bg-search-input-container-background animate-scaleIn'>
+		<section className='flex h-full w-full animate-scaleIn flex-col bg-search-input-container-background'>
 			<ChatHeader />
 			<ChatContainer />
 			<MessageBar

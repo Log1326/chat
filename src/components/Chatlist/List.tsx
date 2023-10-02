@@ -1,5 +1,5 @@
 import { SearchBar } from '@/components/Chatlist/SearchBar'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { getUser } from '@/store/user/user.selector'
 import { useActions } from '@/hooks/useActions'
@@ -11,32 +11,33 @@ import { ChatLIstItem } from '@/components/Chatlist/ChatLIstItem'
 import { IGetInitialUsersChat } from '@/store/message/message.types'
 import { IUser } from '@/store/user/user.types'
 import { Loading } from '@/UI/Loading'
+import { useFilterInput } from '@/hooks/useFilterInput'
 
 export function List() {
-	const [searchUser, setSearchUser] = useState<string>('')
-	const [filterUser, setFilterUser] =
-		useState<IGetInitialUsersChat<IUser>[]>()
-	const user = useSelector(getUser)
 	const usersContacts = useSelector(getStateMessageContacts)
-	const loadingContacts = useSelector(getStateMessageLoading)
-	const { getMessageContacts } = useActions()
+	const user = useSelector(getUser)
+	const isLoadingContacts = useSelector(getStateMessageLoading)
+	const { getMessageContacts, changeIsLoadingUserContact } = useActions()
+	const {
+		state: { searchUser, filterUser },
+		fn: { setSearchUser }
+	} = useFilterInput<IGetInitialUsersChat<IUser>[]>(
+		changeIsLoadingUserContact,
+		(val: string) =>
+			usersContacts?.filter(user =>
+				user.name.toLowerCase().includes(val.toLowerCase())
+			)
+	)
 	useEffect(() => {
 		user?.id && getMessageContacts(user.id)
-	}, [user.id])
-	useEffect(() => {
-		if (searchUser)
-			setFilterUser(
-				usersContacts?.filter(user =>
-					user.name.toLowerCase().includes(searchUser.toLowerCase())
-				)
-			)
-	}, [searchUser])
+	}, [user?.id])
+
 	return (
-		<article
+		<section
 			data-testid='list'
-			className='px-2 h-[calc(100vh-5rem)] overflow-y-scroll custom-scrollbar'
+			className='custom-scrollbar h-[calc(100vh-5rem)] w-full overflow-y-scroll px-2'
 		>
-			<div className='bg-search-input-container-background p-3 w-full text-left rounded-2xl'>
+			<div className='mb-4 w-full rounded-2xl bg-search-input-container-background p-3 text-left'>
 				<SearchBar
 					state={searchUser}
 					setState={setSearchUser}
@@ -44,15 +45,17 @@ export function List() {
 					viewFilter={true}
 				/>
 			</div>
-			{loadingContacts ? (
+			{isLoadingContacts ? (
 				<Loading size='text-2xl' center />
 			) : (
 				<div className='inline-block w-full overflow-hidden'>
-					{searchUser && !filterUser?.length && (
-						<p className='mt-4 text-2xl text-white flex justify-center animate-pulse opacity-70'>
-							There is no data...
-						</p>
-					)}
+					{searchUser &&
+						!isLoadingContacts &&
+						!filterUser?.length && (
+							<p className='mt-4 flex animate-pulse justify-center text-2xl text-white opacity-70'>
+								There is no data...
+							</p>
+						)}
 					{searchUser &&
 						filterUser?.map(user => (
 							<ChatLIstItem<IGetInitialUsersChat<IUser>>
@@ -60,7 +63,8 @@ export function List() {
 								item={user}
 							/>
 						))}
-					{!searchUser &&
+					{!searchUser.length &&
+						!filterUser?.length &&
 						usersContacts?.map(userContact => (
 							<ChatLIstItem<IGetInitialUsersChat<IUser>>
 								key={String(userContact.id)}
@@ -69,6 +73,6 @@ export function List() {
 						))}
 				</div>
 			)}
-		</article>
+		</section>
 	)
 }

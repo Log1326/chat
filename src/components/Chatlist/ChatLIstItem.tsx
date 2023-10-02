@@ -17,21 +17,21 @@ export function ChatLIstItem<T>({ item }: ChatLIstItemProps<T>) {
 		<>
 			<div
 				onClick={handleSelectUser}
-				className='flex items-center animate-fade justify-center hover:bg-gray-600 rounded-xl w-full px-10 gap-4 p-1 mt-2 cursor-pointer'
+				className='mt-2 flex w-full animate-fade cursor-pointer items-center justify-center gap-4 rounded-xl p-1 px-10 hover:bg-gray-600'
 			>
 				<div className='flex w-full '>
-					<div className='flex items-center w-full gap-4'>
+					<div className='flex w-full items-center gap-4'>
 						<Avatar
 							type='lg'
-							src={item.image}
+							src={item.image ?? '/default-avatar.png'}
 							alt={item.name}
 							title={item.name}
 						/>
-						<div className='flex flex-col items-center justify-center  w-full'>
+						<div className='flex w-full flex-col items-center  justify-center'>
 							<p className='text-xl'>{item.name}</p>
 							{/*@ts-ignore*/}
 							{item.message && (
-								<span className='text-gray-400 text-xs w-2/3 inline-block'>
+								<span className='inline-block w-2/3 text-xs text-gray-400'>
 									<ChatTypeMessage
 										message={item as IMessage}
 										compressed={true}
@@ -43,7 +43,7 @@ export function ChatLIstItem<T>({ item }: ChatLIstItemProps<T>) {
 					{item.totalUnreadMessages &&
 					item.totalUnreadMessages > 0 ? (
 						<div className='flex items-center'>
-							<p className='flex justify-center items-center bg-teal-800 rounded-full h-8 w-8  p-2 text-white'>
+							<p className='flex h-8 w-8 items-center justify-center rounded-full bg-teal-800  p-2 text-white'>
 								{item.totalUnreadMessages}
 							</p>
 						</div>

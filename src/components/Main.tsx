@@ -26,6 +26,7 @@ import {
 import { VoiceCall } from '@/components/Call/VoiceCall'
 import { VideoCall } from '@/components/Call/VideoCall'
 import { useAuth } from '@/hooks/useAuth'
+import { twMerge } from 'tailwind-merge'
 
 export function Main() {
 	useAuth()
@@ -77,11 +78,18 @@ export function Main() {
 	}, [socketRef.current])
 	return (
 		<main
-			className='h-screen grid grid-cols-4 overflow-hidden'
+			className='grid h-screen grid-cols-6 overflow-hidden'
 			data-testid='mainPage'
 		>
-			<ChatList />
-			<section className='grid col-span-3 relative bg-panel-header-background h-full overflow-hidden'>
+			<div className='col-span-2 phone:hidden largePhone:col-span-2'>
+				<ChatList />
+			</div>
+			<section
+				className={twMerge(
+					'relative col-span-4 grid h-full overflow-hidden bg-panel-header-background',
+					' phone:col-span-6 largePhone:col-span-4'
+				)}
+			>
 				{selectChatUser ? (
 					<Chat
 						socketRef={socketRef}

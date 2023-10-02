@@ -96,22 +96,21 @@ export function ChatHeader() {
 		[changeIsSearchMessage]
 	)
 	return (
-		<article className='bg-input-background h-20 p-2 flex justify-between items-center'>
+		<article className='flex h-20 items-center justify-between bg-input-background p-2'>
 			<div className='flex items-center justify-center gap-4 pl-4'>
 				{selectUser && (
 					<Avatar
 						type='md'
 						src={selectUser?.image ?? '/default_avatar.png'}
 						alt={selectUser.name}
-						className={'hover:opacity-70'}
 					/>
 				)}
-				<div className='text-white cursor-default'>
+				<div className='cursor-default text-white'>
 					<p>{selectUser?.name}</p>
 					<p>{isOnline ? 'online' : 'offline'}</p>
 				</div>
 			</div>
-			<section className='inline-flex gap-4 pr-4 text-white cursor-pointer'>
+			<section className='inline-flex cursor-pointer gap-4 pr-4 text-white'>
 				<Icon
 					Svg={BiSearchAlt2}
 					className='h-6 w-6 hover:text-gray-900'
@@ -132,13 +131,11 @@ export function ChatHeader() {
 					title='video'
 					id={VIDEO_CALL_REF}
 				/>
-
 				<DropDown
-					classname={'absolute top-3 z-30 right-4 w-40 flex'}
 					title={
 						<Icon
 							Svg={BsThreeDotsVertical}
-							className='h-6 w-6 hover:text-gray-900 z-30'
+							className='z-30 h-6 w-6 hover:text-gray-900'
 							title='options'
 							onClick={openMenuFn}
 							id={CHANGE_BG_IMAGE}
@@ -151,6 +148,8 @@ export function ChatHeader() {
 							options: contextMenu,
 							setContextMenu: setOpenMenu
 						}}
+						position='absolute'
+						classname='top-[50px] right-0 border'
 						idElement={CHANGE_BG_IMAGE}
 					/>
 				</DropDown>

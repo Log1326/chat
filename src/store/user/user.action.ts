@@ -62,7 +62,7 @@ export const RegistrationNewUser = createAsyncThunk<IUser, IUser>(
 		}
 	}
 )
-export const getAllUsers = createAsyncThunk<Record<string, IUser[]>, void>(
+export const getAllUsers = createAsyncThunk<Record<string, IUser[]>>(
 	'userStore/getAllNewUsers',
 	async (_, { rejectWithValue }) => {
 		try {

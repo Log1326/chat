@@ -18,9 +18,8 @@ export const SignIn = () => {
 			await push(RouterEnumPath.MAIN)
 		} else alert('user not found. try again!')
 	}
-	console.log(email)
 	return (
-		<article>
+		<section>
 			<InputCustom
 				type='email'
 				label='Email'
@@ -28,12 +27,12 @@ export const SignIn = () => {
 				onChange={setEmail}
 			/>
 			<button
-				className='w-full bg-search-input-container-background p-1 mt-5 rounded-lg text-white disabled:opacity-50'
+				className='mt-5 w-full rounded-lg bg-search-input-container-background p-2 text-white disabled:opacity-50'
 				onClick={loginUserHandler}
 				disabled={email.length < 5}
 			>
 				Sign in
 			</button>
-		</article>
+		</section>
 	)
 }

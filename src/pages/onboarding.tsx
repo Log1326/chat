@@ -4,7 +4,6 @@ import {
 	getUser
 } from '@/store/user/user.selector'
 import { useSelector } from 'react-redux'
-import { IUser } from '@/store/user/user.types'
 import { useRouter } from 'next/router'
 import { useActions } from '@/hooks/useActions'
 import { Loading } from '@/UI/Loading'
@@ -13,6 +12,7 @@ import { Avatar } from '@/UI/Avatar'
 import Image from 'next/image'
 import { useEffect } from 'react'
 import { RouterEnumPath } from '@/types/routerEnumPath'
+import { twMerge } from 'tailwind-merge'
 
 function onboarding() {
 	const { push } = useRouter()
@@ -31,56 +31,51 @@ function onboarding() {
 	const disableButton =
 		(userInfo && userInfo.name.length < 3) ||
 		(userInfo?.about && userInfo.about.length < 3)
+	if (isLoading) return <Loading flex full center />
 	return (
-		<div className='bg-panel-header-background h-screen text-white flex flex-col items-center justify-center gap-6'>
-			{isLoading ? (
-				<Loading />
-			) : (
-				<>
-					<div className='flex items-center justify-center gap-2'>
-						<Image
-							src={'/whatsapp.gif' ?? ''}
-							alt='whatsapp'
-							width={300}
-							height={300}
-						/>
-						<span className='text-4xl'>Whatsapp</span>
-					</div>
-					<h2 className='text-4xl'>Create your profile</h2>
-					<div className='flex gap-6 mt-6'>
-						<div className='flex flex-col items-center justify-center mt-5 gap-4'>
-							<InputCustom
-								onChange={setName}
-								value={userInfo?.name}
-								label='Display Name'
-							/>
-							<InputCustom
-								onChange={setAbout}
-								value={userInfo?.about!}
-								label='About'
-							/>
-							<button
-								disabled={!!disableButton}
-								onClick={() =>
-									RegistrationNewUser(userInfo as IUser)
-								}
-								className={`p-4 rounded-xl bg-search-input-container-background disabled:opacity-10 
-						${!!disableButton ? '' : 'hover:bg-gray-700'}`}
-							>
-								Create profile
-							</button>
-						</div>
-						<div>
-							<Avatar
-								type='xxl'
-								src={userInfo?.image ?? ''}
-								alt={userInfo.name}
-								title={userInfo.name}
-							/>
-						</div>
-					</div>
-				</>
-			)}
+		<div className='flex h-screen flex-col items-center justify-center gap-6 bg-panel-header-background text-white'>
+			<div className='flex items-center justify-center gap-2'>
+				<Image
+					src={'/whatsapp.gif' ?? ''}
+					alt='whatsapp'
+					width={300}
+					height={300}
+				/>
+				<span className='text-4xl'>Whatsapp</span>
+			</div>
+			<h2 className='text-4xl'>Create your profile</h2>
+			<div className='mt-6 flex gap-6'>
+				<div className='mt-5 flex flex-col items-center justify-center gap-4'>
+					<InputCustom
+						onChange={setName}
+						value={userInfo?.name}
+						label='Display Name'
+					/>
+					<InputCustom
+						onChange={setAbout}
+						value={userInfo?.about!}
+						label='About'
+					/>
+					<button
+						disabled={!!disableButton}
+						onClick={() => RegistrationNewUser(userInfo)}
+						className={twMerge(
+							'rounded-xl bg-search-input-container-background p-4 disabled:opacity-10',
+							disableButton && 'hover:bg-gray-700'
+						)}
+					>
+						Create profile
+					</button>
+				</div>
+				<div>
+					<Avatar
+						type='xxl'
+						src={userInfo?.image ?? ''}
+						alt={userInfo.name}
+						title={userInfo.name}
+					/>
+				</div>
+			</div>
 		</div>
 	)
 }

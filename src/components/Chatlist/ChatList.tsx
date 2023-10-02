@@ -9,7 +9,7 @@ export function ChatList() {
 	return (
 		<aside
 			data-testid='chat-list'
-			className='flex flex-col bg-input-background'
+			className='flex w-full flex-col bg-input-background '
 		>
 			{toggleChatPage ? (
 				<>

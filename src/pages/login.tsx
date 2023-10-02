@@ -7,52 +7,51 @@ import {
 	getUser
 } from '@/store/user/user.selector'
 import { useSelector } from 'react-redux'
-import { Loading } from '@/UI/Loading'
 import { SignIn } from '@/UI/SignIn'
 import Image from 'next/image'
 import { RouterEnumPath } from '@/types/routerEnumPath'
 import { useEffect } from 'react'
+import { Loading } from '@/UI/Loading'
 
-let count = 0
 function login() {
-	const router = useRouter()
+	const { push } = useRouter()
 	const userInfo = useSelector(getUser)
 	const newUser = useSelector(getNewUserBool)
 	const isLoading = useSelector(getLoadingUser)
-	const { CheckAuthInGoogleAccount } = useActions()
+	const { CheckAuthInGoogleAccount, changeIsLoading } = useActions()
 	useEffect(() => {
-		if (newUser) router.push(RouterEnumPath.ONBOARDING)
-		if (!newUser && userInfo?.email) router.push(RouterEnumPath.MAIN)
+		if (isLoading) {
+			if (newUser) push(RouterEnumPath.ONBOARDING)
+			if (!newUser && userInfo?.email) push(RouterEnumPath.MAIN)
+		}
 	}, [newUser, userInfo?.email])
+	useEffect(() => {
+		changeIsLoading(false)
+	}, [])
+	if (isLoading) return <Loading flex full center />
 	return (
-		<div className='bg-panel-header-background h-screen flex justify-center items-center flex-col gap-6'>
-			{isLoading ? (
-				<Loading />
-			) : (
-				<>
-					<div className='xl:flex text-center items-center gap-4'>
-						<Image
-							src='/whatsapp.gif'
-							alt='whatsapp'
-							width={300}
-							height={300}
-						/>
-						<span className='xl:text-7xl text-4xl text-white'>
-							Whatsapp
-						</span>
-					</div>
-					<SignIn />
-					<button
-						className='flex items-center justify-center gap-2 bg-search-input-container-background p-2 rounded-lg'
-						onClick={() => CheckAuthInGoogleAccount()}
-					>
-						<FcGoogle className='text-4xl' />
-						<span className='text-2xl text-white'>
-							Login or Registration with Google
-						</span>
-					</button>
-				</>
-			)}
+		<div className='flex h-screen flex-col items-center justify-center gap-6 bg-panel-header-background'>
+			<div className='items-center gap-4 text-center'>
+				<Image
+					src='/whatsapp.gif'
+					alt='whatsapp'
+					width={300}
+					height={300}
+				/>
+				<span className='text-4xl text-white xl:text-7xl'>
+					Whatsapp
+				</span>
+			</div>
+			<SignIn />
+			<button
+				className='flex items-center justify-center gap-2 rounded-lg bg-search-input-container-background p-2'
+				onClick={() => CheckAuthInGoogleAccount()}
+			>
+				<FcGoogle className='text-4xl' />
+				<span className='text-2xl text-white'>
+					Login or Registration with Google
+				</span>
+			</button>
 		</div>
 	)
 }

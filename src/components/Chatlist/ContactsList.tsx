@@ -1,56 +1,106 @@
 import { BiArrowBack } from 'react-icons/bi'
 import { useActions } from '@/hooks/useActions'
 import { SearchBar } from '@/components/Chatlist/SearchBar'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { getUsersSelected } from '@/store/user/user.selector'
-import { ChatLIstItem } from '@/components/Chatlist/ChatLIstItem'
+import { getLoadingUser, getUsersSelected } from '@/store/user/user.selector'
+import { Icon } from '@/UI/Icon'
 import { IUser } from '@/store/user/user.types'
+import { ChatLIstItem } from '@/components/Chatlist/ChatLIstItem'
+import { Loading } from '@/UI/Loading'
+import { useFilterInput } from '@/hooks/useFilterInput'
 
 export function ContactsList() {
+	const isLoading = useSelector(getLoadingUser)
 	const users = useSelector(getUsersSelected)
-	const [searchTerm, setSearchTerm] = useState('')
-	const { getAllUsers, toggleChatPage } = useActions()
-	const handleCloseContactList = () => toggleChatPage(true)
+	const { getAllUsers, toggleChatPage, changeIsLoading } = useActions()
+	const handleCloseContactList = useCallback(
+		() => toggleChatPage(true),
+		[toggleChatPage]
+	)
+	const {
+		state: { searchUser, filterUser },
+		fn: { setSearchUser }
+	} = useFilterInput<IUser[][]>(
+		changeIsLoading,
+		(val: string) =>
+			users?.map(values =>
+				values.users.filter(user =>
+					user.name
+						.toLocaleLowerCase()
+						.includes(val.toLocaleLowerCase())
+				)
+			)
+	)
 	useEffect(() => {
 		getAllUsers()
 	}, [])
 	return (
-		<section data-testid='contact-list' className='flex flex-col h-screen'>
-			<article className='flex justify-start items-center h-[5.43rem]'>
+		<section data-testid='contact-list' className='flex h-screen flex-col'>
+			<header className='flex h-[5.43rem] items-center justify-start'>
 				<button
 					data-testid='button-contact-list'
 					onClick={handleCloseContactList}
-					className='text-white p-4 hover:text-zinc-950'
+					className='p-4 text-white hover:text-zinc-950'
 				>
-					<BiArrowBack className='h-8 w-8' title='arrow back' />
+					<Icon
+						Svg={BiArrowBack}
+						className='h-8 w-8'
+						title='arrow back'
+					/>
 				</button>
-				<p className='text-white text-2xl cursor-default'> New Chat</p>
-			</article>
-			<article className='bg-search-input-container-background animate-scaleIn'>
+				<p className='cursor-default text-2xl text-white'> New Chat</p>
+			</header>
+			<section className='animate-scaleIn bg-search-input-container-background'>
 				<SearchBar
-					state={searchTerm}
-					setState={setSearchTerm}
+					state={searchUser}
+					setState={setSearchUser}
 					placeholder='Search user...'
 				/>
-				<div className=' h-[calc(100vh-10rem)] overflow-y-scroll custom-scrollbar'>
-					{users.map(values => (
-						<div key={values.key}>
-							<div className='text-teal-light pl-10 py-5'>
-								{values.key}
-							</div>
-							{values.users.map(user => (
-								<div
-									key={user.id}
-									className='text-white cursor-pointer text-center w-full flex justify-center'
-								>
-									<ChatLIstItem<IUser> item={user} />
-								</div>
-							))}
-						</div>
-					))}
+				<div className=' custom-scrollbar h-[calc(100vh-10rem)] overflow-y-scroll'>
+					{isLoading ? (
+						<Loading size='text-2xl' center bgTransparent />
+					) : (
+						<>
+							{searchUser &&
+								!isLoading &&
+								!filterUser?.flat().length && (
+									<p className='mt-4 flex animate-pulse justify-center text-2xl text-white opacity-70'>
+										There is no data...
+									</p>
+								)}
+							{searchUser &&
+								filterUser?.flat().map(user => (
+									<div
+										className='text-white'
+										key={String(user.id)}
+									>
+										<ChatLIstItem<IUser> item={user} />
+									</div>
+								))}
+							{!searchUser &&
+								!filterUser?.flat().length &&
+								users.map(values => (
+									<div key={values.key}>
+										<div className='py-5 pl-10 text-teal-light'>
+											{values.key}
+										</div>
+										{values.users.map(user => (
+											<div
+												key={user.id}
+												className='flex w-full cursor-pointer justify-center text-center text-white'
+											>
+												<ChatLIstItem<IUser>
+													item={user}
+												/>
+											</div>
+										))}
+									</div>
+								))}
+						</>
+					)}
 				</div>
-			</article>
+			</section>
 		</section>
 	)
 }

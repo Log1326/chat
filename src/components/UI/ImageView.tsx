@@ -10,10 +10,5 @@ interface ImageViewProps {
 	priority?: boolean
 }
 export const ImageView: FC<ImageViewProps> = props => {
-	return (
-		<Image
-			{...props}
-			className='rounded-full cursor-pointer hover:opacity-90'
-		/>
-	)
+	return <Image {...props} className='rounded-full' />
 }

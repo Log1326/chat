@@ -16,5 +16,3 @@ export const getStateMessageOnlineUsers = (state: TypeRootState) =>
 	state.messageStore.usersContactsAndUsersOnline.onlineUsers
 export const getStateMessageLoading = (state: TypeRootState) =>
 	state.messageStore.usersContactsAndUsersOnline.usersContactsLoading
-export const getStateMessageError = (state: TypeRootState) =>
-	state.messageStore.usersContactsAndUsersOnline.usersContactsError

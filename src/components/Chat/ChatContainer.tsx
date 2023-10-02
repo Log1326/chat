@@ -1,4 +1,18 @@
-import { useSelector } from 'react-redux'
+import { ContextMenu } from '@/UI/ContextMenu'
+import { InputCustom } from '@/UI/Input'
+import { Popup } from '@/UI/Popup'
+import { ChatTypeMessage } from '@/components/Chat/ChatTypeMessage'
+import { INPUT_ALTER_ID_REF, MENU_MESSAGE_WINDOW } from '@/constants/constants'
+import { useActions } from '@/hooks/useActions'
+import { useHandleClickOutside } from '@/hooks/useHandleClickOutSide'
+import { useKeyListener } from '@/hooks/useKeyListener'
+import { useToggle } from '@/hooks/useToggle'
+import { getAllMessagesState } from '@/store/message/message.selectors'
+import {
+	getChatImage,
+	getCoordinates,
+	getSelectUserId
+} from '@/store/user/user.selector'
 import React, {
 	RefObject,
 	useCallback,
@@ -7,21 +21,8 @@ import React, {
 	useRef,
 	useState
 } from 'react'
-import { getAllMessagesState } from '@/store/message/message.selectors'
-import { ChatTypeMessage } from '@/components/Chat/ChatTypeMessage'
-import {
-	getChatImage,
-	getCoordinates,
-	getSelectUserId
-} from '@/store/user/user.selector'
-import { useActions } from '@/hooks/useActions'
-import { useToggle } from '@/hooks/useToggle'
-import { ContextMenu } from '@/UI/ContextMenu'
-import { INPUT_ALTER_ID_REF, MENU_MESSAGE_WINDOW } from '@/constants/constants'
-import { Popup } from '@/UI/Popup'
-import { InputCustom } from '@/UI/Input'
-import { useHandleClickOutside } from '@/hooks/useHandleClickOutSide'
-import { useKeyListener } from '@/hooks/useKeyListener'
+import { useSelector } from 'react-redux'
+import { twMerge } from 'tailwind-merge'
 
 export function ChatContainer() {
 	const [openMenu, setOpenMenu] = useToggle(false)
@@ -86,12 +87,17 @@ export function ChatContainer() {
 		idElement: INPUT_ALTER_ID_REF
 	})
 	return (
-		<article className='custom-scrollbar h-[calc(100vh-10rem)] overflow-auto text-white relative'>
-			<div className={`${modeBg} bg-contain h-full w-full fixed z-0 `} />
-			<div className='text-white z-20 relative'>
+		<article className='custom-scrollbar relative h-[calc(100vh-10rem)] overflow-auto text-white'>
+			<div
+				className={twMerge(
+					' fixed z-0 h-full w-full bg-contain',
+					modeBg
+				)}
+			/>
+			<div className='relative z-20 text-white'>
 				{openMenu && (
 					<ContextMenu
-						fixed
+						position='fixed'
 						item={{
 							options: contextMenu,
 							setContextMenu: setOpenMenu,
@@ -119,7 +125,7 @@ export function ChatContainer() {
 							/>
 							<button
 								onClick={handleCloseAndSend}
-								className='py-2 px-4 bg-teal-800 rounded-xl cursor-pointer hover:opacity-80'
+								className='cursor-pointer rounded-xl bg-teal-800 px-4 py-2 hover:opacity-80'
 							>
 								<span>alter</span>
 							</button>
@@ -135,9 +141,12 @@ export function ChatContainer() {
 							}
 							onClick={() => setFindId(message.id)}
 							key={message.id}
-							className={`text-white px-10 text-2xl z-20 flex cursor-default break-all
-							${isSender && 'hover:opacity-80 cursor-pointer'}
-						 ${isSender ? 'justify-start ' : 'justify-end '}`}
+							className={twMerge(
+								'z-20 cursor-default break-all px-10 text-2xl text-white',
+								isSender
+									? 'flex w-fit justify-start'
+									: 'flex justify-end'
+							)}
 						>
 							<ChatTypeMessage
 								isSender={isSender}

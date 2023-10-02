@@ -3,6 +3,13 @@ module.exports = {
 	content: ['./src/**/*.{js,jsx,ts,tsx}'],
 	theme: {
 		extend: {
+			screens: {
+				phone: { max: '390px' },
+				largePhone: { min: '391px', max: '568px' },
+				tablet: { min: '569px', max: '826px' },
+				laptop: { min: '827px', max: '1280px' },
+				desktop: { min: '1281px', max: '1580px' }
+			},
 			transitionProperty: {
 				width: 'width',
 				height: 'height'
@@ -71,5 +78,6 @@ module.exports = {
 				loadSkeleton: 'loadSkeleton 1s linear'
 			}
 		}
-	}
+	},
+	plugins: ['prettier-plugin-tailwindcss']
 }
