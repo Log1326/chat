@@ -18,19 +18,27 @@ export const ChatViewMessage = ({
 	return (
 		<div
 			className={twMerge(
-				' mt-3 flex items-end gap-2 rounded-xl border border-teal-600 bg-incoming-background  p-3',
-				compressed && 'border-none bg-incoming-background',
+				' h-30 mt-3 flex items-end gap-2 rounded-xl border border-teal-600 bg-incoming-background p-3',
+				compressed &&
+					'screen-2xl:hidden w-28 border-none bg-incoming-background',
 				isSender &&
-					'cursor-pointer  bg-outgoing-background hover:brightness-125'
+					'cursor-pointer bg-outgoing-background hover:brightness-125'
 			)}
 		>
 			{children}
-			<span className='self-end text-xs'>
-				{calculateTime(String(message.createdAt))}
-			</span>
-			{isSender && (
-				<MessageStatus messageStatus={message.messageStatus} />
-			)}
+			<div className={twMerge('flex gap-2')}>
+				<span
+					className={twMerge(
+						'self-end text-xs text-teal-600',
+						compressed && 'w-10 text-[8px]'
+					)}
+				>
+					{calculateTime(String(message.createdAt))}
+				</span>
+				{isSender && (
+					<MessageStatus messageStatus={message.messageStatus} />
+				)}
+			</div>
 		</div>
 	)
 }

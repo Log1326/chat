@@ -10,6 +10,8 @@ export const getSocketState = (state: TypeRootState) =>
 	state.messageStore.socketState
 export const getIsSearchMessage = (state: TypeRootState) =>
 	state.messageStore.isSearchMessage
+export const getIsLoadingMessages = (state: TypeRootState) =>
+	state.messageStore.loadingMessage
 export const getStateMessageContacts = (state: TypeRootState) =>
 	state.messageStore.usersContactsAndUsersOnline.usersContacts
 export const getStateMessageOnlineUsers = (state: TypeRootState) =>

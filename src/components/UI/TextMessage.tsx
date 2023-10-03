@@ -13,8 +13,8 @@ export const TextMessage = memo(function TextMessage({
 	return (
 		<span
 			className={twMerge(
-				'select-none',
-				compressed && 'line-clamp-1 w-20 p-1'
+				'select-none text-xl ',
+				compressed && 'line-clamp-1 p-1 text-xs'
 			)}
 		>
 			{message.message}

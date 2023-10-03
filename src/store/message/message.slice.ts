@@ -39,6 +39,9 @@ export const messageSlice = createSlice({
 		changeIsSearchMessage: (state, action: PayloadAction<boolean>) => {
 			state.isSearchMessage = action.payload
 		},
+		changeIsLoadingMessage: (state, action: PayloadAction<boolean>) => {
+			state.loadingMessage = action.payload
+		},
 		changeIsLoadingUserContact: (state, action: PayloadAction<boolean>) => {
 			state.usersContactsAndUsersOnline.usersContactsLoading =
 				action.payload

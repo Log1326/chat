@@ -23,32 +23,32 @@ export function VoiceMessage({ message, compressed }: IVoiceMessage) {
 		)
 	}
 	return (
-		<div className='flex items-center justify-center gap-8 z-50'>
+		<div className='z-50 flex items-center justify-center gap-2'>
 			<Avatar
 				alt={user.name}
 				type='lg'
 				src={user?.image ?? ''}
 				title={user.name}
 			/>
-			<div>
+			<div className='mx-2'>
 				{!state.isPlaying ? (
 					<Icon
 						Svg={FaPlay}
-						className='h-6 w-6 cursor-pointer hover:text-zinc-950'
+						className='h-6 w-6 cursor-pointer hover:text-zinc-950 '
 						onClick={audioFn.handlePlayRecording}
 					/>
 				) : (
 					<Icon
 						Svg={FaStop}
-						className='h-6 w-6 cursor-pointer hover:text-zinc-950'
+						className='h-6 w-6 cursor-pointer hover:text-zinc-950 '
 						onClick={audioFn.handlePauseRecording}
 					/>
 				)}
 			</div>
-			<div className='relative'>
+			<div className='relative text-center'>
 				<div ref={refs.waveFormRef} />
-				<div className='w-fit'>
-					<span>
+				<div className='w-16 '>
+					<span className='text-lg'>
 						{state.isPlaying
 							? formatTime(state.currentPlayBackTime)
 							: formatTime(state.totalDuration)}

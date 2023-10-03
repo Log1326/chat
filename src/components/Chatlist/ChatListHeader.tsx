@@ -9,14 +9,16 @@ import { getAuth, signOut } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import { LocalStorageService } from '@/service/LocalStorageService'
 import { Icon } from '@/UI/Icon'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { useHandleClickOutside } from '@/hooks/useHandleClickOutSide'
 
 export function ChatListHeader() {
 	const userImage = useSelector(getUserImage)
 	const userName = useSelector(getUserName)
 	const { reload } = useRouter()
 	const { toggleChatPage, changeIsLoading } = useActions()
+	const [init, setInit] = useState<boolean>(false)
 	const [openMenu, _, openMenuFn] = useToggle()
 	const logout = () => {
 		const auth = getAuth()
@@ -35,17 +37,21 @@ export function ChatListHeader() {
 		() => toggleChatPage(false),
 		[toggleChatPage]
 	)
+	const refIcon = useHandleClickOutside({
+		callback: () => {
+			setInit(true)
+			if (init) {
+				openMenuFn()
+				setInit(false)
+			}
+		},
+		type: 'click'
+	})
 	return (
-		<div
-			className={twMerge(
-				'flex h-20 items-center justify-between border-r-2 border-gray-400 p-7',
-				'phone:p-0 largePhone:p-2'
-			)}
-		>
+		<header className='flex h-20 items-center justify-between border-r-2 border-gray-400 p-7'>
 			{userImage && (
 				<Avatar
-					className='phone:hidden'
-					type='sm'
+					type='md'
 					src={userImage}
 					alt={userImage}
 					title={userName}
@@ -58,10 +64,7 @@ export function ChatListHeader() {
 				>
 					<Icon
 						Svg={BsFillChatLeftTextFill}
-						className={twMerge(
-							'h-6 w-6 hover:opacity-90',
-							'phone:h-4 phone:w-4 largePhone:h-4 largePhone:w-4'
-						)}
+						className={twMerge('h-6 w-6 hover:opacity-90')}
 						title='Chat'
 					/>
 				</button>
@@ -69,10 +72,7 @@ export function ChatListHeader() {
 					title={
 						<Icon
 							Svg={BsThreeDotsVertical}
-							className={twMerge(
-								'h-6 w-6 hover:opacity-90',
-								'phone:h-4 phone:w-4 largePhone:h-4 largePhone:w-4'
-							)}
+							className={twMerge('h-6 w-6 hover:opacity-90')}
 							title='Options'
 							onClick={openMenuFn}
 						/>
@@ -80,6 +80,7 @@ export function ChatListHeader() {
 					toggle={openMenu}
 				>
 					<div
+						ref={refIcon}
 						className='absolute right-0 top-10 grid h-14 w-24 place-items-center rounded-lg bg-background-default-hover p-2 hover:brightness-90'
 						onClick={logout}
 					>
@@ -87,6 +88,6 @@ export function ChatListHeader() {
 					</div>
 				</DropDown>
 			</span>
-		</div>
+		</header>
 	)
 }

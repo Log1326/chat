@@ -3,16 +3,23 @@ module.exports = {
 	content: ['./src/**/*.{js,jsx,ts,tsx}'],
 	theme: {
 		extend: {
-			screens: {
-				phone: { max: '390px' },
-				largePhone: { min: '391px', max: '568px' },
-				tablet: { min: '569px', max: '826px' },
-				laptop: { min: '827px', max: '1280px' },
-				desktop: { min: '1281px', max: '1580px' }
-			},
 			transitionProperty: {
 				width: 'width',
 				height: 'height'
+			},
+			screens: {
+				'screen-xs': { max: '320px' },
+				'screen-sm': { max: '384px' },
+				'screen-md': { max: '448px' },
+				'screen-lg': { max: '512px' },
+				'screen-xl': { max: '576px' },
+				'screen-xl-min': { min: '577px' },
+				'screen-2xl': { max: '692px ' },
+				'screen-3xl': { max: '768px ' },
+				'screen-4xl': { max: '896px ' },
+				'screen-5xl': { max: '1024px' },
+				'screen-6xl': { max: '1152px' },
+				'screen-7xl': { max: '1280px' }
 			},
 			backgroundImage: {
 				'chat-background-color': "url('/bg-image/image-bg-color.jpg')",

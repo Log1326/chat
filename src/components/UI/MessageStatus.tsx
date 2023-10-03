@@ -15,7 +15,7 @@ export const MessageStatus = memo(function MessageStatus({
 				<BsCheckAll className='text-lg' />
 			)}
 			{messageStatus === 'read' && (
-				<BsCheckAll className='text-xl text-icon-ack' />
+				<BsCheckAll className='text-lg text-icon-ack' />
 			)}
 		</>
 	)

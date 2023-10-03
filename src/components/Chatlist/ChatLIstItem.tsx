@@ -1,8 +1,8 @@
 import { useActions } from '@/hooks/useActions'
-import { Avatar } from '@/UI/Avatar'
 import { ChatTypeMessage } from '@/components/Chat/ChatTypeMessage'
 import { IUser } from '@/store/user/user.types'
 import { IGetInitialUsersChat, IMessage } from '@/store/message/message.types'
+import Image from 'next/image'
 
 type ChatLIstItemProps<T> = {
 	item: T extends IUser ? IUser : IGetInitialUsersChat<IUser>
@@ -17,38 +17,36 @@ export function ChatLIstItem<T>({ item }: ChatLIstItemProps<T>) {
 		<>
 			<div
 				onClick={handleSelectUser}
-				className='mt-2 flex w-full animate-fade cursor-pointer items-center justify-center gap-4 rounded-xl p-1 px-10 hover:bg-gray-600'
+				className='relative mt-2 flex h-28 w-full animate-fade cursor-pointer items-center gap-4 rounded-xl p-2 text-white hover:bg-gray-600'
 			>
-				<div className='flex w-full '>
-					<div className='flex w-full items-center gap-4'>
-						<Avatar
-							type='lg'
-							src={item.image ?? '/default-avatar.png'}
-							alt={item.name}
-							title={item.name}
-						/>
-						<div className='flex w-full flex-col items-center  justify-center'>
-							<p className='text-xl'>{item.name}</p>
-							{/*@ts-ignore*/}
-							{item.message && (
-								<span className='inline-block w-2/3 text-xs text-gray-400'>
-									<ChatTypeMessage
-										message={item as IMessage}
-										compressed={true}
-									/>
-								</span>
-							)}
-						</div>
+				<div className='flex w-full gap-4'>
+					<Image
+						src={item.image}
+						alt={item.name}
+						width={60}
+						height={60}
+						className='rounded-full'
+					/>
+					<div className='screen-3xl:gap-2 screen-xl-min:text-[40px] flex w-full items-center gap-5'>
+						<p className='screen-3xl:text-xs screen-4xl:text-xs text-xl'>
+							{item.name}
+						</p>
+						{/*@ts-ignore*/}
+						{item.message && (
+							<span className='text-xs text-gray-400'>
+								<ChatTypeMessage
+									message={item as IMessage}
+									compressed={true}
+								/>
+							</span>
+						)}
 					</div>
-					{item.totalUnreadMessages &&
-					item.totalUnreadMessages > 0 ? (
-						<div className='flex items-center'>
-							<p className='flex h-8 w-8 items-center justify-center rounded-full bg-teal-800  p-2 text-white'>
-								{item.totalUnreadMessages}
-							</p>
-						</div>
-					) : null}
 				</div>
+				{item.totalUnreadMessages ? (
+					<p className='absolute right-0 top-0 grid h-8 w-8 place-items-center rounded-full bg-teal-800'>
+						{item.totalUnreadMessages}
+					</p>
+				) : null}
 			</div>
 		</>
 	)

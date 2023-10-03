@@ -1,7 +1,7 @@
 import { ChatHeader } from '@/components/Chat/ChatHeader'
 import { ChatContainer } from '@/components/Chat/ChatContainer'
 import { MessageBar } from '@/components/Chat/MessageBar'
-import { MutableRefObject, useEffect } from 'react'
+import { MutableRefObject, useCallback, useEffect } from 'react'
 import { useActions } from '@/hooks/useActions'
 import { Socket } from 'socket.io-client'
 import { DefaultEventsMap } from '@socket.io/component-emitter'
@@ -32,6 +32,10 @@ export function Chat({ selectChatUserId, userId, socketRef }: ChatProps) {
 				setMessages(data.message)
 			})
 	}, [socketRef?.current])
+	const closeDrawer = useCallback(
+		() => changeIsSearchMessage(false),
+		[changeIsSearchMessage]
+	)
 	return (
 		<section className='flex h-full w-full animate-scaleIn flex-col bg-search-input-container-background'>
 			<ChatHeader />
@@ -41,10 +45,7 @@ export function Chat({ selectChatUserId, userId, socketRef }: ChatProps) {
 				selectChatUserId={Number(selectChatUserId)}
 			/>
 			{isSearchMessage && (
-				<Drawer
-					isOpen={isSearchMessage}
-					onCloseFn={() => changeIsSearchMessage(false)}
-				>
+				<Drawer isOpen={isSearchMessage} onCloseFn={closeDrawer}>
 					<SearchMessages />
 				</Drawer>
 			)}

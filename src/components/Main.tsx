@@ -78,16 +78,16 @@ export function Main() {
 	}, [socketRef.current])
 	return (
 		<main
-			className='grid h-screen grid-cols-6 overflow-hidden'
+			className='grid h-screen grid-cols-12 overflow-hidden'
 			data-testid='mainPage'
 		>
-			<div className='col-span-2 phone:hidden largePhone:col-span-2'>
+			<div className={twMerge('screen-xl:hidden col-span-4')}>
 				<ChatList />
 			</div>
 			<section
 				className={twMerge(
-					'relative col-span-4 grid h-full overflow-hidden bg-panel-header-background',
-					' phone:col-span-6 largePhone:col-span-4'
+					'relative col-span-8 grid h-full overflow-hidden bg-panel-header-background',
+					'screen-xl:w-screen '
 				)}
 			>
 				{selectChatUser ? (
@@ -97,7 +97,12 @@ export function Main() {
 						selectChatUserId={selectChatUser.id}
 					/>
 				) : (
-					<Empty />
+					<>
+						<div className='screen-xl-min:hidden'>
+							<ChatList />
+						</div>
+						<Empty />
+					</>
 				)}
 				{isVoiceCall && <VoiceCall />}
 				{incomingVoiceCall && <IncomingVoiceCall />}

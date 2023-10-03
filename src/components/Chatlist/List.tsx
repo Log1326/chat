@@ -31,7 +31,6 @@ export function List() {
 	useEffect(() => {
 		user?.id && getMessageContacts(user.id)
 	}, [user?.id])
-
 	return (
 		<section
 			data-testid='list'
