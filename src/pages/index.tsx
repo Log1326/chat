@@ -1,7 +1,8 @@
 import { Main } from '@/components/Main'
+import { NextPageAuth } from '@/provider/auth/auth.types'
 
-function index() {
+const index: NextPageAuth = () => {
 	return <Main />
 }
-
+index.isOnlyUser = true
 export default index

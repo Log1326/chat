@@ -8,18 +8,19 @@ module.exports = {
 				height: 'height'
 			},
 			screens: {
-				'screen-xs': { max: '320px' },
-				'screen-sm': { max: '384px' },
-				'screen-md': { max: '448px' },
-				'screen-lg': { max: '512px' },
-				'screen-xl': { max: '576px' },
+				'screen-xs': { min: '320px', max: '384px' },
+				'screen-sm': { min: '384px', max: '448px' },
+				'screen-md': { min: '448px', max: '512px' },
+				'screen-lg': { min: '512px', max: '576px' },
+				'screen-xl-max': { max: '576px' },
 				'screen-xl-min': { min: '577px' },
-				'screen-2xl': { max: '692px ' },
-				'screen-3xl': { max: '768px ' },
-				'screen-4xl': { max: '896px ' },
-				'screen-5xl': { max: '1024px' },
-				'screen-6xl': { max: '1152px' },
-				'screen-7xl': { max: '1280px' }
+				'screen-xl': { min: '577px', max: '692px' },
+				'screen-2xl': { min: '692px', max: '768px' },
+				'screen-3xl': { min: '768px', max: '896px' },
+				'screen-4xl': { min: '896px', max: '1024px' },
+				'screen-5xl': { min: '1024px', max: '1152px' },
+				'screen-6xl': { min: '1152px', max: '1280px' },
+				'screen-7xl': { min: '1280px' }
 			},
 			backgroundImage: {
 				'chat-background-color': "url('/bg-image/image-bg-color.jpg')",

@@ -1,7 +1,8 @@
-import { AiOutlineLoading } from 'react-icons/ai'
 import { CustomAvatarMenu } from '@/UI/CustomAvatarMenu'
 import { ImageView } from '@/UI/ImageView'
 import { memo } from 'react'
+import { AiOutlineLoading } from 'react-icons/ai'
+import { Icon } from '@/UI/Icon'
 
 type TypeAvatar = 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
 const TypeAndSize: Record<TypeAvatar, { width: number; height: number }> = {
@@ -15,8 +16,6 @@ interface AvatarProps {
 	type: TypeAvatar
 	src: string
 	alt: string
-	width?: number
-	height?: number
 	className?: string
 	title?: string
 	priority?: boolean
@@ -31,10 +30,7 @@ const SizeAvatar: Record<TypeAvatar, React.FC<AvatarProps>> = {
 export const Avatar = memo(function Avatar(props: AvatarProps) {
 	const size = TypeAndSize[props.type]
 	const View = SizeAvatar[props.type]
-	if (!props.src) return <AiOutlineLoading className='animate-spin' />
-	return (
-		<div data-testid='avatar'>
-			<View {...size} {...props} />
-		</div>
-	)
+	if (!props.src)
+		return <Icon Svg={AiOutlineLoading} className='animate-spin' />
+	return <View {...size} {...props} />
 })

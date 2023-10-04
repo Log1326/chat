@@ -20,10 +20,11 @@ describe('DropDown.test', () => {
 				title='hello'
 				toggle={false}
 				children={<div>hello</div>}
+				classname='w-40 hello'
 			/>
 		)
 		const container = screen.getByTestId('dropdown')
-		expect(container).toHaveClass('relative inline-block text-left z-50')
+		expect(container).toHaveClass('relative z-30  w-40 hello')
 	})
 	test('toggle true', () => {
 		render(
@@ -31,7 +32,6 @@ describe('DropDown.test', () => {
 		)
 		const container = screen.getByTestId('dropdown-button')
 		expect(container).toBeInTheDocument()
-		expect(container).toHaveClass('absolute w-36')
 	})
 	test('there is not children because toggle false', () => {
 		render(

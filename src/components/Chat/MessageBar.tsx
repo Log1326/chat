@@ -40,8 +40,11 @@ export function MessageBar({ userId, selectChatUserId }: MessageBarProps) {
 	const [showEmoji, setShowEmoji, clickShowEmoji] = useToggle(false)
 	const chooseImage = async (formData: FormData) =>
 		addMessageImage({ formData, userId, selectChatUserId })
-	const handleMessage = async () =>
-		addMessageSend({ message, from: userId, to: selectChatUserId })
+	const handleMessage = async () => {
+		if (message.trim().length > 1)
+			addMessageSend({ message, from: userId, to: selectChatUserId })
+	}
+
 	const handleEmojiClick = useCallback(
 		(value: EmojiClickData) => {
 			setMessage(value.emoji)
@@ -70,9 +73,9 @@ export function MessageBar({ userId, selectChatUserId }: MessageBarProps) {
 		[setMessage]
 	)
 	return (
-		<section className='h-[4.5rem] mt-2 relative text-white bg-input-background p-4 border-b-4 border-teal-500'>
+		<section className='relative mt-2 h-20 border-b-4 border-teal-500 bg-input-background p-4 text-white'>
 			{!showAudioRecorder && (
-				<div className='animate-scaleIn flex gap-4 justify-around items-center w-full'>
+				<div className='flex w-full animate-scaleIn items-center justify-around gap-4'>
 					<button>
 						<Icon
 							Svg={BsEmojiSmile}
@@ -85,7 +88,7 @@ export function MessageBar({ userId, selectChatUserId }: MessageBarProps) {
 					{showEmoji && (
 						<div
 							ref={emojiRef}
-							className='absolute z-30 left-10 bottom-28'
+							className='absolute bottom-28 left-10 z-30'
 						>
 							<Picker
 								onEmojiClick={handleEmojiClick}
@@ -114,10 +117,13 @@ export function MessageBar({ userId, selectChatUserId }: MessageBarProps) {
 						autoFocus
 						onChange={onChangeInput}
 						placeholder='Type a message'
-						className='outline-none rounded-lg w-full bg-gray-600 px-5 placeholder:text-sm h-10 text-xl'
+						className='h-10 w-full rounded-lg bg-gray-600 px-5 text-xl outline-none placeholder:text-sm'
 						onKeyDown={handleKeyDown}
 					/>
-					<button onClick={handleMessage}>
+					<button
+						onClick={handleMessage}
+						disabled={message.trim().length < 1}
+					>
 						<Icon
 							Svg={MdSend}
 							className='h-6 w-6 cursor-pointer hover:text-zinc-950'

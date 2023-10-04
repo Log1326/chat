@@ -5,6 +5,8 @@ import { LocalStorageService } from '@/service/LocalStorageService'
 
 export const getLoadingUser = (state: TypeRootState) =>
 	state.userStore.isLoading
+export const getIsLoadingData = (state: TypeRootState) =>
+	state.userStore.isLoadingData
 export const getUser = (state: TypeRootState) => state.userStore.userInfo
 export const getUserId = (state: TypeRootState) =>
 	state.userStore.userInfo?.id ?? null

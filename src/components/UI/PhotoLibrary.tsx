@@ -1,76 +1,71 @@
 import { IoClose } from 'react-icons/io5'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useCallback } from 'react'
 import Image from 'next/image'
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import { IImages } from '@/types/images.types'
-import { bgChat } from '@/store/user/user.types'
+import { twMerge } from 'tailwind-merge'
+import { Icon } from '@/UI/Icon'
+import { useHandleClickOutside } from '@/hooks/useHandleClickOutSide'
 
-type TypePhotoLibrary = 'avatar' | 'chat'
-interface PhotoLibraryProps {
+type TypePosition = 'fixed' | 'absolute' | 'relative' | 'sticky'
+
+interface PhotoLibraryProps<T> {
 	hiddenPhotoLib: Dispatch<SetStateAction<boolean>>
-	imagesAvatar?: IImages<string>[]
-	changeAvatar?: ActionCreatorWithPayload<string>
-	changeBg?: ActionCreatorWithPayload<bgChat>
-	imagesBg?: IImages<bgChat>[]
-	type?: TypePhotoLibrary
+	images: IImages<T>[]
+	onChange: ActionCreatorWithPayload<T>
+	position?: TypePosition
+	classname?: string
 }
-export function PhotoLibrary({
+export function PhotoLibrary<T>({
 	hiddenPhotoLib,
-	imagesAvatar,
-	changeAvatar,
-	imagesBg,
-	changeBg,
-	type = 'avatar'
-}: PhotoLibraryProps) {
-	const handleChange = (image: IImages<any>) => {
-		if (type === 'chat') changeBg?.(image.name)
-		else changeAvatar?.(image.value)
-		hiddenPhotoLib(false)
-	}
+	images,
+	onChange,
+	position = 'relative',
+	classname
+}: PhotoLibraryProps<T>) {
+	const handleChange = useCallback(
+		(image: IImages<T>) => {
+			onChange(image.name)
+			hiddenPhotoLib(false)
+		},
+		[hiddenPhotoLib, onChange]
+	)
+	const refPhotoLib = useHandleClickOutside({
+		type: 'click',
+		callback: () => hiddenPhotoLib(false)
+	})
 	return (
 		<div
-			className={`fixed z-30 top-0 ${
-				type === 'chat' ? 'left-36' : 'left-0'
-			}  h-full w-full grid place-items-center`}
+			className={twMerge(
+				'z-30 grid h-full w-full place-items-center  px-4',
+				position,
+				classname
+			)}
 		>
-			<div className='flex justify-center items-center w-fit p-20 rounded-lg bg-input-background relative'>
-				<div
+			<div
+				ref={refPhotoLib}
+				className='relative w-fit rounded-lg bg-input-background p-10'
+			>
+				<Icon
+					Svg={IoClose}
 					onClick={() => hiddenPhotoLib(false)}
-					className='bg-search-input-container-background cursor-pointer m-1 p-1 hover:opacity-60 rounded-lg absolute top-0 right-0'
-				>
-					<IoClose className='h-10 w-10 text-white' />
-				</div>
-				<div className='grid grid-cols-3 gap-10 justify-center items-center'>
-					{type === 'chat' &&
-						imagesBg?.map((image, index) => (
-							<div
-								key={image.name + index}
-								onClick={() => handleChange(image)}
-								className='h-24 w-24  cursor-pointer relative hover:opacity-50'
-							>
-								<Image
-									className='rounded-2xl'
-									src={image.value}
-									alt='avatarImageChoose'
-									fill
-								/>
-							</div>
-						))}
-					{type === 'avatar' &&
-						imagesAvatar?.map((image, index) => (
-							<div
-								key={image.name + index}
-								onClick={() => handleChange(image)}
-								className='h-24 w-24  cursor-pointer relative hover:opacity-50'
-							>
-								<Image
-									className='rounded-2xl'
-									src={image.value}
-									alt='avatarImageChoose'
-									fill
-								/>
-							</div>
-						))}
+					className='absolute right-0 top-0 m-1 h-10 w-10 cursor-pointer rounded-lg bg-search-input-container-background p-2 text-white hover:opacity-80'
+				/>
+				<div className='grid grid-cols-3 gap-5 screen-xl-max:grid-cols-2'>
+					{images?.map((image, index) => (
+						<div
+							key={index}
+							onClick={() => handleChange(image)}
+							className='relative h-24  w-24 cursor-pointer hover:opacity-50'
+						>
+							<Image
+								className='rounded-2xl'
+								src={String(image.value)}
+								alt='avatarImageChoose'
+								fill
+							/>
+						</div>
+					))}
 				</div>
 			</div>
 		</div>

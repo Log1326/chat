@@ -25,11 +25,9 @@ import {
 } from '@/store/call/call.selectors'
 import { VoiceCall } from '@/components/Call/VoiceCall'
 import { VideoCall } from '@/components/Call/VideoCall'
-import { useAuth } from '@/hooks/useAuth'
 import { twMerge } from 'tailwind-merge'
 
 export function Main() {
-	useAuth()
 	const user = useSelector(getUser)
 	const selectChatUser = useSelector(getSelectUser)
 	const socketRef: MutableRefObject<Socket | undefined> = useRef()
@@ -81,13 +79,13 @@ export function Main() {
 			className='grid h-screen grid-cols-12 overflow-hidden'
 			data-testid='mainPage'
 		>
-			<div className={twMerge('screen-xl:hidden col-span-4')}>
+			<div className={twMerge('screen-xl-max:hidden col-span-4')}>
 				<ChatList />
 			</div>
 			<section
 				className={twMerge(
 					'relative col-span-8 grid h-full overflow-hidden bg-panel-header-background',
-					'screen-xl:w-screen '
+					'screen-xl-max:w-screen '
 				)}
 			>
 				{selectChatUser ? (

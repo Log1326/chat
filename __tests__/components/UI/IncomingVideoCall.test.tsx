@@ -8,7 +8,6 @@ describe('IncomingVideoCall.test', () => {
 			callStore: {
 				videoCall: {
 					isVideoCall: true,
-					isLoadingVideoCall: false,
 					incomingVideoCall: {
 						type: 'incoming',
 						callType: 'video',
@@ -21,6 +20,7 @@ describe('IncomingVideoCall.test', () => {
 		})
 		const container = screen.getByTestId('popup')
 		expect(container).toBeInTheDocument()
+		screen.debug()
 	})
 	test('without data', () => {
 		renderWithRedux(<IncomingVideoCall />, {

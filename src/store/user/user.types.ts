@@ -23,6 +23,7 @@ export interface IInitialState {
 	selectUser?: IUser
 	isNewUser: boolean
 	isLoading?: boolean
+	isLoadingData?: boolean
 	backgroundChat?: bgChat
 	error?: string
 	coordinates?: TypeCoordinates

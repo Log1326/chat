@@ -12,22 +12,30 @@ import Image from 'next/image'
 import { useSelector } from 'react-redux'
 import { getCoordinates } from '@/store/user/user.selector'
 import { useActions } from '@/hooks/useActions'
+import { twMerge } from 'tailwind-merge'
 
 const images: IImages<string>[] = [
-	{ name: 'one', value: '/avatars/1.png' },
-	{ name: 'two', value: '/avatars/2.png' },
-	{ name: 'three', value: '/avatars/3.png' },
-	{ name: 'four', value: '/avatars/4.png' },
-	{ name: 'five', value: '/avatars/5.png' },
-	{ name: 'six', value: '/avatars/6.png' },
-	{ name: 'seven', value: '/avatars/7.png' },
-	{ name: 'eight', value: '/avatars/8.png' },
-	{ name: 'nine', value: '/avatars/9.png' }
+	{ value: '/avatars/1.png', name: '/avatars/1.png' },
+	{ value: '/avatars/2.png', name: '/avatars/2.png' },
+	{ value: '/avatars/3.png', name: '/avatars/3.png' },
+	{ value: '/avatars/4.png', name: '/avatars/4.png' },
+	{ value: '/avatars/5.png', name: '/avatars/5.png' },
+	{ value: '/avatars/6.png', name: '/avatars/6.png' },
+	{ value: '/avatars/7.png', name: '/avatars/7.png' },
+	{ value: '/avatars/8.png', name: '/avatars/8.png' },
+	{ value: '/avatars/9.png', name: '/avatars/9.png' }
 ]
-export const CustomAvatarMenu: FC<{ src: string }> = ({ src }) => {
+interface CustomAvatarMenuProps {
+	src: string
+	className?: string
+}
+export const CustomAvatarMenu: FC<CustomAvatarMenuProps> = ({
+	src,
+	className
+}) => {
 	const coordinates = useSelector(getCoordinates)
 	const { setCoordinates } = useActions()
-	const [hover, _, handleHoverFn] = useToggle()
+	const [hover, setHover] = useToggle()
 	const { menu, stateMenu, changeStateMenu, fn } = useContextMenu()
 	const showContextVisible = useCallback(
 		(e: React.MouseEvent<HTMLDivElement>) => {
@@ -40,19 +48,22 @@ export const CustomAvatarMenu: FC<{ src: string }> = ({ src }) => {
 	return (
 		<>
 			<div
-				onMouseEnter={handleHoverFn}
-				onMouseLeave={handleHoverFn}
-				className='relative h-60 w-60 z-0 '
+				onMouseEnter={() => setHover(true)}
+				onMouseLeave={() => setHover(false)}
+				className={twMerge(
+					'relative z-0 h-60 w-60 cursor-pointer',
+					className
+				)}
 				onClick={e => showContextVisible(e)}
 			>
 				{hover && (
 					<div
 						id={CONTEXT_OPENED}
-						className='z-20 w-full h-full absolute flex flex-col justify-center items-center'
+						className='absolute z-20 flex h-full w-full flex-col items-center justify-center '
 					>
 						<FaCamera />
 						<span
-							className='flex text-center w-14 '
+							className='flex w-14 text-center '
 							id={CONTEXT_OPENED}
 						>
 							Change
@@ -69,6 +80,7 @@ export const CustomAvatarMenu: FC<{ src: string }> = ({ src }) => {
 				/>
 				{stateMenu.isContextMenuVisible && (
 					<ContextMenu
+						position='sticky'
 						item={{
 							options: menu.contextMenuOptions,
 							coordinates: coordinates,
@@ -81,9 +93,11 @@ export const CustomAvatarMenu: FC<{ src: string }> = ({ src }) => {
 				)}
 			</div>
 			{stateMenu.showPhotoLib && (
-				<PhotoLibrary
-					changeAvatar={fn.setImage}
-					imagesAvatar={images}
+				<PhotoLibrary<string>
+					position='fixed'
+					classname='top-0 left-0'
+					onChange={fn.setImage}
+					images={images}
 					hiddenPhotoLib={changeStateMenu.setShowPhotoLib}
 				/>
 			)}

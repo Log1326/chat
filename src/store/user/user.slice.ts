@@ -42,6 +42,9 @@ export const userSlice = createSlice({
 		changeIsLoading: (state, action: PayloadAction<boolean>) => {
 			state.isLoading = action.payload
 		},
+		changeIsLoadingData: (state, action: PayloadAction<boolean>) => {
+			state.isLoadingData = action.payload
+		},
 		changeBackgroundChat: (state, action: PayloadAction<bgChat>) => {
 			state.backgroundChat = action.payload
 			LocalStorageService.setChatBg(action.payload)
@@ -97,15 +100,15 @@ export const userSlice = createSlice({
 				state.error = action.meta.requestStatus
 			})
 			.addCase(getAllUsers.pending, state => {
-				state.isLoading = true
+				state.isLoadingData = true
 				state.error = ''
 			})
 			.addCase(getAllUsers.fulfilled, (state, action) => {
 				state.users = action.payload
-				state.isLoading = false
+				state.isLoadingData = false
 			})
 			.addCase(getAllUsers.rejected, (state, action) => {
-				state.isLoading = false
+				state.isLoadingData = false
 				state.error = action.meta.requestStatus
 			})
 	}

@@ -31,6 +31,7 @@ export function List() {
 	useEffect(() => {
 		user?.id && getMessageContacts(user.id)
 	}, [user?.id])
+	const terms: boolean = !!(searchUser && filterUser)
 	return (
 		<section
 			data-testid='list'
@@ -55,21 +56,19 @@ export function List() {
 								There is no data...
 							</p>
 						)}
-					{searchUser &&
-						filterUser?.map(user => (
-							<ChatLIstItem<IGetInitialUsersChat<IUser>>
-								key={String(user.id)}
-								item={user}
-							/>
-						))}
-					{!searchUser.length &&
-						!filterUser?.length &&
-						usersContacts?.map(userContact => (
-							<ChatLIstItem<IGetInitialUsersChat<IUser>>
-								key={String(userContact.id)}
-								item={userContact}
-							/>
-						))}
+					{terms
+						? filterUser?.map(user => (
+								<ChatLIstItem<IGetInitialUsersChat<IUser>>
+									key={String(user.id)}
+									item={user}
+								/>
+						  ))
+						: usersContacts?.map(userContact => (
+								<ChatLIstItem<IGetInitialUsersChat<IUser>>
+									key={String(userContact.id)}
+									item={userContact}
+								/>
+						  ))}
 				</div>
 			)}
 		</section>

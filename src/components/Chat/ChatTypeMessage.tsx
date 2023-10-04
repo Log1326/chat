@@ -1,7 +1,7 @@
 import { ChatViewMessage } from '@/components/Chat/ChatViewMessage'
 import { IMessage, TypeMessage } from '@/store/message/message.types'
 import dynamic from 'next/dynamic'
-import React from 'react'
+import React, { memo } from 'react'
 import { ImageMessage } from '@/components/Chat/ImageMessage'
 import { TextMessage } from '@/UI/TextMessage'
 
@@ -26,11 +26,13 @@ const ViewMessageType: Record<
 	image: ImageMessage,
 	audio: VoiceMessage
 }
-export function ChatTypeMessage(props: ChatTypeMessageProps) {
+export const ChatTypeMessage = memo(function ChatTypeMessage(
+	props: ChatTypeMessageProps
+) {
 	const View = ViewMessageType[props.message.type]
 	return (
 		<ChatViewMessage {...props}>
 			<View {...props} />
 		</ChatViewMessage>
 	)
-}
+})

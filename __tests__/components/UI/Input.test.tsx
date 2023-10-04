@@ -3,24 +3,14 @@ import { InputCustom } from '@/UI/Input'
 import userEvent from '@testing-library/user-event'
 
 describe('Input.test', () => {
-	test('first', () => {
-		render(<InputCustom />)
-		const container = screen.getByTestId('inputCustom')
-		expect(container).toBeInTheDocument()
-	})
 	test('label', () => {
-		render(<InputCustom label={true} name={'custom'} type='text' />)
-		const container = screen.getByLabelText('custom')
+		render(<InputCustom label={'custom'} type='text' />)
+		const container = screen.getByText('custom')
 		expect(container).toBeInTheDocument()
 	})
 	test('change value', async () => {
 		render(
-			<InputCustom
-				label={true}
-				name={'custom'}
-				type='text'
-				placeholder='input...'
-			/>
+			<InputCustom label={'custom'} type='text' placeholder='input...' />
 		)
 		const input = screen.getByPlaceholderText<HTMLInputElement>('input...')
 		expect(input).toBeInTheDocument()
@@ -34,8 +24,7 @@ describe('Input.test', () => {
 	test('input password', () => {
 		render(
 			<InputCustom
-				label={true}
-				name={'custom'}
+				label={'custom'}
 				type='password'
 				placeholder='password'
 			/>

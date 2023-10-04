@@ -20,6 +20,8 @@ export const ImageMessage = memo(function ImageMessage({
 			alt={message.message}
 			height={300}
 			width={300}
+			blurDataURL='/load.gif'
+			placeholder='blur'
 		/>
 	)
 })

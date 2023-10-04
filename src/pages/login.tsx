@@ -1,33 +1,31 @@
 import { FcGoogle } from 'react-icons/fc'
 import { useRouter } from 'next/router'
 import { useActions } from '@/hooks/useActions'
-import {
-	getLoadingUser,
-	getNewUserBool,
-	getUser
-} from '@/store/user/user.selector'
+import { getLoadingUser, getNewUserBool } from '@/store/user/user.selector'
 import { useSelector } from 'react-redux'
 import { SignIn } from '@/UI/SignIn'
 import Image from 'next/image'
-import { RouterEnumPath } from '@/types/routerEnumPath'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { Loading } from '@/UI/Loading'
+import { RouterEnumPath } from '@/types/routerEnumPath'
+import { LocalStorageService } from '@/service/LocalStorageService'
 
 function login() {
 	const { push } = useRouter()
-	const userInfo = useSelector(getUser)
+	const userInfo = LocalStorageService.getParseUserLocalStorage()
 	const newUser = useSelector(getNewUserBool)
 	const isLoading = useSelector(getLoadingUser)
 	const { CheckAuthInGoogleAccount, changeIsLoading } = useActions()
 	useEffect(() => {
-		if (isLoading) {
-			if (newUser) push(RouterEnumPath.ONBOARDING)
-			if (!newUser && userInfo?.email) push(RouterEnumPath.MAIN)
-		}
+		if (newUser) push(RouterEnumPath.ONBOARDING)
+		if (!newUser && userInfo?.email) push(RouterEnumPath.MAIN)
 	}, [newUser, userInfo?.email])
 	useEffect(() => {
 		changeIsLoading(false)
 	}, [])
+	const loginWithGoogle = useCallback(() => {
+		CheckAuthInGoogleAccount()
+	}, [CheckAuthInGoogleAccount])
 	if (isLoading) return <Loading flex full center />
 	return (
 		<div className='flex h-screen flex-col items-center justify-center gap-6 bg-panel-header-background'>
@@ -45,7 +43,7 @@ function login() {
 			<SignIn />
 			<button
 				className='flex items-center justify-center gap-2 rounded-lg bg-search-input-container-background p-2'
-				onClick={() => CheckAuthInGoogleAccount()}
+				onClick={loginWithGoogle}
 			>
 				<FcGoogle className='text-4xl' />
 				<span className='text-2xl text-white'>

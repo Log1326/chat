@@ -27,10 +27,8 @@ export function ChatLIstItem<T>({ item }: ChatLIstItemProps<T>) {
 						height={60}
 						className='rounded-full'
 					/>
-					<div className='screen-3xl:gap-2 screen-xl-min:text-[40px] flex w-full items-center gap-5'>
-						<p className='screen-3xl:text-xs screen-4xl:text-xs text-xl'>
-							{item.name}
-						</p>
+					<div className='flex w-full items-center gap-5'>
+						<p className='text-2xl'>{item.name}</p>
 						{/*@ts-ignore*/}
 						{item.message && (
 							<span className='text-xs text-gray-400'>

@@ -10,7 +10,6 @@ import { useRouter } from 'next/router'
 import { LocalStorageService } from '@/service/LocalStorageService'
 import { Icon } from '@/UI/Icon'
 import { useCallback, useState } from 'react'
-import { twMerge } from 'tailwind-merge'
 import { useHandleClickOutside } from '@/hooks/useHandleClickOutSide'
 
 export function ChatListHeader() {
@@ -64,7 +63,7 @@ export function ChatListHeader() {
 				>
 					<Icon
 						Svg={BsFillChatLeftTextFill}
-						className={twMerge('h-6 w-6 hover:opacity-90')}
+						className='h-6 w-6 hover:opacity-90'
 						title='Chat'
 					/>
 				</button>
@@ -72,7 +71,7 @@ export function ChatListHeader() {
 					title={
 						<Icon
 							Svg={BsThreeDotsVertical}
-							className={twMerge('h-6 w-6 hover:opacity-90')}
+							className='h-6 w-6 hover:opacity-90'
 							title='Options'
 							onClick={openMenuFn}
 						/>

@@ -18,19 +18,19 @@ export const ChatViewMessage = ({
 	return (
 		<div
 			className={twMerge(
-				' h-30 mt-3 flex items-end gap-2 rounded-xl border border-teal-600 bg-incoming-background p-3',
+				' h-30 mt-3 flex items-end justify-around gap-2 rounded-xl border border-teal-600 bg-incoming-background p-3',
 				compressed &&
-					'screen-2xl:hidden w-28 border-none bg-incoming-background',
+					'screen-xl-max:w-40 w-48 border-none bg-incoming-background screen-xl:hidden screen-2xl:hidden screen-3xl:w-28 screen-4xl:w-40',
 				isSender &&
 					'cursor-pointer bg-outgoing-background hover:brightness-125'
 			)}
 		>
 			{children}
-			<div className={twMerge('flex gap-2')}>
+			<div className='flex gap-2'>
 				<span
 					className={twMerge(
 						'self-end text-xs text-teal-600',
-						compressed && 'w-10 text-[8px]'
+						compressed && 'w-14 text-[12px]'
 					)}
 				>
 					{calculateTime(String(message.createdAt))}

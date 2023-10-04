@@ -108,7 +108,7 @@ export function ChatContainer() {
 					/>
 				)}
 				{openInputField && (
-					<Popup classname='fixed top-1/2 left-1/2'>
+					<Popup classname='fixed top-1/2 left-1/2 screen-xl-max:absolute screen-xl-max:left-1/4 screen-xl-max:top-4/5'>
 						<div
 							className='flex items-end space-x-3'
 							id={INPUT_ALTER_ID_REF}
@@ -119,7 +119,7 @@ export function ChatContainer() {
 								onChange={setAlterText}
 								placeholder='Input...'
 								label='Replace message'
-								classname='w-40 '
+								classnames='w-40 '
 								autoFocus
 								callback={handleCloseAndSend}
 							/>

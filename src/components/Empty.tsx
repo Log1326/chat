@@ -4,7 +4,7 @@ export function Empty() {
 	return (
 		<div
 			data-testid='empty'
-			className='screen-xl:hidden grid h-full place-content-center'
+			className='screen-xl-max:hidden grid h-full place-content-center'
 		>
 			<Image
 				src={'/whatsapp.gif'}

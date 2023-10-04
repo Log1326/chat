@@ -16,13 +16,13 @@ export const IncomingContainer = ({
 		<div data-testid='IncomingContainer' className='flex flex-1 gap-4'>
 			<Image
 				src={info?.user.image ?? '/default_avatar.png'}
-				alt={info?.user.image + 'image'}
+				alt={info.user.name}
 				height={100}
 				width={100}
 				className='rounded-full bg-gray-500 p-2'
 			/>
-			<div className='flex flex-col gap-2 items-start text-white '>
-				<span className='text-lg text-ellipsis w-48 overflow-hidden'>
+			<div className='flex flex-col items-start gap-2 text-white '>
+				<span className='w-48 overflow-hidden text-ellipsis text-lg'>
 					{info?.user.name}
 				</span>
 				<p className='flex gap-2'>
@@ -31,11 +31,10 @@ export const IncomingContainer = ({
 					<span>call</span>
 				</p>
 
-				<div className='flex gap-2 justify-center items-center'>
+				<div className='flex items-center justify-center gap-2'>
 					<button
-						data-testid='button-accept-incoming-container-call'
 						onClick={accept}
-						className='inline-flex items-center px-2 py-1 gap-2 text-green-600 bg-gray-900  rounded-lg cursor-pointer hover:bg-gray-600'
+						className='inline-flex cursor-pointer items-center gap-2 rounded-lg bg-gray-900 px-2  py-1 text-green-600 hover:bg-gray-600'
 					>
 						<span>Accept</span>
 						<MdOutlineCall
@@ -46,7 +45,7 @@ export const IncomingContainer = ({
 					<button
 						data-testid='button-reject-incoming-container-call'
 						onClick={reject}
-						className='inline-flex items-center px-2 py-1 gap-2 text-red-600 bg-gray-900  rounded-lg cursor-pointer hover:bg-gray-600'
+						className='inline-flex cursor-pointer items-center gap-2 rounded-lg bg-gray-900 px-2  py-1 text-red-600 hover:bg-gray-600'
 					>
 						<span>Reject</span>
 						<MdOutlineCallEnd

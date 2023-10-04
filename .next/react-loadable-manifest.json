@@ -20,5 +20,11 @@
     "files": [
       "static/chunks/node_modules_zego-express-engine-webrtc_ZegoExpressWebRTC_js.js"
     ]
+  },
+  "../provider/auth/AuthProvider.tsx -> ./CheckAuth": {
+    "id": "../provider/auth/AuthProvider.tsx -> ./CheckAuth",
+    "files": [
+      "static/chunks/src_provider_auth_CheckAuth_tsx.js"
+    ]
   }
 }

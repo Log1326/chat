@@ -84,16 +84,16 @@ export function ChatHeader() {
 		videoCallOpenWindow
 	])
 
+	const openSearchDrawer = useCallback(
+		() => changeIsSearchMessage(true),
+		[changeIsSearchMessage]
+	)
 	const contextMenu = useMemo(
 		() => [
 			{ name: 'close chat', callback: () => setSelectUser(undefined) },
 			{ name: 'change bg', callback: () => setOpenModal(true) }
 		],
 		[setOpenModal, setSelectUser]
-	)
-	const openSearchDrawer = useCallback(
-		() => changeIsSearchMessage(true),
-		[changeIsSearchMessage]
 	)
 	return (
 		<article className='flex h-20 items-center justify-between bg-input-background p-2'>
@@ -156,10 +156,11 @@ export function ChatHeader() {
 			</section>
 			{openModal && (
 				<PhotoLibrary
+					position='absolute'
+					classname='top-10 left-0'
 					hiddenPhotoLib={setOpenModal}
-					changeBg={changeBackgroundChat}
-					imagesBg={images}
-					type='chat'
+					onChange={changeBackgroundChat}
+					images={images}
 				/>
 			)}
 		</article>

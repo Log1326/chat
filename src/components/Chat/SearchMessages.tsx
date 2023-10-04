@@ -37,6 +37,8 @@ export const SearchMessages = memo(function SearchMessages() {
 		() => changeIsSearchMessage(false),
 		[changeIsSearchMessage]
 	)
+	const terms: boolean = !!(searchTerm && messageFilter)
+
 	return (
 		<section className='custom-scrollbar relative z-40 h-full overflow-auto bg-background-default-hover'>
 			<span className='absolute p-2 px-5'>
@@ -60,7 +62,7 @@ export const SearchMessages = memo(function SearchMessages() {
 						<>
 							{!searchTerm && (
 								<div className=' mt-2 grid animate-fade place-items-center gap-2  text-gray-300'>
-									<span className='screen-3xl:text-[14px] w-full text-center text-lg'>
+									<span className='w-full text-center text-lg screen-3xl:text-[14px]'>
 										Search for messages with{' '}
 									</span>
 									<span className='flex items-center gap-4 text-xl italic'>
@@ -75,14 +77,15 @@ export const SearchMessages = memo(function SearchMessages() {
 									</span>
 								</div>
 							)}
-							{searchTerm && !messageFilter?.length && (
-								<span className='screen-2xl:text-[18px] screen-xl:text-[14px] grid animate-fade place-items-center text-xl text-gray-950'>
-									Messages not found...
-								</span>
-							)}
 							{searchTerm &&
-								messageFilter &&
-								messageFilter.map(message => (
+								!isLoadingMessages &&
+								!messageFilter?.length && (
+									<span className='mt-4 grid animate-fade place-items-center text-xl text-white screen-xl:text-[14px] screen-2xl:text-[18px]'>
+										Messages not found...
+									</span>
+								)}
+							{terms &&
+								messageFilter?.map(message => (
 									<div
 										className='flex animate-appearance flex-col break-all'
 										key={message.id}
