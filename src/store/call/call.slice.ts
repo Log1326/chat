@@ -1,20 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {
-	CallView,
-	IIncomingCall,
-	IInitialStateCall
-} from '@/store/call/call.types'
+import { CallState, IInitialStateCall } from '@/store/call/call.types'
+import { getTokenCallAsync } from '@/store/call/call.action'
 
 const initialState: IInitialStateCall = {
 	videoCall: {
-		isVideoCallAccepted: false,
 		isLoadingVideoCall: false,
-		isVideoCallOutgoing: false
+		isVideoCall: false
 	},
 	voiceCall: {
-		isVoiceCallAccepted: false,
 		isLoadingVoiceCall: false,
-		isVoiceCallOutgoing: false
+		isVoiceCall: false
 	}
 }
 
@@ -23,28 +18,42 @@ export const callSlice = createSlice({
 	name: 'callStore',
 	reducers: {
 		videoCallOpenWindow: (state, action: PayloadAction<boolean>) => {
-			if (state.videoCall) state.videoCall.isVideoCallOutgoing = action.payload
+			if (state.videoCall) state.videoCall.isVideoCall = action.payload
+		},
+		videoCall: (state, action: PayloadAction<CallState>) => {
+			if (state.videoCall) state.videoCall.videoCallState = action.payload
+		},
+		setIncomingVideoCall: (
+			state,
+			action: PayloadAction<CallState | undefined>
+		) => {
+			if (state.videoCall) state.videoCall.incomingVideoCall = action.payload
 		},
 		voiceCallOpenWindow: (state, action: PayloadAction<boolean>) => {
-			if (state.voiceCall) state.voiceCall.isVoiceCallOutgoing = action.payload
+			if (state.voiceCall) state.voiceCall.isVoiceCall = action.payload
 		},
-		videoCallOutgoingType: (state, action: PayloadAction<CallView>) => {
-			if (state.videoCall?.videoCallState)
-				state.videoCall.videoCallState.type = action.payload
+		voiceCall: (state, action: PayloadAction<CallState>) => {
+			if (state.voiceCall) state.voiceCall.voiceCallState = action.payload
 		},
-		voiceCallOutgoingCall: (state, action: PayloadAction<CallView>) => {
-			if (state.voiceCall?.voiceCallState)
-				state.voiceCall.voiceCallState.type = action.payload
-		},
-		setIncomingVoiceCall: (state, action: PayloadAction<IIncomingCall>) => {
+		setIncomingVoiceCall: (
+			state,
+			action: PayloadAction<CallState | undefined>
+		) => {
 			if (state.voiceCall) state.voiceCall.incomingVoiceCall = action.payload
 		},
-		setIncomingVideoCall: (state, action: PayloadAction<IIncomingCall>) => {
-			if (state.videoCall) state.videoCall.incomingVideoCall = action.payload
+		setIsAcceptCall: (state, action: PayloadAction<boolean>) => {
+			state.isAcceptCall = action.payload
+		},
+		setToken: (state, action: PayloadAction<string>) => {
+			state.token = action.payload
 		},
 		setEndCall: state => {
 			state.videoCall = null
 			state.voiceCall = null
 		}
-	}
+	},
+	extraReducers: builder =>
+		builder.addCase(getTokenCallAsync.fulfilled, (state, action) => {
+			state.token = action.payload
+		})
 })

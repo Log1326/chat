@@ -4,33 +4,32 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { getVoiceCallState } from '@/store/call/call.selectors'
 import { getSocketState } from '@/store/message/message.selectors'
-import { getSelectUser } from '@/store/user/user.selector'
+import { getUser } from '@/store/user/user.selector'
 import { OUTGOING_VOICE_CALL } from '@/utils/constants'
 
 export function VoiceCall() {
 	const voiceCall = useSelector(getVoiceCallState)
 	const socketRef = useSelector(getSocketState)
-	const selectedUser = useSelector(getSelectUser)
-	console.log(voiceCall)
+	const userInfo = useSelector(getUser)
 	useEffect(() => {
-		if (voiceCall && voiceCall.type === 'outgoing') {
-			alert('sad')
+		if (voiceCall?.type === 'outgoing') {
 			socketRef?.emit(OUTGOING_VOICE_CALL, {
-				to: voiceCall.id,
+				to: Number(voiceCall.id),
 				from: {
-					id: selectedUser?.id,
-					image: selectedUser?.image,
-					name: selectedUser?.name
+					id: userInfo?.id,
+					image: userInfo?.image,
+					name: userInfo?.name
 				},
 				callType: voiceCall.callType,
-				roomId: voiceCall.roomId
+				roomId: voiceCall.roomId,
+				type: voiceCall.type
 			})
 		}
-	}, [])
-	if (selectedUser)
+	}, [voiceCall?.type === 'outgoing'])
+	if (voiceCall)
 		return (
 			<Modal>
-				<Container data={selectedUser} type='voice' />
+				<Container data={voiceCall} type='voice' />
 			</Modal>
 		)
 }

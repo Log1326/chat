@@ -1,34 +1,34 @@
 import { Popup } from '@/UI/Popup'
-import Image from 'next/image'
-import { MdOutlineCall, MdOutlineCallEnd } from 'react-icons/md'
+import { useSelector } from 'react-redux'
+import { getIncomingVoiceCall } from '@/store/call/call.selectors'
+import { IncomingContainer } from '@/UI/IncomingContainer'
+import { useCallback } from 'react'
+import { useActions } from '@/hooks/useActions'
+import { getSocketState } from '@/store/message/message.selectors'
+import { ACCEPT_INCOMING_CALL, REJECT_VOICE_CALL } from '@/utils/constants'
 
 export const IncomingVoiceCall = () => {
-	const accept = () => {}
-	const reject = () => {}
-	return (
-		<Popup>
-			<div className='flex gap-4 justify-around items-center'>
-				<div className='grid place-items-center'>
-					<span>{'voice'}</span>
-					<Image
-						src={'/default_avatar.png'}
-						alt={'image'}
-						height={50}
-						width={50}
-						className='rounded-full bg-gray-500 p-2'
-					/>
-					<span className='text-white text-lg'>{'Antonio'}</span>
-				</div>
-
-				<div className='flex gap-4'>
-					<button className='text-green-600 bg-gray-900  rounded-full cursor-pointer hover:bg-gray-600'>
-						<MdOutlineCall title='call accept' className='h-8 w-8 p-1' />
-					</button>
-					<button className='text-red-600 bg-gray-900  rounded-full cursor-pointer hover:bg-gray-600'>
-						<MdOutlineCallEnd title='call reject' className='h-8 w-8 p-1' />
-					</button>
-				</div>
-			</div>
-		</Popup>
-	)
+	const { voiceCallOpenWindow, voiceCall, setIncomingVoiceCall } = useActions()
+	const incomingCall = useSelector(getIncomingVoiceCall)
+	const socketRef = useSelector(getSocketState)
+	const accept = useCallback(() => {
+		if (incomingCall) voiceCall(incomingCall)
+		voiceCallOpenWindow(true)
+		socketRef?.emit(ACCEPT_INCOMING_CALL, { id: incomingCall?.user.id })
+		setIncomingVoiceCall(undefined)
+	}, [incomingCall])
+	const reject = useCallback(() => {
+		socketRef?.emit(REJECT_VOICE_CALL, { to: incomingCall?.user.id })
+		setIncomingVoiceCall(undefined)
+	}, [])
+	if (incomingCall)
+		return (
+			<Popup>
+				<IncomingContainer
+					accept={accept}
+					reject={reject}
+					info={incomingCall}
+				/>
+			</Popup>
+		)
 }

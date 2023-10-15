@@ -1,34 +1,41 @@
 import { Popup } from '@/UI/Popup'
-import { MdOutlineCall, MdOutlineCallEnd } from 'react-icons/md'
-import Image from 'next/image'
+import { useSelector } from 'react-redux'
+import { getIncomingVideoCall } from '@/store/call/call.selectors'
+import { useCallback } from 'react'
+import { IncomingContainer } from '@/UI/IncomingContainer'
+import { getSocketState } from '@/store/message/message.selectors'
+import { useActions } from '@/hooks/useActions'
+import { ACCEPT_INCOMING_CALL, REJECTED_VIDEO_CALL } from '@/utils/constants'
 
 export function IncomingVideoCall() {
-	const accept = () => {}
-	const reject = () => {}
-	return (
-		<Popup>
-			<div className='flex gap-4 justify-around items-center'>
-				<div className='grid place-items-center'>
-					<span>{'video'}</span>
-					<Image
-						src={'/default_avatar.png'}
-						alt={'image'}
-						height={50}
-						width={50}
-						className='rounded-full bg-gray-500 p-2'
-					/>
-					<span className='text-white text-lg'>{'Antonio'}</span>
-				</div>
+	const incomingCall = useSelector(getIncomingVideoCall)
+	const socketRef = useSelector(getSocketState)
+	const {
+		videoCallOpenWindow,
+		videoCall,
+		setIncomingVideoCall,
+		setIsAcceptCall
+	} = useActions()
 
-				<div className='flex gap-4'>
-					<button className='text-green-600 bg-gray-900  rounded-full cursor-pointer hover:bg-gray-600'>
-						<MdOutlineCall title='call accept' className='h-8 w-8 p-1' />
-					</button>
-					<button className='text-red-600 bg-gray-900  rounded-full cursor-pointer hover:bg-gray-600'>
-						<MdOutlineCallEnd title='call reject' className='h-8 w-8 p-1' />
-					</button>
-				</div>
-			</div>
-		</Popup>
-	)
+	const accept = useCallback(() => {
+		if (incomingCall) videoCall(incomingCall)
+		videoCallOpenWindow(true)
+		setIsAcceptCall(true)
+		socketRef?.emit(ACCEPT_INCOMING_CALL, { id: incomingCall?.user.id })
+		setIncomingVideoCall(undefined)
+	}, [incomingCall])
+	const reject = useCallback(() => {
+		socketRef?.emit(REJECTED_VIDEO_CALL, { to: incomingCall?.user.id })
+		setIncomingVideoCall(undefined)
+	}, [])
+	if (incomingCall)
+		return (
+			<Popup>
+				<IncomingContainer
+					accept={accept}
+					reject={reject}
+					info={incomingCall}
+				/>
+			</Popup>
+		)
 }

@@ -5,6 +5,7 @@ const AUTH_ROUTE = `${HOST}/api/auth`
 const MESSAGES_ROUTE = `${HOST}/api/messages`
 
 export const CHECK_AUTH_ROUTE = `${AUTH_ROUTE}/check-user`
+export const GENERATE_TOKEN_ROUTE = `${AUTH_ROUTE}/generate-token`
 export const ONBOARD_USER_ROUTE = `${AUTH_ROUTE}/onboard-user`
 export const GET_ALL_USERS = `${AUTH_ROUTE}/users-contacts`
 export const ADD_MESSAGES = `${MESSAGES_ROUTE}/add-message`

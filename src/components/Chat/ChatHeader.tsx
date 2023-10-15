@@ -39,10 +39,10 @@ export function ChatHeader() {
 		setSelectUser,
 		changeIsSearchMessage,
 		changeBackgroundChat,
+		videoCall,
 		videoCallOpenWindow,
-		voiceCallOpenWindow,
-		videoCallOutgoingType,
-		voiceCallOutgoingCall
+		voiceCall,
+		voiceCallOpenWindow
 	} = useActions()
 	const [openMenu, setOpenMenu, openMenuFn] = useToggle()
 	const [openModal, setOpenModal] = useToggle()
@@ -51,11 +51,31 @@ export function ChatHeader() {
 =======
 	const handleCallVoice = () => {
 		voiceCallOpenWindow(true)
-		videoCallOutgoingType('outgoing')
+		voiceCall({
+			id: String(selectUser?.id),
+			user: {
+				id: selectUser?.id,
+				image: String(selectUser?.image),
+				name: String(selectUser?.name)
+			},
+			callType: 'audio',
+			type: 'outgoing',
+			roomId: Date.now()
+		})
 	}
 	const handleCallVideo = () => {
 		videoCallOpenWindow(true)
-		voiceCallOutgoingCall('outgoing')
+		videoCall({
+			id: String(selectUser?.id),
+			user: {
+				id: selectUser?.id,
+				image: String(selectUser?.image),
+				name: String(selectUser?.name)
+			},
+			callType: 'video',
+			type: 'outgoing',
+			roomId: Date.now()
+		})
 	}
 
 	const contextMenu = useMemo(

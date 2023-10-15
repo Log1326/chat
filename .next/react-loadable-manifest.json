@@ -14,5 +14,11 @@
   "../components/Chat/MessageBar.tsx -> emoji-picker-react": {
     "id": "../components/Chat/MessageBar.tsx -> emoji-picker-react",
     "files": []
+  },
+  "../hooks/useZego.ts -> zego-express-engine-webrtc": {
+    "id": "../hooks/useZego.ts -> zego-express-engine-webrtc",
+    "files": [
+      "static/chunks/node_modules_zego-express-engine-webrtc_ZegoExpressWebRTC_js.js"
+    ]
   }
 }
