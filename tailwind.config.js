@@ -4,7 +4,11 @@ module.exports = {
 	theme: {
 		extend: {
 			backgroundImage: {
-				'chat-background': "url('/chat-bg.png')"
+				'chat-background-color': "url('/bg-image/image-bg-color.jpg')",
+				'chat-background-white': "url('/bg-image/image-bg-white.jpg')",
+				'chat-background-pale': "url('/bg-image/image-bg-grey.png')",
+				'chat-background-teal': "url('/bg-image/image-bg-teal.jpg')",
+				'chat-background-space': "url('/bg-image/image-bg-space.jpg')"
 			},
 			colors: {
 				secondary: '#8696a0',

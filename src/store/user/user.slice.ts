@@ -1,4 +1,4 @@
-import { IInitialState, IUser } from './user.types'
+import { bgChat, IInitialState, IUser } from './user.types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
 	CheckAuthInGoogleAccount,
@@ -6,12 +6,13 @@ import {
 	getAllUsers,
 	RegistrationNewUser
 } from '@/store/user/user.action'
+import { LocalStorageService } from '@/service/LocalStorageService'
 
 const initialState: IInitialState = {
 	userInfo: { name: '', image: '', about: '', email: '' },
 	users: [],
-	newUser: false,
-	loading: false,
+	isNewUser: false,
+	isLoading: false,
 	error: ''
 }
 
@@ -36,62 +37,68 @@ export const userSlice = createSlice({
 		},
 		setUser: (state, action: PayloadAction<IUser>) => {
 			state.userInfo = action.payload
+		},
+		changeIsLoading: (state, action: PayloadAction<boolean>) => {
+			state.isLoading = action.payload
+		},
+		changeBackgroundChat: (state, action: PayloadAction<bgChat>) => {
+			state.backgroundChat = action.payload
+			LocalStorageService.setChatBg(action.payload)
 		}
 	},
 	extraReducers: builder => {
 		builder
 			.addCase(CheckAuthInGoogleAccount.pending, state => {
-				state.loading = true
+				state.isLoading = true
 				state.error = ''
 			})
 			.addCase(CheckAuthInGoogleAccount.fulfilled, (state, { payload }) => {
 				if (!payload.newUser) {
 					state.userInfo = payload
 				} else {
-					state.newUser = true
+					state.isNewUser = true
 					state.userInfo = payload
 				}
-				state.loading = false
 			})
 			.addCase(CheckAuthInGoogleAccount.rejected, (state, action) => {
-				state.loading = false
+				state.isLoading = false
 				state.error = action.error.message
 			})
 			.addCase(CheckAuthInServer.pending, state => {
-				state.loading = true
+				state.isLoading = true
 				state.error = ''
 			})
 			.addCase(CheckAuthInServer.fulfilled, (state, { payload }) => {
 				state.userInfo = payload.data
-				state.loading = false
+				state.isLoading = false
 			})
 			.addCase(CheckAuthInServer.rejected, (state, action) => {
-				state.loading = false
+				state.isLoading = false
 				state.error = action.error.message
 			})
 			.addCase(RegistrationNewUser.pending, state => {
-				state.loading = true
+				state.isLoading = true
 				state.error = ''
 			})
 			.addCase(RegistrationNewUser.fulfilled, (state, action) => {
 				state.userInfo = action.payload
-				state.newUser = false
-				state.loading = false
+				state.isNewUser = false
+				state.isLoading = false
 			})
 			.addCase(RegistrationNewUser.rejected, (state, action) => {
-				state.loading = false
+				state.isLoading = false
 				state.error = action.error.message
 			})
 			.addCase(getAllUsers.pending, state => {
-				state.loading = true
+				state.isLoading = true
 				state.error = ''
 			})
 			.addCase(getAllUsers.fulfilled, (state, action) => {
 				state.users = action.payload
-				state.loading = false
+				state.isLoading = false
 			})
 			.addCase(getAllUsers.rejected, (state, action) => {
-				state.loading = false
+				state.isLoading = false
 				state.error = action.error.message
 			})
 	}

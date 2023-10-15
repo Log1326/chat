@@ -1,11 +1,16 @@
 import React, { RefObject, useEffect, useRef } from 'react'
 
 type RefType = 'click' | 'mousedown' | 'keydown'
-export const useHandleClickOutside = (
-	callback: () => void,
-	type: RefType,
+interface IUseHandleClickOutside {
+	callback: () => void
+	type: RefType
 	idElement: string
-) => {
+}
+export const useHandleClickOutside = ({
+	callback,
+	type,
+	idElement
+}: IUseHandleClickOutside) => {
 	const ref: RefObject<HTMLInputElement> = useRef(null)
 	useEffect(() => {
 		const handleClickOutside = (

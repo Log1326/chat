@@ -1,22 +1,20 @@
 import axios, { AxiosResponse } from 'axios'
 import { ILogin } from '@/types/login'
 import { IUser } from '@/store/user/user.types'
-import { IGetMessages } from '@/types/messageTypes'
-import { UsersContactsAndUsersOnline } from '@/store/message/message.types'
-
-export const HOST = 'http://localhost:4000'
-
-const AUTH_ROUTE = `${HOST}/api/auth`
-const MESSAGES_ROUTE = `${HOST}/api/messages`
-
-export const CHECK_AUTH_ROUTE = `${AUTH_ROUTE}/check-user`
-export const ONBOARD_USER_ROUTE = `${AUTH_ROUTE}/onboard-user`
-export const GET_ALL_USERS = `${AUTH_ROUTE}/users-contacts`
-export const ADD_MESSAGES = `${MESSAGES_ROUTE}/add-message`
-export const GET_MESSAGES = `${MESSAGES_ROUTE}/get-messages`
-export const GET_CONTACTS = `${MESSAGES_ROUTE}/get-contacts`
-export const ADD_MESSAGE_IMAGE = `${MESSAGES_ROUTE}/add-image-message`
-export const ADD_MESSAGE_AUDIO = `${MESSAGES_ROUTE}/add-audio-message`
+import {
+	IGetMessages,
+	UsersContactsAndUsersOnline
+} from '@/store/message/message.types'
+import {
+	ADD_MESSAGE_AUDIO,
+	ADD_MESSAGE_IMAGE,
+	ADD_MESSAGES,
+	CHECK_AUTH_ROUTE,
+	GET_ALL_USERS,
+	GET_CONTACTS,
+	GET_MESSAGES,
+	ONBOARD_USER_ROUTE
+} from '@/service/const'
 
 export const AuthService = {
 	async checkAuth(
@@ -87,8 +85,8 @@ export const MessageService = {
 	},
 	async addMessageAudio(
 		formData: FormData,
-		userId: number | undefined,
-		selectChatUserId: number | undefined
+		userId: number | undefined | null,
+		selectChatUserId: number | undefined | null
 	) {
 		return await axios.post(`${ADD_MESSAGE_AUDIO}`, formData, {
 			headers: {

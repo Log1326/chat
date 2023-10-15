@@ -9,11 +9,23 @@ import { PhotoPicker } from '@/UI/PhotoPicker'
 import { useToggle } from '@/hooks/useToggle'
 import { TypeContextCoordinates } from '@/types/contextTypes'
 import { useContextMenu } from '@/hooks/useContextMenu'
+import { IImages } from '@/types/images.types'
 
 const initialContextMenuCoordinates = {
 	x: 0,
 	y: 0
 }
+const images: IImages<string>[] = [
+	{ name: 'one', value: '/avatars/1.png' },
+	{ name: 'two', value: '/avatars/2.png' },
+	{ name: 'three', value: '/avatars/3.png' },
+	{ name: 'four', value: '/avatars/4.png' },
+	{ name: 'five', value: '/avatars/5.png' },
+	{ name: 'six', value: '/avatars/6.png' },
+	{ name: 'seven', value: '/avatars/7.png' },
+	{ name: 'eight', value: '/avatars/8.png' },
+	{ name: 'nine', value: '/avatars/9.png' }
+]
 export const CustomAvatarMenu: FC<{ value: string }> = ({ value }) => {
 	const [hover, _, handleHoverFn] = useToggle()
 	const { menu, stateMenu, changeStateMenu, fn } = useContextMenu()
@@ -56,15 +68,22 @@ export const CustomAvatarMenu: FC<{ value: string }> = ({ value }) => {
 				/>
 				{stateMenu.isContextMenuVisible && (
 					<ContextMenu
-						options={menu.contextMenuOptions}
-						coordinates={contextMenuCoordinates}
-						contextMenu={stateMenu.isContextMenuVisible}
-						setContextMenu={changeStateMenu.setIsContextMenuVisible}
+						item={{
+							options: menu.contextMenuOptions,
+							coordinates: contextMenuCoordinates,
+							contextMenu: stateMenu.isContextMenuVisible,
+							setContextMenu: changeStateMenu.setIsContextMenuVisible
+						}}
+						idElement={CONTEXT_OPENED}
 					/>
 				)}
 			</div>
 			{stateMenu.showPhotoLib && (
-				<PhotoLibrary hiddenPhotoLib={changeStateMenu.setShowPhotoLib} />
+				<PhotoLibrary
+					changeAvatar={fn.setImage}
+					imagesAvatar={images}
+					hiddenPhotoLib={changeStateMenu.setShowPhotoLib}
+				/>
 			)}
 			{stateMenu.showCapturePhoto && (
 				<CapturePhoto hide={changeStateMenu.setShowCapturePhoto} />

@@ -36,22 +36,17 @@ export function ContactsList() {
 				/>
 				<div className=' h-[calc(100vh-10rem)] overflow-y-scroll custom-scrollbar'>
 					{users.map(values => (
-						<>
-							<div
-								key={values.key + v4()}
-								className='text-teal-light pl-10 py-5'
-							>
-								{values.key}
-							</div>
-							{values.users.map((user, index) => (
-								<div className='text-white cursor-pointer text-center w-full flex justify-center'>
-									<ChatLIstItem
-										key={String(user.id) + index}
-										item={user as IGetInitialUsersChat<IUser>}
-									/>
+						<div key={values.key + v4()}>
+							<div className='text-teal-light pl-10 py-5'>{values.key}</div>
+							{values.users.map(user => (
+								<div
+									key={user.id + v4()}
+									className='text-white cursor-pointer text-center w-full flex justify-center'
+								>
+									<ChatLIstItem item={user as IGetInitialUsersChat<IUser>} />
 								</div>
 							))}
-						</>
+						</div>
 					))}
 				</div>
 			</article>

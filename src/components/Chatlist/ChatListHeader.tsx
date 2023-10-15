@@ -7,8 +7,14 @@ import { getUserImage } from '@/store/user/user.selector'
 import { DropDown } from '@/UI/DropDown'
 import { useToggle } from '@/hooks/useToggle'
 import { getAuth, signOut } from 'firebase/auth'
+<<<<<<< HEAD
+=======
+import { useRouter } from 'next/router'
+import { RouterEnumPath } from '@/types/routerEnumPath'
+>>>>>>> features
 
 export function ChatListHeader() {
+	const { replace, reload } = useRouter()
 	const { toggleChatPage } = useActions()
 	const [openMenu, _, openMenuFn] = useToggle()
 	const userImage = useSelector(getUserImage)
@@ -19,6 +25,7 @@ export function ChatListHeader() {
 	const logout = () => {
 		const auth = getAuth()
 		signOut(auth)
+<<<<<<< HEAD
 			.then(() => {
 				alert('working')
 				//useRouter
@@ -27,6 +34,14 @@ export function ChatListHeader() {
 			.catch(error => {
 				alert('working error')
 				// An error happened.
+=======
+			.then(async () => {
+				await replace(RouterEnumPath.LOGIN)
+			})
+			.catch(error => {
+				console.log(error)
+				reload()
+>>>>>>> features
 			})
 	}
 	return (
@@ -43,6 +58,7 @@ export function ChatListHeader() {
 				</button>
 				<DropDown
 					title={
+<<<<<<< HEAD
 						<button>
 							<BsThreeDotsVertical
 								className='h-6 w-6 hover:opacity-70'
@@ -50,6 +66,13 @@ export function ChatListHeader() {
 								onClick={openMenuFn}
 							/>
 						</button>
+=======
+						<BsThreeDotsVertical
+							className='h-6 w-6 hover:opacity-70'
+							title='Options'
+							onClick={openMenuFn}
+						/>
+>>>>>>> features
 					}
 					toggle={openMenu}
 				>

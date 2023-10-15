@@ -2,22 +2,41 @@ import { useSelector } from 'react-redux'
 import { RefObject, useEffect, useRef } from 'react'
 import { getAllMessagesState } from '@/store/message/message.selectors'
 import { ChatTypeMessage } from '@/components/Chat/ChatTypeMessage'
-import { getSelectUserId } from '@/store/user/user.selector'
+import { getChatImage, getSelectUserId } from '@/store/user/user.selector'
+import {
+	getIsVideoCallOutgoing,
+	getIsVoiceCallOutgoing
+} from '@/store/call/call.selectors'
+import { VoiceCall } from '@/components/Call/VoiceCall'
+import { VideoCall } from '@/components/Call/VideoCall'
 
 export function ChatContainer() {
 	const messages = useSelector(getAllMessagesState)
+	const modeBg = useSelector(getChatImage) ?? 'bg-chat-background-teal'
+	const videoCall = useSelector(getIsVideoCallOutgoing)
+	const voiceCall = useSelector(getIsVoiceCallOutgoing)
 	const selectChatUserId = useSelector(getSelectUserId)
+	//================================
+	//TO DO
+	// const [elementRef, { height }] = useElementSize<HTMLDivElement>()
+	// const matches = useMediaQuery('(max-height: 768px)')
+	//TO DO
+	//================================
 	const positionRef: RefObject<HTMLSpanElement> = useRef(null)
 	useEffect(() => {
 		if (positionRef.current)
 			positionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
 	}, [messages])
 	return (
-		<article className='custom-scrollbar h-[81vh] overflow-y-auto text-white relative'>
-			<span className='opacity-10 bg-chat-background h-full w-full absolute' />
-			<div className='text-white  z-10 mt-10'>
-				{messages &&
-					messages?.map(message => (
+		<article className='custom-scrollbar h-[calc(100vh-10rem)] overflow-y-auto text-white relative'>
+			<div
+				className={`${modeBg} bg-auto bg-center w-full z-10 absolute`}
+				// ref={elementRef}
+			>
+				{voiceCall && !videoCall && <VoiceCall />}
+				{videoCall && !voiceCall && <VideoCall />}
+				<div className='text-white z-50 '>
+					{messages?.map(message => (
 						<article
 							key={message.id}
 							className={`text-white px-10 text-2xl flex ${
@@ -29,8 +48,9 @@ export function ChatContainer() {
 							<ChatTypeMessage message={message} key={message.id} />
 						</article>
 					))}
+				</div>
+				<span ref={positionRef} />
 			</div>
-			<span ref={positionRef} />
 		</article>
 	)
 }

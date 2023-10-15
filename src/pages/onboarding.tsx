@@ -19,7 +19,8 @@ function onboarding() {
 	const newUserBool = useSelector(getNewUserBool)
 	const isLoading = useSelector(getLoadingUser)
 	const { push } = useRouter()
-	const { RegistrationNewUser, setName, setAbout, setImage } = useActions()
+	const { RegistrationNewUser, setName, setAbout, setImage, changeIsLoading } =
+		useActions()
 	useEffect(() => {
 		if (!email || !newUserBool) push(RouterEnumPath.LOGIN)
 		if (!newUserBool && email) push(RouterEnumPath.MAIN)
@@ -27,6 +28,9 @@ function onboarding() {
 	useEffect(() => {
 		if (!image) setImage('/default_avatar.png')
 	}, [image])
+	useEffect(() => {
+		changeIsLoading(false)
+	}, [])
 	const onboardUserHandler = () =>
 		RegistrationNewUser({ name, about, image, email })
 	const disableButton = name.length < 3 || (about && about.length < 3)

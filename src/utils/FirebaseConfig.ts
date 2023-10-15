@@ -1,13 +1,14 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth } from '@firebase/auth'
+import process from 'process'
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyDBvxob4tad4cQbp4L52nlm4AN1-64PPW4',
-	authDomain: 'whats-up-f6a59.firebaseapp.com',
-	projectId: 'whats-up-f6a59',
-	storageBucket: 'whats-up-f6a59.appspot.com',
-	messagingSenderId: '584515637272',
-	appId: '1:584515637272:web:fff233bf6721398760f36d'
+	apiKey: process.env.API_KEY_FIREBASE,
+	authDomain: process.env.AUTH_DOMAIN_FIREBASE,
+	projectId: process.env.PROJECT_ID_FIREBASE,
+	storageBucket: process.env.STORAGE_BUCKET_FIREBASE,
+	messagingSenderId: process.env.MESSAGING_SENDER_ID_FIREBASE,
+	appId: process.env.APP_IP_FIREBASE
 }
 
 const app = initializeApp(firebaseConfig)

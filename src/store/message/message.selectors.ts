@@ -3,7 +3,7 @@ import { TypeRootState } from '@/store/store'
 export const getAllMessagesState = (state: TypeRootState) =>
 	state.messageStore.messages
 export const getMessageState = (state: TypeRootState) =>
-	state.messageStore.message
+	state.messageStore.message ?? ''
 export const getToggleChatPage = (state: TypeRootState) =>
 	state.messageStore.toggleChatPage
 export const getSocketState = (state: TypeRootState) =>

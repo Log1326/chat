@@ -32,7 +32,7 @@ export function List() {
 			)
 	}, [searchUser])
 	return (
-		<article className='px-2 overflow-y-scroll custom-scrollbar'>
+		<article className='px-2 h-[calc(100vh-5rem)] overflow-y-scroll custom-scrollbar'>
 			<div className='bg-search-input-container-background p-3 w-full text-left rounded-2xl'>
 				<SearchBar
 					state={searchUser}
@@ -45,7 +45,7 @@ export function List() {
 			{loadingContacts ? (
 				<Loading size='text-2xl' center />
 			) : (
-				<>
+				<div className='inline-block w-full overflow-hidden'>
 					{searchUser ? (
 						<>
 							{!filterUser?.length ? (
@@ -67,7 +67,7 @@ export function List() {
 							))}
 						</>
 					)}
-				</>
+				</div>
 			)}
 		</article>
 	)
