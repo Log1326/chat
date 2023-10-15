@@ -9,6 +9,7 @@ import { REJECT_VIDEO_CALL, REJECT_VOICE_CALL } from '@/utils/constants'
 import { useKeyListener } from '@/hooks/useKeyListener'
 import { getIsAcceptCall } from '@/store/call/call.selectors'
 import { useZego } from '@/hooks/useZego'
+import { Icon } from '@/UI/Icon'
 
 type TypeContainer = 'video' | 'voice'
 interface ContainerProps {
@@ -16,7 +17,7 @@ interface ContainerProps {
 	data: CallState
 }
 
-export const Container =  ({ type, data }: ContainerProps) => {
+export const Container = ({ type, data }: ContainerProps) => {
 	const {
 		state: { zgVar, localStream, publishStream }
 	} = useZego(data)
@@ -74,17 +75,21 @@ export const Container =  ({ type, data }: ContainerProps) => {
 					alt={'image' + data.user.name}
 					width={250}
 					height={250}
-					className='bg-contain  rounded-full '
+					className='rounded-full bg-contain '
 				/>
 			)}
 			<div id='local' />
 			<div id='remote' />
-			<p className='text-xl text-white capitalize'>{data.user.name}</p>
+			<p className='text-xl capitalize text-white'>{data.user.name}</p>
 			<button
 				onClick={handleCalled}
-				className='text-red-600 bg-gray-900  rounded-full cursor-pointer hover:bg-gray-600'
+				className='cursor-pointer rounded-full  bg-gray-900 text-red-600 hover:bg-gray-600'
 			>
-				<MdOutlineCallEnd title='call reject' className='h-12 w-12 p-2' />
+				<Icon
+					Svg={MdOutlineCallEnd}
+					title='call reject'
+					className='h-12 w-12 p-2'
+				/>
 			</button>
 		</div>
 	)

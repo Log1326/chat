@@ -144,7 +144,7 @@ export function ChatContainer() {
 							className={twMerge(
 								'z-20 cursor-default break-all px-10 text-2xl text-white',
 								isSender
-									? 'flex w-fit justify-start'
+									? 'flex justify-start'
 									: 'flex justify-end'
 							)}
 						>

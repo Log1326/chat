@@ -8,19 +8,12 @@ module.exports = {
 				height: 'height'
 			},
 			screens: {
-				'screen-xs': { min: '320px', max: '384px' },
-				'screen-sm': { min: '384px', max: '448px' },
-				'screen-md': { min: '448px', max: '512px' },
-				'screen-lg': { min: '512px', max: '576px' },
-				'screen-xl-max': { max: '576px' },
-				'screen-xl-min': { min: '577px' },
-				'screen-xl': { min: '577px', max: '692px' },
-				'screen-2xl': { min: '692px', max: '768px' },
-				'screen-3xl': { min: '768px', max: '896px' },
-				'screen-4xl': { min: '896px', max: '1024px' },
-				'screen-5xl': { min: '1024px', max: '1152px' },
-				'screen-6xl': { min: '1152px', max: '1280px' },
-				'screen-7xl': { min: '1280px' }
+				phone: { max: '480px' },
+				phoneMin: { min: '480px' },
+				tablet: { max: '768px' },
+				laptopMin: { max: '1024px' },
+				laptop: { max: '1024px', min: '768px' },
+				desktop: { max: '1280px' }
 			},
 			backgroundImage: {
 				'chat-background-color': "url('/bg-image/image-bg-color.jpg')",

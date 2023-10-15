@@ -23,36 +23,43 @@ export function useZego(data: CallState) {
 						String(process.env.ZEG_APP_PUBLIC_SERVER)
 					)
 					setZgVar(zg)
-					zg.on('roomStreamUpdate', async (_, updateType, streamList, __) => {
-						if (updateType === 'ADD') {
-							//this is incoming
-							const rmVideo = document.getElementById('remote')
-							const vd = document.createElement(
-								data.callType === 'video' ? 'video' : 'audio'
-							)
-							vd.id = streamList[0].streamID
-							vd.autoplay = true
-							vd.className = 'h-full w-[350px] rounded-xl custom-img'
-							//@ts-ignore
-							vd.playsinline = true
-							vd.muted = false
-							if (rmVideo) rmVideo.appendChild(vd)
-							zg.startPlayingStream(streamList[0].streamID, {
-								audio: true,
-								video: true
-							}).then(stream => (vd.srcObject = stream))
-						} else if (
-							updateType === 'DELETE' &&
-							zg &&
-							// localStream &&
-							streamList[0].streamID
-						) {
-							zg.destroyStream(localStream)
-							zg.stopPublishingStream(streamList[0].streamID)
-							zg.logoutRoom(data.roomId.toString())
-							setEndCall()
+					zg.on(
+						'roomStreamUpdate',
+						async (_, updateType, streamList, __) => {
+							if (updateType === 'ADD') {
+								//this is incoming
+								const rmVideo =
+									document.getElementById('remote')
+								const vd = document.createElement(
+									data.callType === 'video'
+										? 'video'
+										: 'audio'
+								)
+								vd.id = streamList[0].streamID
+								vd.autoplay = true
+								vd.className =
+									'h-full w-[350px] rounded-xl custom-img'
+								//@ts-ignore
+								vd.playsinline = true
+								vd.muted = false
+								if (rmVideo) rmVideo.appendChild(vd)
+								zg.startPlayingStream(streamList[0].streamID, {
+									audio: true,
+									video: true
+								}).then(stream => (vd.srcObject = stream))
+							} else if (
+								updateType === 'DELETE' &&
+								zg &&
+								localStream &&
+								streamList[0].streamID
+							) {
+								zg.destroyStream(localStream)
+								zg.stopPublishingStream(streamList[0].streamID)
+								zg.logoutRoom(data.roomId.toString())
+								setEndCall()
+							}
 						}
-					})
+					)
 					await zg.loginRoom(
 						data.roomId.toString(),
 						String(token),
@@ -63,7 +70,10 @@ export function useZego(data: CallState) {
 						{ userUpdate: true }
 					)
 					const localStream = await zg.createStream({
-						camera: { audio: true, video: data.callType === 'video' }
+						camera: {
+							audio: true,
+							video: data.callType === 'video'
+						}
 					})
 					//this is outgoing
 					const localVideo = document.getElementById('local')
@@ -71,7 +81,8 @@ export function useZego(data: CallState) {
 						data.callType === 'video' ? 'video' : 'audio'
 					)
 					videoElement.id = 'local-zero'
-					videoElement.className = 'h-full w-[250px] rounded-xl custom-img'
+					videoElement.className =
+						'h-full w-[250px] rounded-xl custom-img'
 					videoElement.autoplay = true
 					videoElement.muted = false
 					// @ts-ignore

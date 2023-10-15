@@ -1,6 +1,7 @@
 import { BsCheck, BsCheckAll } from 'react-icons/bs'
 import { TypeMessageStatus } from '@/store/message/message.types'
 import { memo } from 'react'
+import { Icon } from '@/UI/Icon'
 
 interface MessageStatusProps {
 	messageStatus?: TypeMessageStatus
@@ -10,12 +11,14 @@ export const MessageStatus = memo(function MessageStatus({
 }: MessageStatusProps) {
 	return (
 		<>
-			{messageStatus === 'sent' && <BsCheck className='text-lg' />}
+			{messageStatus === 'sent' && (
+				<Icon Svg={BsCheck} className='text-lg' />
+			)}
 			{messageStatus === 'delivered' && (
-				<BsCheckAll className='text-lg' />
+				<Icon Svg={BsCheckAll} className='text-lg' />
 			)}
 			{messageStatus === 'read' && (
-				<BsCheckAll className='text-lg text-icon-ack' />
+				<Icon Svg={BsCheckAll} className='text-lg text-icon-ack' />
 			)}
 		</>
 	)

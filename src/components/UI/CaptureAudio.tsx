@@ -19,16 +19,16 @@ export function CaptureAudio({ hideAudio }: CaptureAudioProps) {
 		hideAudio(false)
 	}
 	return (
-		<div className='flex justify-end items-center  gap-4 w-full h-full'>
-			<span className='p-2 animate-scaleIn'>
+		<div className='flex h-full w-full items-center justify-end gap-4'>
+			<span className='animate-scaleIn p-2'>
 				<FaTrash
 					className='h-6 w-6 cursor-pointer hover:text-zinc-950'
 					onClick={() => hideAudio(false)}
 				/>
 			</span>
-			<div className='flex items-center gap-4  px-4 py-2  rounded-2xl bg-background-default-hover'>
+			<div className='flex items-center gap-4 rounded-2xl bg-background-default-hover px-4 py-2'>
 				{state.isRecording ? (
-					<div className='text-red-500 text-center  animate-fadeInfinite'>
+					<div className='animate-fadeInfinite text-center  text-red-500'>
 						Recording
 					</div>
 				) : (
@@ -51,11 +51,11 @@ export function CaptureAudio({ hideAudio }: CaptureAudioProps) {
 					</div>
 				)}
 				<div
-					className='w-60'
+					className='phoneMin:w-14'
 					ref={refs.waveFormRef}
 					hidden={state.isRecording}
 				/>
-				<span className={state.isRecording ? 'text-red-500' : ''}>
+				<span className={state.isRecording ? 'w-10 text-red-500' : ''}>
 					{!state.recordedAudio && state.isPlaying && (
 						<span>{formatTime(state.currentPlayBackTime)}</span>
 					)}
@@ -69,12 +69,12 @@ export function CaptureAudio({ hideAudio }: CaptureAudioProps) {
 			<div>
 				{!state.isRecording ? (
 					<FaMicrophone
-						className='text-red-500 h-6 w-6 hover:text-gray-300 cursor-pointer'
+						className='h-6 w-6 cursor-pointer text-red-500 hover:text-gray-300'
 						onClick={audioFn.handleStartRecording}
 					/>
 				) : (
 					<FaPauseCircle
-						className='text-red-500 h-6 w-6 hover:text-gray-300 cursor-pointer'
+						className='h-6 w-6 cursor-pointer text-red-500 hover:text-gray-300'
 						onClick={audioFn.handleStopRecording}
 					/>
 				)}

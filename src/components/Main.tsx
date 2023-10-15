@@ -57,35 +57,28 @@ export function Main() {
 	useEffect(() => {
 		socketRef?.current?.on(
 			INCOMING_VOICE_CALL,
-			({ from, roomId, callType, type }) => {
+			({ from, roomId, callType, type }) =>
 				setIncomingVoiceCall({ user: from, roomId, callType, type })
-			}
 		)
 		socketRef?.current?.on(
 			INCOMING_VIDEO_CALL,
-			({ from, roomId, callType, type }) => {
+			({ from, roomId, callType, type }) =>
 				setIncomingVideoCall({ user: from, roomId, callType, type })
-			}
 		)
-		socketRef?.current?.on(REJECTED_VIDEO_CALL, () => {
-			setEndCall()
-		})
-		socketRef?.current?.on(REJECTED_VOICE_CALL, () => {
-			setEndCall()
-		})
+		socketRef?.current?.on(REJECTED_VIDEO_CALL, () => setEndCall())
+		socketRef?.current?.on(REJECTED_VOICE_CALL, () => setEndCall())
 	}, [socketRef.current])
 	return (
 		<main
 			className='grid h-screen grid-cols-12 overflow-hidden'
 			data-testid='mainPage'
 		>
-			<div className={twMerge('screen-xl-max:hidden col-span-4')}>
+			<div className='tablet:hidden col-span-4'>
 				<ChatList />
 			</div>
 			<section
 				className={twMerge(
-					'relative col-span-8 grid h-full overflow-hidden bg-panel-header-background',
-					'screen-xl-max:w-screen '
+					'tablet:col-span-full relative col-span-8 grid h-full overflow-hidden bg-panel-header-background'
 				)}
 			>
 				{selectChatUser ? (
@@ -96,7 +89,7 @@ export function Main() {
 					/>
 				) : (
 					<>
-						<div className='screen-xl-min:hidden'>
+						<div className='tablet:contents hidden'>
 							<ChatList />
 						</div>
 						<Empty />

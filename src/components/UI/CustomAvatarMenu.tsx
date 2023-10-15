@@ -75,7 +75,7 @@ export const CustomAvatarMenu: FC<CustomAvatarMenuProps> = ({
 				<Image
 					src={src || '/default_avatar.png'}
 					alt='imageAvatar here'
-					className={`rounded-full ${hover && 'opacity-40'}`}
+					className={twMerge('rounded-full', hover && 'opacity-40')}
 					fill
 				/>
 				{stateMenu.isContextMenuVisible && (

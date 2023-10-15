@@ -15,13 +15,15 @@ export const ImageMessage = memo(function ImageMessage({
 }: IImageMessage) {
 	if (compressed) return <Icon Svg={BiImageAlt} className='h-6 w-6' />
 	return (
-		<Image
-			src={`${HOST}/${message.message}`}
-			alt={message.message}
-			height={300}
-			width={300}
-			blurDataURL='/load.gif'
-			placeholder='blur'
-		/>
+		<div className='relative'>
+			<Image
+				src={`${HOST}/${message.message}`}
+				alt={message.message}
+				height={300}
+				width={300}
+				blurDataURL='/load.gif'
+				placeholder='blur'
+			/>
+		</div>
 	)
 })
